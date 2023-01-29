@@ -1,0 +1,167 @@
+.color_light {
+  --bg: rgb(255, 251, 255);
+  --bg900: rgba(255, 251, 255, 0.9);
+  --bg800: rgba(255, 251, 255, 0.8);
+  --bg700: rgba(255, 251, 255, 0.7);
+  --bg600: rgba(255, 251, 255, 0.6);
+  --bg500: rgba(255, 251, 255, 0.5);
+  --bg400: rgba(255, 251, 255, 0.4);
+  --bg300: rgba(255, 251, 255, 0.3);
+  --bg200: rgba(255, 251, 255, 0.2);
+  --bg100: rgba(255, 251, 255, 0.1);
+
+  --onBg: rgba(29, 27, 30);
+  --onBg900: rgba(26, 28, 27, 0.9);
+  --onBg800: rgba(29, 27, 30, 0.8);
+  --onBg700: rgba(29, 27, 30, 0.7);
+  --onBg600: rgba(29, 27, 30, 0.6);
+  --onBg500: rgba(29, 27, 30, 0.5);
+  --onBg400: rgba(29, 27, 30, 0.4);
+  --onBg300: rgba(29, 27, 30, 0.3);
+  --onBg200: rgba(29, 27, 30, 0.2);
+  --onBg100: rgba(29, 27, 30, 0.1);
+  --onBg50: rgba(29, 27, 30, 0.05);
+
+  --primary: rgb(114, 75, 165);
+  --primary900: rgba(114, 75, 165, 0.9);
+  --primary800: rgba(114, 75, 165, 0.8);
+  --primary700: rgba(114, 75, 165, 0.7);
+  --primary600: rgba(114, 75, 165, 0.6);
+  --primary500: rgba(114, 75, 165, 0.5);
+  --primary400: rgba(114, 75, 165, 0.4);
+  --primary300: rgba(114, 75, 165, 0.3);
+  --primary200: rgba(114, 75, 165, 0.2);
+  --primary100: rgba(114, 75, 165, 0.1);
+
+  --onPrimary: rgb(255, 255, 255);
+  --onPrimary900: rgba(255, 255, 255, 0.9);
+  --onPrimary800: rgba(255, 255, 255, 0.8);
+  --onPrimary700: rgba(255, 255, 255, 0.7);
+  --onPrimary600: rgba(255, 255, 255, 0.6);
+  --onPrimary500: rgba(255, 255, 255, 0.5);
+  --onPrimary400: rgba(255, 255, 255, 0.4);
+  --onPrimary300: rgba(255, 255, 255, 0.3);
+  --onPrimary200: rgba(255, 255, 255, 0.2);
+  --onPrimary100: rgba(255, 255, 255, 0.1);
+
+  --primaryCon: rgb(238, 220, 255);
+  --primaryCon900: rgba(238, 220, 255, 0.9);
+  --primaryCon800: rgba(238, 220, 255, 0.8);
+  --primaryCon700: rgba(238, 220, 255, 0.7);
+  --primaryCon600: rgba(238, 220, 255, 0.6);
+  --primaryCon500: rgba(238, 220, 255, 0.5);
+  --primaryCon400: rgba(238, 220, 255, 0.4);
+  --primaryCon300: rgba(238, 220, 255, 0.3);
+  --primaryCon200: rgba(238, 220, 255, 0.2);
+  --primaryCon100: rgba(238, 220, 255, 0.1);
+
+  --primaryOnCon: rgb(41, 0, 84);
+  --primaryOnCon900: rgba(41, 0, 84, 0.9);
+  --primaryOnCon800: rgba(41, 0, 84, 0.8);
+  --primaryOnCon700: rgba(41, 0, 84, 0.7);
+  --primaryOnCon600: rgba(41, 0, 84, 0.6);
+  --primaryOnCon500: rgba(41, 0, 84, 0.5);
+  --primaryOnCon400: rgba(41, 0, 84, 0.4);
+  --primaryOnCon300: rgba(41, 0, 84, 0.3);
+  --primaryOnCon200: rgba(41, 0, 84, 0.2);
+  --primaryOnCon100: rgba(41, 0, 84, 0.1);
+
+  --outlineVariant: rgb(204, 196, 207);
+  --outlineVariant900: rgba(204, 196, 207, 0.9);
+  --outlineVariant800: rgba(204, 196, 207, 0.8);
+  --outlineVariant700: rgba(204, 196, 207, 0.7);
+  --outlineVariant600: rgba(204, 196, 207, 0.6);
+  --outlineVariant500: rgba(204, 196, 207, 0.5);
+  --outlineVariant400: rgba(204, 196, 207, 0.4);
+  --outlineVariant300: rgba(204, 196, 207, 0.3);
+  --outlineVariant200: rgba(204, 196, 207, 0.2);
+  --outlineVariant100: rgba(204, 196, 207, 0.1);
+
+  --surfaceVariant: rgba(232, 224, 235, 1);
+  --surfaceVariant900: rgba(232, 224, 235, 0.9);
+  --surfaceVariant800: rgba(232, 224, 235, 0.8);
+  --surfaceVariant700: rgba(232, 224, 235, 0.7);
+  --surfaceVariant600: rgba(232, 224, 235, 0.6);
+  --surfaceVariant500: rgba(232, 224, 235, 0.5);
+  --surfaceVariant400: rgba(232, 224, 235, 0.4);
+  --surfaceVariant300: rgba(232, 224, 235, 0.3);
+  --surfaceVariant200: rgba(232, 224, 235, 0.2);
+  --surfaceVariant100: rgba(232, 224, 235, 0.1);
+
+  --gray: rgba(150, 150, 150, 1);
+  --gray900: rgba(150, 150, 150, 0.9);
+  --gray800: rgba(150, 150, 150, 0.8);
+  --gray700: rgba(150, 150, 150, 0.7);
+  --gray600: rgba(150, 150, 150, 0.6);
+  --gray500: rgba(150, 150, 150, 0.5);
+  --gray400: rgba(150, 150, 150, 0.4);
+  --gray300: rgba(150, 150, 150, 0.3);
+  --gray200: rgba(150, 150, 150, 0.2);
+  --gray100: rgba(150, 150, 150, 0.1);
+
+  --success: rgba(202, 241, 225, 1);
+  --onSuccess: rgba(14, 77, 9, 1);
+  --onSuccess500: rgba(14, 77, 9, 0.5);
+
+  --error: rgba(241, 202, 202, 1);
+  --error300: rgba(241, 202, 202, 0.3);
+  --onError: rgba(77, 9, 9, 1);
+  --onError500: rgba(77, 9, 9, 0.5);
+
+  --warn: rgba(241, 228, 202, 1);
+  --onWarn: rgba(77, 54, 9, 1);
+  --onWarn500: rgba(77, 54, 9, 0.5);
+}
+
+.transitionToken {
+  --colorTransition: color 0.5s;
+  --bgTransition: background-color 0.5s, fill 0.2s, stroke 0.5s,
+    border-color 0.5s;
+  --boxShadowTransition: box-shadow 0.2s;
+}
+
+.shadows {
+  --shadow1dp: 0px 0px 2px 0px #00000024, 0px 2px 2px 0px #0000001f,
+    0px 1px 3px 0px #00000033;
+
+  --shadow2dp: 0px 0px 4px 0px #00000024, 0px 3px 4px 0px #0000001f,
+    0px 1px 5px 0px #00000033;
+
+  --shadow3dp: 0px 3px 3px 0px #00000024, 0px 3px 4px 0px #0000001f,
+    0px 1px 8px 0px #00000033;
+
+  --shadow8dp: 0px 8px 10px 1px #00000024, 0px 3px 14px 3px #0000001f,
+    0px 4px 15px 0px #00000033;
+  --shadow24dp: 0px 24px 38px 3px #00000024, 0px 9px 46px 8px #0000001f,
+    0px 11px 15px 0px #00000033;
+}
+
+.font_sizes {
+  --headline0: 75px;
+  --headline1: 60px;
+  --headline2: 50px;
+  --headline3: 43px;
+  --headline4-5: 34px;
+  --headline4: 24px;
+  --headline5: 22px;
+  --headline6: 18px;
+  --subhead1: 16px;
+  --subhead2: 14px;
+  --subhead3: 12px;
+  --button: 15px;
+}
+
+.line_height {
+  --headline0_lineHeight: 85px;
+  --headline1_lineHeight: 75px;
+  --headline2_lineHeight: 60px;
+  --headline3_lineHeight: 53px;
+  --headline4-5_lineHeight: 38px;
+  --headline4_lineHeight: 32px;
+  --headline5_lineHeight: 28px;
+  --headline6_lineHeight: 24px;
+  --subhead1_lineHeight: 24px;
+  --subhead2_lineHeight: 20px;
+  --subhead3_lineHeight: 18px;
+  --button_lineHeight: 20px;
+}
