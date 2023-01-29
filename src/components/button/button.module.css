@@ -1,0 +1,143 @@
+.button {
+  --main: var(--primaryCon);
+  --onMain: var(--primaryOnCon);
+  --onMain500: var(--primaryOnCon500);
+  --onMain200: var(--primaryOnCon200);
+
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  background-color: var(--main);
+  color: var(--onMain);
+  cursor: pointer;
+  font-size: var(--button);
+  font-weight: 600;
+  font-family: var(--font-sub);
+  box-shadow: var(--shadow3dp);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 10rem;
+}
+
+.button svg {
+  fill: var(--onMain);
+}
+
+.leftIcon {
+  margin-right: 0.5rem;
+}
+
+.rightIcon {
+  margin-left: 0.5rem;
+}
+
+.button:hover {
+  background-color: var(--onMain);
+  color: var(--main);
+}
+
+.button:hover svg {
+  fill: var(--main);
+}
+
+.button:hover span {
+  border-top: 3px solid var(--main);
+}
+
+.button:active {
+  box-shadow: none;
+}
+
+.button:disabled {
+  background-color: var(--gray700);
+  color: var(--onBg800);
+  cursor: not-allowed;
+}
+
+.button:disabled span {
+  border-top: 3px solid var(--onBg800);
+}
+
+.button:disabled svg {
+  fill: var(--onBg800);
+}
+.button:disabled:hover svg {
+  fill: var(--onBg800);
+}
+
+.button:disabled:hover {
+  background-color: var(--gray700);
+}
+.button:disabled:active {
+  box-shadow: var(--shadow3dp);
+}
+
+.contained {
+  background-color: var(--main);
+  color: var(--onMain);
+}
+
+.shadow {
+  box-shadow: none;
+  background-color: transparent;
+  color: var(--onMain);
+}
+
+.shadow:hover {
+  box-shadow: none;
+  background-color: var(--onMain200);
+  color: var(--onMain);
+}
+
+.shadow:hover svg {
+  fill: var(--onMain);
+}
+
+.shadow:active {
+  box-shadow: none;
+  background-color: var(--onMain500);
+  color: var(--onMain);
+}
+
+.outlined {
+  border: 2px solid var(--onMain);
+  background-color: transparent;
+  color: var(--onMain);
+  box-shadow: none;
+}
+
+.outlined:hover {
+  border: 2px solid var(--onMain);
+  background-color: var(--onMain200);
+  color: var(--onMain);
+  box-shadow: none;
+}
+
+.outlined:hover svg {
+  fill: var(--onMain);
+}
+
+.outlined:active {
+  background-color: var(--onMain500);
+}
+
+.primary {
+  --main: var(--primaryCon);
+  --onMain: var(--primaryOnCon);
+  --onMain500: var(--primaryOnCon500);
+  --onMain200: var(--primaryOnCon200);
+}
+.secondary {
+  --main: var(--secondaryCon);
+  --onMain: var(--secondaryOnCon);
+  --onMain500: var(--secondaryOnCon500);
+  --onMain200: var(--secondaryOnCon200);
+}
+
+.tertiary {
+  --main: var(--tertiaryCon);
+  --onMain: var(--tertiaryOnCon);
+  --onMain500: var(--tertiaryOnCon500);
+  --onMain200: var(--tertiaryOnCon200);
+}

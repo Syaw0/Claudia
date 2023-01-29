@@ -1,0 +1,45 @@
+/* .text {
+  font-size: var(--subhead3);
+} */
+
+.holder {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  border-radius: 8px;
+}
+
+.successMsg {
+  background-color: var(--success);
+  border: 1px solid var(--onSuccess500);
+}
+
+.successMsg p {
+  color: var(--onSuccess);
+}
+
+.loaderMsg {
+  background-color: var(--warn);
+  border: 1px solid var(--onWarn500);
+}
+
+.loaderMsg p {
+  color: var(--onWarn);
+}
+
+.warnMsg {
+  background-color: var(--warn);
+  border: 1px solid var(--onWarn500);
+}
+
+.warnMsg p {
+  color: var(--onWarn);
+}
+
+.errorMsg {
+  background-color: var(--error);
+  border: 1px solid var(--onError);
+}
+
+.errorMsg p {
+  color: var(--onError);
+}

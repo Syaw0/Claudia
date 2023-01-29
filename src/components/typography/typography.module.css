@@ -1,0 +1,73 @@
+.typography {
+  color: var(--onBg);
+}
+
+.headline1 {
+  font-size: var(--headline1);
+  line-height: var(--headline1_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-head);
+}
+
+.headline2 {
+  font-size: var(--headline2);
+  line-height: var(--headline2_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-head);
+}
+
+.headline3 {
+  font-size: var(--headline3);
+  line-height: var(--headline3_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-head);
+}
+
+.headline4 {
+  font-size: var(--headline4);
+  line-height: var(--headline4_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-sub);
+}
+
+.headline5 {
+  font-size: var(--headline5);
+  line-height: var(--headline5_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-sub);
+}
+
+.headline6 {
+  font-size: var(--headline6);
+  line-height: var(--headline6_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-sub);
+}
+
+.subhead1 {
+  font-size: var(--subhead1);
+  line-height: var(--subhead1_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-sub);
+}
+
+.subhead2 {
+  font-size: var(--subhead2);
+  line-height: var(--subhead2_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-sub);
+}
+
+.subhead3 {
+  font-size: var(--subhead3);
+  line-height: var(--subhead3_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-sub);
+}
+
+.button {
+  font-size: var(--button);
+  line-height: var(--button_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-sub);
+}

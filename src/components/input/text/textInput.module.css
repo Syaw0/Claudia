@@ -1,0 +1,45 @@
+.holder {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.holder label {
+  font-size: var(--subhead3);
+  color: var(--onBg800);
+  font-family: var(--font-sub);
+  font-weight: 500;
+  padding: 0.4rem 0;
+}
+
+.holder input {
+  border: 2px solid var(--onBg400);
+  padding: 0.5rem 0.8rem;
+  background-color: transparent;
+  border-radius: 8px;
+  font-size: var(--subhead2);
+  font-weight: 600;
+  color: var(--onBg900);
+}
+
+.holder input:focus {
+  outline: none;
+  background-color: var(--primaryCon400);
+  outline-offset: 2px;
+  color: var(--primaryOnCon);
+}
+
+.holder svg {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  bottom: 50%;
+  transform: translate(-40%, -55%);
+  cursor: pointer;
+  fill: var(--onBg600);
+}
+
+.holder svg:hover {
+  fill: var(--onBg900);
+}

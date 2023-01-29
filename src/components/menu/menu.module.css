@@ -1,0 +1,23 @@
+.holder {
+  position: relative;
+}
+
+.itemHolder {
+  background-color: var(--onBg);
+  padding: 0.2rem;
+  position: absolute;
+  width: max-content;
+  right: 0;
+  border-radius: 5px;
+}
+
+.item {
+  color: var(--bg);
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+}
+
+.item:hover {
+  background-color: var(--bg400);
+}
