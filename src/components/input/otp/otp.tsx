@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent } from "react";
 import style from "./otp.module.css";
 
 interface OtpInputPropsType {
@@ -13,6 +13,9 @@ const OtpInput = ({ len = 6, value, setValue }: OtpInputPropsType) => {
   const changeHandler = (e: ChangeEvent<HTMLInputElement>, i: number) => {
     const element = e.currentTarget;
     const val = element.value;
+    if (!/[0-9]{1}/.test(val)) {
+      return;
+    }
     const valueArr = value.split("");
 
     valueArr[i] = val;
@@ -46,11 +49,12 @@ const OtpInput = ({ len = 6, value, setValue }: OtpInputPropsType) => {
     }
   };
   return (
-    <div onClick={handleFocus} className={style.holder}>
+    <div data-testid="otpHolder" onClick={handleFocus} className={style.holder}>
       {arr.map((s, i) => {
         return (
           <input
             inputMode="numeric"
+            data-testid={`otpInput_${i}`}
             pattern={/[0-1]{1}/.source}
             onChange={(e) => {
               changeHandler(e, i);
