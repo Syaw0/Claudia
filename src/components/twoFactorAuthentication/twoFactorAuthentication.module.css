@@ -6,7 +6,13 @@
 .holder {
   display: flex;
   flex-direction: column;
-  width: 30rem;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
 }
 
 .headlineTypography {
@@ -35,9 +41,18 @@
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
+  position: relative;
 }
 
 .buttonHolder button {
   min-width: fit-content;
   box-shadow: none;
+}
+
+.msg {
+  position: absolute;
+  left: 0;
+
+  width: max-content;
+  transform: translate(0, -100%);
 }

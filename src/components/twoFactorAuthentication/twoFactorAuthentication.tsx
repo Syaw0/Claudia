@@ -61,29 +61,30 @@ const TwoFactorAuthentication = ({
   };
   return (
     <div data-testid="tfaForm" className={style.holder}>
-      <Text className={style.headlineTypography} variant="headline4-5">
-        Ensure its your account
-      </Text>
-      <Text className={style.subheadTypography}>
-        we just send email to your email address , enter the code that we send !
-        you have just 3 times to try , after that the code is outdated.{" "}
-        <Text
-          testid="tfaForm_getFreshCode"
-          as="span"
-          onClick={getFreshCode}
-          className={style.getFreshCode}
-        >
-          get fresh code
+      <div className={style.top}>
+        <Text className={style.headlineTypography} variant="headline4-5">
+          Ensure its your account
         </Text>
-        <Timer setTime={setTimer} time={timer} />
-      </Text>
+        <Text className={style.subheadTypography}>
+          we just send email to your email address , enter the code that we send
+          ! you have just 3 times to try , after that the code is outdated.{" "}
+          <Text
+            testid="tfaForm_getFreshCode"
+            as="span"
+            onClick={getFreshCode}
+            className={style.getFreshCode}
+          >
+            get fresh code
+          </Text>
+          <Timer setTime={setTimer} time={timer} />
+        </Text>
 
-      <OtpInput
-        len={6}
-        value={inputDate.otpValue}
-        setValue={inputDate.setOtp}
-      />
-
+        <OtpInput
+          len={6}
+          value={inputDate.otpValue}
+          setValue={inputDate.setOtp}
+        />
+      </div>
       <div className={style.buttonHolder}>
         <Button
           onClick={loginButton}
@@ -99,8 +100,8 @@ const TwoFactorAuthentication = ({
         >
           Next
         </Button>
+        <Message className={style.msg} type={state} msg={msg} />
       </div>
-      <Message type={state} msg={msg} />
     </div>
   );
 };

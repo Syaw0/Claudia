@@ -6,15 +6,18 @@ import WarnMessage from "./warnMessage";
 interface MessageType {
   msg: string;
   type: MessageStateType;
+  className?: string;
 }
 
-const Message = ({ msg, type }: MessageType) => {
+const Message = ({ msg, type, className = "" }: MessageType) => {
   return (
     <>
-      {type == "success" && <SuccessMessage msg={msg} />}
-      {type == "error" && <ErrorMessage msg={msg} />}
-      {type == "loader" && <WaitMessage msg={msg} />}
-      {type == "warn" && <WarnMessage msg={msg} />}
+      <div className={className}>
+        {type == "success" && <SuccessMessage msg={msg} />}
+        {type == "error" && <ErrorMessage msg={msg} />}
+        {type == "loader" && <WaitMessage msg={msg} />}
+        {type == "warn" && <WarnMessage msg={msg} />}
+      </div>
     </>
   );
 };

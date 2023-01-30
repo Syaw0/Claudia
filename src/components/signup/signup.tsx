@@ -55,44 +55,45 @@ const Signup = () => {
   };
   return (
     <div data-testid="signupForm" className={style.holder}>
-      <Text className={style.headlineTypography} variant="headline4-5">
-        Welcome
-      </Text>
-      <Text className={style.subheadTypography}>
-        let`s fill inputs to create a new claudia account
-      </Text>
+      <div className={style.top}>
+        <Text className={style.headlineTypography} variant="headline4-5">
+          Welcome
+        </Text>
+        <Text className={style.subheadTypography}>
+          let`s fill inputs to create a new claudia account
+        </Text>
 
-      <TextInput
-        testId="signupForm_nameInput"
-        type="text"
-        id="signupForm_nameInput"
-        label="Name"
-        placeholder="Please write your Name "
-        name="signupForm_nameInput"
-        value={inputDate.signupForm_nameInput}
-        onChange={handleChanges}
-      />
+        <TextInput
+          testId="signupForm_nameInput"
+          type="text"
+          id="signupForm_nameInput"
+          label="Name"
+          placeholder="Please write your Name "
+          name="signupForm_nameInput"
+          value={inputDate.signupForm_nameInput}
+          onChange={handleChanges}
+        />
 
-      <TextInput
-        testId="signupForm_emailInput"
-        type="email"
-        id="signupForm_emailInput"
-        label="Email Address"
-        placeholder="Please write your email address "
-        name="signupForm_emailInput"
-        value={inputDate.signupForm_emailInput}
-        onChange={handleChanges}
-      />
-      <PasswordInput
-        testId="signupForm_passwordInput"
-        id="signupForm_passwordInput"
-        label="Password"
-        placeholder="Please write your account password "
-        name="signupForm_passwordInput"
-        value={inputDate.signupForm_passwordInput}
-        onChange={handleChanges}
-      />
-
+        <TextInput
+          testId="signupForm_emailInput"
+          type="email"
+          id="signupForm_emailInput"
+          label="Email Address"
+          placeholder="Please write your email address "
+          name="signupForm_emailInput"
+          value={inputDate.signupForm_emailInput}
+          onChange={handleChanges}
+        />
+        <PasswordInput
+          testId="signupForm_passwordInput"
+          id="signupForm_passwordInput"
+          label="Password"
+          placeholder="Please write your account password "
+          name="signupForm_passwordInput"
+          value={inputDate.signupForm_passwordInput}
+          onChange={handleChanges}
+        />
+      </div>
       <div className={style.buttonHolder}>
         <Button
           onClick={loginInstead}
@@ -108,8 +109,8 @@ const Signup = () => {
         >
           Next
         </Button>
+        <Message className={style.msg} type={state} msg={msg} />
       </div>
-      <Message type={state} msg={msg} />
     </div>
   );
 };

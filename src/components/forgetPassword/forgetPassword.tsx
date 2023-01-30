@@ -45,24 +45,26 @@ const ForgetPassword = () => {
   };
   return (
     <div data-testid="forgetPasswordForm" className={style.holder}>
-      <Text className={style.headlineTypography} variant="headline4-5">
-        Forget Password
-      </Text>
-      <Text className={style.subheadTypography}>
-        please enter your email , we send you a code to ensure its your account
-        .
-      </Text>
+      <div className={style.top}>
+        <Text className={style.headlineTypography} variant="headline4-5">
+          Forget Password
+        </Text>
+        <Text className={style.subheadTypography}>
+          please enter your email , we send you a code to ensure its your
+          account .
+        </Text>
 
-      <TextInput
-        testId="forgetPasswordForm_emailInput"
-        type="email"
-        id="forgetPasswordForm_emailInput"
-        label="Email Address"
-        placeholder="Please write your email address "
-        name="forgetPasswordForm_emailInput"
-        value={inputDate.forgetPasswordForm_emailInput}
-        onChange={handleChanges}
-      />
+        <TextInput
+          testId="forgetPasswordForm_emailInput"
+          type="email"
+          id="forgetPasswordForm_emailInput"
+          label="Email Address"
+          placeholder="Please write your email address "
+          name="forgetPasswordForm_emailInput"
+          value={inputDate.forgetPasswordForm_emailInput}
+          onChange={handleChanges}
+        />
+      </div>
 
       <div className={style.buttonHolder}>
         <Button
@@ -79,8 +81,8 @@ const ForgetPassword = () => {
         >
           Next
         </Button>
+        <Message className={style.msg} type={state} msg={msg} />
       </div>
-      <Message type={state} msg={msg} />
     </div>
   );
 };

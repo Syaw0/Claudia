@@ -1,0 +1,36 @@
+.holder {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.componentHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+  border: 2px solid var(--outlineVariant);
+  width: 35%;
+  height: 75%;
+  box-shadow: var(--shadow2db);
+}
+
+.logoHolder {
+  width: 100%;
+  border-bottom: 1px solid var(--onBg100);
+  height: fit-content;
+  padding: 0.2rem 1rem;
+}
+
+.logo {
+  height: 50px;
+}
+
+.componentHolder > div:nth-child(2) {
+  width: 100%;
+  padding: 2rem 1rem;
+}

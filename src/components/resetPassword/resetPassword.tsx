@@ -58,34 +58,35 @@ const ResetPassword = () => {
   };
   return (
     <div data-testid="resetPasswordForm" className={style.holder}>
-      <Text className={style.headlineTypography} variant="headline4-5">
-        Reset Password
-      </Text>
-      <Text className={style.subheadTypography}>
-        Please choose a new password for your account then you must login again
-        with your new password!
-      </Text>
+      <div className={style.top}>
+        <Text className={style.headlineTypography} variant="headline4-5">
+          Reset Password
+        </Text>
+        <Text className={style.subheadTypography}>
+          Please choose a new password for your account then you must login
+          again with your new password!
+        </Text>
 
-      <PasswordInput
-        testId="resetPasswordForm_passwordInput"
-        id="resetPasswordForm_passwordInput"
-        label="Password"
-        placeholder="Please write your new password "
-        name="resetPasswordForm_passwordInput"
-        value={inputDate.resetPasswordForm_passwordInput}
-        onChange={handleChanges}
-      />
+        <PasswordInput
+          testId="resetPasswordForm_passwordInput"
+          id="resetPasswordForm_passwordInput"
+          label="Password"
+          placeholder="Please write your new password "
+          name="resetPasswordForm_passwordInput"
+          value={inputDate.resetPasswordForm_passwordInput}
+          onChange={handleChanges}
+        />
 
-      <PasswordInput
-        testId="resetPasswordForm_RetypePasswordInput"
-        id="resetPasswordForm_RetypePasswordInput"
-        label="Retype Password"
-        placeholder="Retype a password "
-        name="resetPasswordForm_RetypePasswordInput"
-        value={inputDate.resetPasswordForm_RetypePasswordInput}
-        onChange={handleChanges}
-      />
-
+        <PasswordInput
+          testId="resetPasswordForm_RetypePasswordInput"
+          id="resetPasswordForm_RetypePasswordInput"
+          label="Retype Password"
+          placeholder="Retype a password "
+          name="resetPasswordForm_RetypePasswordInput"
+          value={inputDate.resetPasswordForm_RetypePasswordInput}
+          onChange={handleChanges}
+        />
+      </div>
       <div className={style.buttonHolder}>
         <Button
           onClick={loginButton}
@@ -101,8 +102,8 @@ const ResetPassword = () => {
         >
           Next
         </Button>
+        <Message className={style.msg} type={state} msg={msg} />
       </div>
-      <Message type={state} msg={msg} />
     </div>
   );
 };

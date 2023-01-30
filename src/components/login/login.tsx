@@ -54,41 +54,43 @@ const LoginForm = () => {
   };
   return (
     <div data-testid="loginForm" className={style.holder}>
-      <Text className={style.headlineTypography} variant="headline4-5">
-        Welcome Back
-      </Text>
-      <Text className={style.subheadTypography}>
-        let`s fill inputs to log in to your account
-      </Text>
+      <div className={style.top}>
+        <Text className={style.headlineTypography} variant="headline4-5">
+          Welcome Back
+        </Text>
+        <Text className={style.subheadTypography}>
+          let`s fill inputs to log in to your account
+        </Text>
 
-      <TextInput
-        testId="loginForm_emailInput"
-        type="email"
-        id="loginForm_emailInput"
-        label="Email Address"
-        placeholder="Please write your email address "
-        name="loginForm_emailInput"
-        value={inputDate.loginForm_emailInput}
-        onChange={handleChanges}
-      />
-      <div>
-        <PasswordInput
-          testId="loginForm_passwordInput"
-          id="loginForm_passwordInput"
-          label="Password"
-          placeholder="Please write your account password "
-          name="loginForm_passwordInput"
-          value={inputDate.loginForm_passwordInput}
+        <TextInput
+          testId="loginForm_emailInput"
+          type="email"
+          id="loginForm_emailInput"
+          label="Email Address"
+          placeholder="Please write your email address "
+          name="loginForm_emailInput"
+          value={inputDate.loginForm_emailInput}
           onChange={handleChanges}
         />
-        <Text
-          onClick={forgetPassword}
-          variant="subhead2"
-          testid="loginForm_forgetPasswordButton"
-          className={style.forgetPassword}
-        >
-          forget password?
-        </Text>
+        <div>
+          <PasswordInput
+            testId="loginForm_passwordInput"
+            id="loginForm_passwordInput"
+            label="Password"
+            placeholder="Please write your account password "
+            name="loginForm_passwordInput"
+            value={inputDate.loginForm_passwordInput}
+            onChange={handleChanges}
+          />
+          <Text
+            onClick={forgetPassword}
+            variant="subhead2"
+            testid="loginForm_forgetPasswordButton"
+            className={style.forgetPassword}
+          >
+            forget password?
+          </Text>
+        </div>
       </div>
 
       <div className={style.buttonHolder}>
@@ -106,8 +108,8 @@ const LoginForm = () => {
         >
           Next
         </Button>
+        <Message className={style.msg} type={state} msg={msg} />
       </div>
-      <Message type={state} msg={msg} />
     </div>
   );
 };
