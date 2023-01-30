@@ -29,7 +29,7 @@ const Button = ({
 }: ButtonType) => {
   return (
     <button
-      // disabled={loader}
+      disabled={disabled}
       data-testid={testid}
       id={id}
       onClick={onClick}
