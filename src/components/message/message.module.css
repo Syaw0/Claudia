@@ -37,7 +37,7 @@
 
 .errorMsg {
   background-color: var(--error);
-  border: 1px solid var(--onError);
+  /* border: 1px solid var(--onError); */
 }
 
 .errorMsg p {

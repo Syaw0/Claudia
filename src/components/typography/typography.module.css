@@ -23,25 +23,32 @@
   font-family: var(--font-head);
 }
 
+.headline4-5 {
+  font-size: var(--headline4-5);
+  line-height: var(--headline4-5_lineHeight);
+  font-weight: 400;
+  font-family: var(--font-head);
+}
+
 .headline4 {
   font-size: var(--headline4);
   line-height: var(--headline4_lineHeight);
   font-weight: 400;
-  font-family: var(--font-sub);
+  font-family: var(--font-head);
 }
 
 .headline5 {
   font-size: var(--headline5);
   line-height: var(--headline5_lineHeight);
   font-weight: 400;
-  font-family: var(--font-sub);
+  font-family: var(--font-head);
 }
 
 .headline6 {
   font-size: var(--headline6);
   line-height: var(--headline6_lineHeight);
   font-weight: 400;
-  font-family: var(--font-sub);
+  font-family: var(--font-head);
 }
 
 .subhead1 {

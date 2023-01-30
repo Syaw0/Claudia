@@ -1,3 +1,4 @@
+import LoginForm from "../components/login/login";
 import Head from "next/head";
 
 export default function Home() {
@@ -7,7 +8,9 @@ export default function Home() {
         <title>Claudia</title>
         <meta name="description" content="Claudia home page" />
       </Head>
-      <div></div>
+      <div>
+        <LoginForm />
+      </div>
     </>
   );
 }

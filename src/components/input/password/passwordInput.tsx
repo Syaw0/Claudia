@@ -11,6 +11,7 @@ interface PasswordInputType {
   id?: string;
   testId: string;
   className?: string;
+  name?: string;
 }
 
 const PasswordInput = ({
@@ -20,6 +21,7 @@ const PasswordInput = ({
   onChange,
   value,
   testId,
+  name = "",
   className = "",
 }: PasswordInputType) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,6 +34,7 @@ const PasswordInput = ({
       <label htmlFor={id}>{label}</label>
       <div>
         <input
+          name={name}
           placeholder={placeholder}
           data-testid={testId}
           id={id}

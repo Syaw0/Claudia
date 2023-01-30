@@ -8,6 +8,7 @@ interface Text {
     | "headline3"
     | "headline4"
     | "headline5"
+    | "headline4-5"
     | "headline6"
     | "subhead1"
     | "subhead2"
