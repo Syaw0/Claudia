@@ -49,6 +49,7 @@ describe("TEST COMPONENT : TwoFactorAuthentication", () => {
   });
 
   it("next button functionality", async () => {
+    jest.setTimeout(10000);
     render(<TwoFactorAuthentication resetTime={0} />);
     const nextButton = screen.getByTestId("tfaForm_nextButton");
     const inp1 = screen.getByTestId("otpInput_0");

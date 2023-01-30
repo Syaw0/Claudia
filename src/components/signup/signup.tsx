@@ -12,7 +12,7 @@ import Text from "../typography/typography";
 import style from "./signup.module.css";
 
 const Signup = () => {
-  const [trigger, state, msg, setMsg] = useFetch([signup], loaderMsg);
+  const [trigger, state, msg, setMsg] = useFetch([signup], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
     signupForm_emailInput: "",

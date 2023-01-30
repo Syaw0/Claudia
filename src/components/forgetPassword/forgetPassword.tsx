@@ -10,7 +10,7 @@ import Text from "../typography/typography";
 import style from "./forgetPassword.module.css";
 
 const ForgetPassword = () => {
-  const [trigger, state, msg, setMsg] = useFetch([forgetPassword], loaderMsg);
+  const [trigger, state, msg, setMsg] = useFetch([forgetPassword], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
     forgetPasswordForm_emailInput: "",

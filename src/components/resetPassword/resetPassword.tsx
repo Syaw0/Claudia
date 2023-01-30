@@ -11,7 +11,7 @@ import style from "./resetPassword.module.css";
 import checkPasswordEquality from "../../utils/checkPasswordEquality";
 
 const ResetPassword = () => {
-  const [trigger, state, msg, setMsg] = useFetch([resetPassword], loaderMsg);
+  const [trigger, state, msg, setMsg] = useFetch([resetPassword], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
     resetPasswordForm_passwordInput: "",

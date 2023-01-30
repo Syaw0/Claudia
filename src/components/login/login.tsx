@@ -12,7 +12,7 @@ import checkEmailForm from "../../utils/checkEmailForm";
 import checkPasswordValidity from "../../utils/checkPasswordValidity";
 
 const LoginForm = () => {
-  const [trigger, state, msg, setMsg] = useFetch([checkLoginForm], loaderMsg);
+  const [trigger, state, msg, setMsg] = useFetch([checkLoginForm], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
     loginForm_emailInput: "",
