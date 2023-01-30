@@ -1,6 +1,7 @@
 import LoginForm from "../components/login/login";
 import Head from "next/head";
 import ResetPassword from "../components/resetPassword/resetPassword";
+import ForgetPassword from "../components/forgetPassword/forgetPassword";
 
 export default function Home() {
   return (
@@ -12,7 +13,8 @@ export default function Home() {
       <div>
         {/* <LoginForm /> */}
         {/* <Signup /> */}
-        <ResetPassword />
+        {/* <ResetPassword /> */}
+        <ForgetPassword />
       </div>
     </>
   );
