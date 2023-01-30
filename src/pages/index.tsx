@@ -2,6 +2,7 @@ import LoginForm from "../components/login/login";
 import Head from "next/head";
 import ResetPassword from "../components/resetPassword/resetPassword";
 import ForgetPassword from "../components/forgetPassword/forgetPassword";
+import TwoFactorAuthentication from "../components/twoFactorAuthentication/twoFactorAuthentication";
 
 export default function Home() {
   return (
@@ -14,7 +15,8 @@ export default function Home() {
         {/* <LoginForm /> */}
         {/* <Signup /> */}
         {/* <ResetPassword /> */}
-        <ForgetPassword />
+        {/* <ForgetPassword /> */}
+        <TwoFactorAuthentication />
       </div>
     </>
   );

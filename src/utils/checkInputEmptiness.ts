@@ -1,10 +1,13 @@
 interface SimpleObject {
-  [index: string]: string;
+  [index: string]: any;
 }
 
 const checkInputsEmptiness = (inputs: SimpleObject) => {
   const filtered = Object.keys(inputs).filter((input) => {
-    return inputs[input].trim() === "";
+    if (typeof inputs[input] == "string") {
+      console.log(input);
+      return inputs[input].trim() === "";
+    }
   });
   return filtered.length == 0;
 };
