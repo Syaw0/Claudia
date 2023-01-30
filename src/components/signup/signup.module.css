@@ -1,0 +1,36 @@
+.holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.headlineTypography {
+  font-weight: 500;
+}
+
+.subheadTypography {
+  color: var(--onBg700);
+  margin-bottom: 1.2rem;
+}
+
+.forgetPassword {
+  color: var(--primaryOnCon600);
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.forgetPassword:hover {
+  color: var(--primaryOnCon);
+  font-weight: 600;
+}
+
+.buttonHolder {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.buttonHolder button {
+  min-width: fit-content;
+  box-shadow: none;
+}
