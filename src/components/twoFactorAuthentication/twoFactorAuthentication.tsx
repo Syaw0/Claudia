@@ -1,16 +1,20 @@
 import useFetch from "../../hooks/useFetch";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import forgetPassword, { loaderMsg } from "../../utils/forgetPassword";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../button/button";
 import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./twoFactorAuthentication.module.css";
 import OtpInput from "../input/otp/otp";
+import Timer from "../timer/timer";
 
 const TwoFactorAuthentication = () => {
   const [trigger, state, msg, setMsg] = useFetch(forgetPassword, loaderMsg);
-
+  const [timer, setTimer] = useState(0);
+  useEffect(() => {
+    setTimer(120);
+  }, []);
   const [inputDate, setInputDate] = useState({
     otpValue: "",
     setOtp(value: string) {
@@ -32,7 +36,10 @@ const TwoFactorAuthentication = () => {
   };
 
   const getFreshCode = () => {
-    //TODO check if timer is done and then run it
+    if (timer < 0) {
+      console.log("fetch for new code");
+      setTimer(120);
+    }
   };
 
   const checkInputs = () => {
@@ -52,6 +59,7 @@ const TwoFactorAuthentication = () => {
         <Text as="span" onClick={getFreshCode} className={style.getFreshCode}>
           get fresh code
         </Text>
+        <Timer setTime={setTimer} time={timer} />
       </Text>
 
       <OtpInput
