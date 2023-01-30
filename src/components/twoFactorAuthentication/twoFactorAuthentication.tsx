@@ -36,7 +36,7 @@ const TwoFactorAuthentication = () => {
   };
 
   const checkInputs = () => {
-    if (!checkInputsEmptiness(inputDate)) {
+    if (inputDate.otpValue.length != 6) {
       return setMsg("error", "please fill all fields");
     }
     return true;

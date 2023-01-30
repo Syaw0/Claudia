@@ -24,6 +24,11 @@ const OtpInput = ({ len = 6, value, setValue }: OtpInputPropsType) => {
     }
   };
 
+  const handleFocus = () => {
+    const len = value.length == 0 ? 0 : value.length;
+    document.getElementById(`otpInput_${len}`)?.focus();
+  };
+
   const keyDownHandle = (e: any, i: number) => {
     if (e.key != "Backspace") {
       return;
@@ -41,7 +46,7 @@ const OtpInput = ({ len = 6, value, setValue }: OtpInputPropsType) => {
     }
   };
   return (
-    <div className={style.holder}>
+    <div onClick={handleFocus} className={style.holder}>
       {arr.map((s, i) => {
         return (
           <input
