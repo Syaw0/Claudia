@@ -12,7 +12,7 @@ import Text from "../typography/typography";
 import style from "./signup.module.css";
 
 const Signup = () => {
-  const [trigger, state, msg, setMsg] = useFetch(signup, loaderMsg);
+  const [trigger, state, msg, setMsg] = useFetch([signup], loaderMsg);
 
   const [inputDate, setInputDate] = useState({
     signupForm_emailInput: "",
@@ -35,7 +35,7 @@ const Signup = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger();
+    const res = await trigger(0);
     if (res.status) {
       // navigate to the 2 way authentication
     }

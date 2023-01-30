@@ -19,7 +19,10 @@ type UseFetchReturnType = [
   (type: FetchStateTypes, msg: string) => void
 ];
 
-const useFetch = (fetcher: Fetcher, loaderMsg: string): UseFetchReturnType => {
+const useFetch = (
+  fetcher: Fetcher[],
+  loaderMsg: string[]
+): UseFetchReturnType => {
   const [state, setState] = useState<FetcherState>({
     state: "pending",
     data: null,
@@ -31,17 +34,17 @@ const useFetch = (fetcher: Fetcher, loaderMsg: string): UseFetchReturnType => {
     },
   });
 
-  const trigger = async (...args: any) => {
+  const trigger = async (index: number, ...args: any) => {
     setState((s) => ({
       ...s,
       run: true,
       data: null,
       state: "loader",
-      msg: loaderMsg,
+      msg: loaderMsg[index],
       params: args,
     }));
     try {
-      const res = await fetcher(args);
+      const res = await fetcher[index](args);
       if (!res.status) {
         setState((s) => ({
           ...s,

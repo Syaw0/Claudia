@@ -10,7 +10,7 @@ import Text from "../typography/typography";
 import style from "./forgetPassword.module.css";
 
 const ForgetPassword = () => {
-  const [trigger, state, msg, setMsg] = useFetch(forgetPassword, loaderMsg);
+  const [trigger, state, msg, setMsg] = useFetch([forgetPassword], loaderMsg);
 
   const [inputDate, setInputDate] = useState({
     forgetPasswordForm_emailInput: "",
@@ -28,7 +28,7 @@ const ForgetPassword = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger();
+    const res = await trigger(0);
     if (res.status) {
       // navigate to the 2 way authentication
     }

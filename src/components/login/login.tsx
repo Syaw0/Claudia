@@ -12,7 +12,7 @@ import checkEmailForm from "../../utils/checkEmailForm";
 import checkPasswordValidity from "../../utils/checkPasswordValidity";
 
 const LoginForm = () => {
-  const [trigger, state, msg, setMsg] = useFetch(checkLoginForm, loaderMsg);
+  const [trigger, state, msg, setMsg] = useFetch([checkLoginForm], loaderMsg);
 
   const [inputDate, setInputDate] = useState({
     loginForm_emailInput: "",
@@ -34,7 +34,7 @@ const LoginForm = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger();
+    const res = await trigger(0);
     if (res.status) {
       // navigate to the 2 way authentication
     }
