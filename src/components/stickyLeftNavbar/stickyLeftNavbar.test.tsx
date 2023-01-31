@@ -3,10 +3,11 @@ import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import makeStore from "../../store/mycloud/mycloudStore";
+import mycloudFakeProps from "../../shared/mycloudFakeProps";
 
 const CustomParent = () => {
   return (
-    <Provider store={makeStore({ storageUsage: { min: 100, max: 1000 } })}>
+    <Provider store={makeStore(mycloudFakeProps)}>
       <Navbar />
     </Provider>
   );

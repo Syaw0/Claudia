@@ -5,6 +5,11 @@ const states = {
     max: 0,
     min: 0,
   },
+  user: {
+    name: "",
+    profileUrl: "",
+    id: "",
+  },
 };
 
 const mycloudSlice = createSlice({
