@@ -16,7 +16,7 @@ const SideInformation = () => {
           height="100"
         />
       </div>
-
+      {/* //*this toolbar is just for files! not directory */}
       <div data-testid="sideInformationToolbar">toolbar</div>
 
       <div

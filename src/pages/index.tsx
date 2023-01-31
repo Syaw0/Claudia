@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import makeStore from "../store/mycloud/mycloudStore";
 import StickyTopNavbar from "../components/stickyTopNavbar/stickyTopNavbar";
 import mycloudFakeProps from "../shared/mycloudFakeProps";
-import SideInformation from "@/components/sideInformation/sideInformation";
+import SideInformation from "../components/sideInformation/sideInformation";
 
 export default function Home() {
   return (
