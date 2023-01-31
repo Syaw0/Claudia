@@ -6,6 +6,7 @@ import IconStar from "../../assets/icons/iconStar";
 import NavbarItem from "../stickyLeftNavbarItem/stickyLeftNavbarItem";
 import style from "./stickyLeftNavbar.module.css";
 import Text from "../typography/typography";
+import UsageMeter from "../usageMeter/usageMeter";
 
 const navItemsList = [
   { text: "My Cloud", Icon: IconCloud, href: "/mycloud" },
@@ -35,7 +36,7 @@ const StickyLeftNavbar = () => {
         ))}
       </div>
       <div data-testid="stickyLeftBottom" className={style.bottom}>
-        <Text>usage...</Text>
+        <UsageMeter />
       </div>
     </div>
   );
