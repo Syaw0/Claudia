@@ -2,6 +2,8 @@ import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
 import IconDocx from "../../assets/icons/iconDocx";
 import Text from "../typography/typography";
 import style from "./sideInformation.module.css";
+import Toolbar from "../toolbar/toolbar";
+import toolbarItems from "@/shared/toolbarItems";
 
 const SideInformation = () => {
   const { name, size, date } = useMycloudSelector((s) => s.sideData);
@@ -17,7 +19,9 @@ const SideInformation = () => {
         />
       </div>
       {/* //*this toolbar is just for files! not directory */}
-      <div data-testid="sideInformationToolbar">toolbar</div>
+      <div data-testid="sideInformationToolbar">
+        <Toolbar isFromSide items={toolbarItems} />
+      </div>
 
       <div
         data-testid="sideInformationMainInfo"

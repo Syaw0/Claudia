@@ -1,0 +1,27 @@
+.holderSide {
+  padding: 0.2rem;
+  border-radius: 50%;
+  background-color: var(--onBg100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 0.4rem;
+}
+
+.holderSide:hover {
+  background-color: var(--onBg300);
+}
+
+.holderSide p {
+  display: none;
+}
+
+.holderSide svg {
+  fill: none;
+  stroke: var(--onBg900);
+}
+
+.holderMenu {
+  /*  */
+}

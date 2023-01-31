@@ -1,16 +1,6 @@
 import Text from "../typography/typography";
 import style from "./toolbarItem.module.css";
 
-interface ToolBarItemPropsType {
-  name: string;
-  Icon: (props: IconTypes) => JSX.Element;
-  hook: (d: any) => () => void;
-  sideInfo: {
-    isFromSide: boolean;
-    data: any;
-  };
-}
-
 const ToolBarItem = ({ name, Icon, hook, sideInfo }: ToolBarItemPropsType) => {
   const clickHandler = hook(sideInfo);
 

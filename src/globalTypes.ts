@@ -14,5 +14,14 @@ declare global {
     msg: string;
     data?: any;
   }
+  interface ToolBarItemPropsType {
+    name: string;
+    Icon: (props: IconTypes) => JSX.Element;
+    hook: (d: any) => () => void;
+    sideInfo: {
+      isFromSide: boolean;
+      data: any;
+    };
+  }
 }
 export {};
