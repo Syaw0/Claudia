@@ -9,8 +9,11 @@ import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./resetPassword.module.css";
 import checkPasswordEquality from "../../utils/checkPasswordEquality";
+import { setComponentAction } from "../../store/authentication/authenticationStore";
+import { useDispatch } from "react-redux";
 
 const ResetPassword = () => {
+  const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([resetPassword], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
@@ -24,7 +27,7 @@ const ResetPassword = () => {
   };
 
   const loginButton = () => {
-    //navigate to create Account component
+    dispatch(setComponentAction("login"));
   };
   const next = async () => {
     if (!checkInputs()) {
@@ -32,7 +35,8 @@ const ResetPassword = () => {
     }
     const res = await trigger(0);
     if (res.status) {
-      // navigate to the 2 way authentication
+      // navigate to the login page
+      dispatch(setComponentAction("login"));
     }
   };
 

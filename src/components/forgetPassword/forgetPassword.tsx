@@ -9,7 +9,10 @@ import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./forgetPassword.module.css";
 import { useDispatch } from "react-redux";
-import { setComponentAction } from "../../store/authentication/authenticationStore";
+import {
+  setComponentAction,
+  setIsResetAction,
+} from "../../store/authentication/authenticationStore";
 
 const ForgetPassword = () => {
   const dispatch = useDispatch();
@@ -34,6 +37,8 @@ const ForgetPassword = () => {
     const res = await trigger(0);
     if (res.status) {
       // navigate to the 2 way authentication
+      dispatch(setComponentAction("tfa"));
+      dispatch(setIsResetAction(true));
     }
   };
 

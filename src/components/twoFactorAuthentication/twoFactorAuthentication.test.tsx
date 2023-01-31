@@ -6,6 +6,7 @@ import checkOtpToken from "../../utils/checkOtpToken";
 import makeStore from "../../store/authentication/authenticationStore";
 import { Provider } from "react-redux";
 
+jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("../../utils/getAnotherAuthenticationToken");
 jest.mock("../../utils/checkOtpToken");
 

@@ -38,6 +38,7 @@ const Signup = () => {
     const res = await trigger(0);
     if (res.status) {
       // navigate to the 2 way authentication
+      dispatch(setComponentAction("tfa"));
     }
   };
 

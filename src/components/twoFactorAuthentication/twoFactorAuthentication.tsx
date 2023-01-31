@@ -12,7 +12,12 @@ import getAnotherAuthenticationToken, {
 } from "../../utils/getAnotherAuthenticationToken";
 import { act } from "react-dom/test-utils";
 import { useDispatch } from "react-redux";
-import { setComponentAction } from "../../store/authentication/authenticationStore";
+import {
+  setComponentAction,
+  setIsResetAction,
+} from "../../store/authentication/authenticationStore";
+import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
+import { useRouter } from "next/router";
 
 interface TwoFactorAuthenticationPropsType {
   resetTime?: number;
@@ -21,6 +26,8 @@ interface TwoFactorAuthenticationPropsType {
 const TwoFactorAuthentication = ({
   resetTime = 120,
 }: TwoFactorAuthenticationPropsType) => {
+  const router = useRouter();
+  const isReset = useAuthenticateSelector((s) => s.isReset);
   const dispatch = useDispatch();
 
   const [trigger, state, msg, setMsg] = useFetch(
@@ -36,6 +43,7 @@ const TwoFactorAuthentication = ({
   });
 
   const loginButton = () => {
+    dispatch(setIsResetAction(false));
     dispatch(setComponentAction("login"));
   };
   const next = async () => {
@@ -44,7 +52,12 @@ const TwoFactorAuthentication = ({
     }
     const res = await trigger(0);
     if (res.status) {
-      // navigate to the 2 way authentication
+      if (isReset) {
+        dispatch(setIsResetAction(false));
+        return dispatch(setComponentAction("resetPassword"));
+      }
+      router.replace("/mycloud");
+      // then we must reload page and see our dashboard
     }
   };
 
