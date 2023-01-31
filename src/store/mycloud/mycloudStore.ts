@@ -1,5 +1,23 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+interface PageBasicStates {
+  isSideOpen: boolean;
+  sideData: {
+    name: string;
+    size: number;
+    date: string;
+  };
+}
+
+const pageBasicStates: PageBasicStates = {
+  isSideOpen: false,
+  sideData: {
+    name: "",
+    size: 0,
+    date: "",
+  },
+};
+
 const states = {
   storageUsage: {
     max: 0,
@@ -10,6 +28,7 @@ const states = {
     profileUrl: "",
     id: "",
   },
+  ...pageBasicStates,
 };
 
 const mycloudSlice = createSlice({
@@ -18,9 +37,9 @@ const mycloudSlice = createSlice({
   reducers: {},
 });
 
-const makeStore = (params: typeof states) => {
+const makeStore = (params: Partial<typeof states>) => {
   return configureStore({
-    preloadedState: params,
+    preloadedState: { ...states, ...params },
     reducer: mycloudSlice.reducer,
   });
 };
