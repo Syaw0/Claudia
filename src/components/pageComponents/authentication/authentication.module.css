@@ -14,7 +14,7 @@
   align-items: center;
   border-radius: 8px;
   border: 2px solid var(--outlineVariant);
-  width: 24rem;
+  width: 26rem;
   height: max-content;
   box-shadow: var(--shadow2db);
 }
@@ -35,7 +35,7 @@
   padding: 2rem 1rem;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .componentHolder {
     width: 100%;
     box-shadow: none;

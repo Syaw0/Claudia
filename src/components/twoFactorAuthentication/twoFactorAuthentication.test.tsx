@@ -6,7 +6,26 @@ import checkOtpToken from "../../utils/checkOtpToken";
 import makeStore from "../../store/authentication/authenticationStore";
 import { Provider } from "react-redux";
 
-jest.mock("next/router", () => require("next-router-mock"));
+const mockReplace = jest.fn(() => null);
+
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      route: "/",
+      pathname: "",
+      query: "",
+      asPath: "",
+      push: jest.fn(),
+      events: {
+        on: jest.fn(),
+        off: jest.fn(),
+      },
+      beforePopState: jest.fn(() => null),
+      prefetch: jest.fn(() => null),
+      replace: mockReplace,
+    };
+  },
+}));
 jest.mock("../../utils/getAnotherAuthenticationToken");
 jest.mock("../../utils/checkOtpToken");
 
@@ -89,7 +108,9 @@ describe("TEST COMPONENT : TwoFactorAuthentication", () => {
     fireEvent.click(nextButton);
     await waitFor(() => expect(screen.getByTestId("waitMessage")));
     await waitFor(() => expect(screen.getByTestId("successMessage")));
-
+    await waitFor(() =>
+      expect(mockReplace.mock.calls[0]).toContain("/mycloud")
+    );
     mockCheckOtpToken.mockReturnValue(
       new Promise((res) => res({ status: false, msg: "" }))
     );

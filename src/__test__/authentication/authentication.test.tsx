@@ -19,6 +19,7 @@ jest.mock("../../utils/checkOtpToken");
 jest.mock("../../utils/checkLoginForm");
 jest.mock("../../utils/signup");
 
+// TODO why don`t i mock useRouter ?
 // TODO i just lazy to test resetPassword login button action :)
 
 const mockForgetPassword = forgetPassword as jest.Mock;

@@ -97,6 +97,7 @@ const TwoFactorAuthentication = ({
         </Text>
 
         <OtpInput
+          className={style.otpHolder}
           len={6}
           value={inputDate.otpValue}
           setValue={inputDate.setOtp}

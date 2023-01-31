@@ -5,9 +5,15 @@ interface OtpInputPropsType {
   len: number;
   value: string;
   setValue: any;
+  className?: string;
 }
 
-const OtpInput = ({ len = 6, value, setValue }: OtpInputPropsType) => {
+const OtpInput = ({
+  len = 6,
+  value,
+  setValue,
+  className = "",
+}: OtpInputPropsType) => {
   const arr = new Array(len).fill("-");
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>, i: number) => {
@@ -28,8 +34,12 @@ const OtpInput = ({ len = 6, value, setValue }: OtpInputPropsType) => {
   };
 
   const handleFocus = () => {
-    const len = value.length == 0 ? 0 : value.length;
-    document.getElementById(`otpInput_${len}`)?.focus();
+    let valueLength = value.length == 0 ? 0 : value.length;
+    document
+      .getElementById(
+        `otpInput_${valueLength == len ? valueLength - 1 : valueLength}`
+      )
+      ?.focus();
   };
 
   const keyDownHandle = (e: any, i: number) => {
@@ -46,10 +56,15 @@ const OtpInput = ({ len = 6, value, setValue }: OtpInputPropsType) => {
     setValue(newValue);
     if (previous != null) {
       previous.focus();
+      previous.setSelectionRange(0, 1);
     }
   };
   return (
-    <div data-testid="otpHolder" onClick={handleFocus} className={style.holder}>
+    <div
+      data-testid="otpHolder"
+      onClick={handleFocus}
+      className={`${style.holder} ${className}`}
+    >
       {arr.map((s, i) => {
         return (
           <input

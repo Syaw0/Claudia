@@ -55,3 +55,7 @@
   width: max-content;
   transform: translate(0, 30%);
 }
+
+.otpHolder {
+  padding: 2rem 0;
+}
