@@ -1,28 +1,28 @@
 import IconLogo from "../../../assets/icons/iconLogo";
-import LoginForm from "../../../components/login/login";
-import style from "./Authentication.module.css";
-import ForgetPassword from "../../../components/forgetPassword/forgetPassword";
-import Signup from "../../../components/signup/signup";
-import TwoFactorAuthentication from "../../../components/twoFactorAuthentication/twoFactorAuthentication";
-import ResetPassword from "../../../components/resetPassword/resetPassword";
-import { useDispatch } from "react-redux";
+import LoginForm from "../../login/login";
+import style from "./authentication.module.css";
+import ForgetPassword from "../../forgetPassword/forgetPassword";
+import Signup from "../../signup/signup";
+import TwoFactorAuthentication from "../../twoFactorAuthentication/twoFactorAuthentication";
+import ResetPassword from "../../resetPassword/resetPassword";
 import { useAuthenticateSelector } from "../../../store/authentication/authenticationStoreHooks";
 
 const Authentication = () => {
   const currentComponent = useAuthenticateSelector((s) => s.currentComponent);
-  const dispatch = useDispatch();
 
   return (
     <div className={style.holder}>
       <div className={style.componentHolder}>
-        <div className={style.logoHolder}>
+        <div data-testid="authenticationPageLogo" className={style.logoHolder}>
           <IconLogo className={style.logo} width={"200"} height={"100"} />
         </div>
         {currentComponent === "login" && <LoginForm />}
         {currentComponent === "signup" && <Signup />}
         {currentComponent === "forgetPassword" && <ForgetPassword />}
         {currentComponent === "resetPassword" && <ResetPassword />}
-        {currentComponent === "tfa" && <TwoFactorAuthentication />}
+        {currentComponent === "tfa" && (
+          <TwoFactorAuthentication resetTime={120} />
+        )}
       </div>
     </div>
   );

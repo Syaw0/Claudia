@@ -14,8 +14,8 @@
   align-items: center;
   border-radius: 8px;
   border: 2px solid var(--outlineVariant);
-  width: 35%;
-  height: 75%;
+  width: 24rem;
+  height: max-content;
   box-shadow: var(--shadow2db);
 }
 
@@ -33,4 +33,18 @@
 .componentHolder > div:nth-child(2) {
   width: 100%;
   padding: 2rem 1rem;
+}
+
+@media (max-width: 400px) {
+  .componentHolder {
+    width: 100%;
+    box-shadow: none;
+    border: none;
+
+    height: 100%;
+  }
+
+  .componentHolder > div:nth-child(2) {
+    height: fit-content;
+  }
 }

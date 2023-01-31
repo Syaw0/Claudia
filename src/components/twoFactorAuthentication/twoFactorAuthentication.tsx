@@ -24,7 +24,7 @@ interface TwoFactorAuthenticationPropsType {
 }
 
 const TwoFactorAuthentication = ({
-  resetTime = 120,
+  resetTime = 0,
 }: TwoFactorAuthenticationPropsType) => {
   const router = useRouter();
   const isReset = useAuthenticateSelector((s) => s.isReset);
