@@ -2,6 +2,8 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import LoginForm from "./login";
 import checkLoginForm from "../../utils/checkLoginForm";
+import makeStore from "../../store/authentication/authenticationStore";
+import { Provider } from "react-redux";
 
 jest.mock("../../utils/checkLoginForm");
 
@@ -9,7 +11,11 @@ const mockCheckLoginForm = checkLoginForm as jest.Mock;
 
 describe("TEST COMPONENT: Login Form", () => {
   beforeEach(() => {
-    render(<LoginForm />);
+    render(
+      <Provider store={makeStore()}>
+        <LoginForm />
+      </Provider>
+    );
   });
   it("its must render perfectly", () => {
     expect(screen.getByTestId("loginForm")).toBeInTheDocument();

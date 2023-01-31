@@ -3,6 +3,8 @@ import TwoFactorAuthentication from "./twoFactorAuthentication";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import getAnotherAuthenticationToken from "../../utils/getAnotherAuthenticationToken";
 import checkOtpToken from "../../utils/checkOtpToken";
+import makeStore from "../../store/authentication/authenticationStore";
+import { Provider } from "react-redux";
 
 jest.mock("../../utils/getAnotherAuthenticationToken");
 jest.mock("../../utils/checkOtpToken");
@@ -10,9 +12,17 @@ jest.mock("../../utils/checkOtpToken");
 const mockGetAnotherAuthToken = getAnotherAuthenticationToken as jest.Mock;
 const mockCheckOtpToken = checkOtpToken as jest.Mock;
 
+const CustomParent = ({ resetTime = 1 }: any) => {
+  return (
+    <Provider store={makeStore()}>
+      <TwoFactorAuthentication resetTime={resetTime} />
+    </Provider>
+  );
+};
+
 describe("TEST COMPONENT : TwoFactorAuthentication", () => {
   it("its render perfectly", () => {
-    render(<TwoFactorAuthentication />);
+    render(<CustomParent />);
 
     expect(screen.getByTestId("otpInput_0")).toBeInTheDocument();
     expect(screen.getByTestId("otpInput_1")).toBeInTheDocument();
@@ -31,7 +41,7 @@ describe("TEST COMPONENT : TwoFactorAuthentication", () => {
   });
 
   it("if reset timer reach to 0 we can click on the getFresh to get new code", async () => {
-    render(<TwoFactorAuthentication resetTime={0} />);
+    render(<CustomParent resetTime={0} />);
     mockGetAnotherAuthToken.mockReturnValue(
       new Promise((res) => res({ status: true, msg: "" }))
     );
@@ -50,7 +60,7 @@ describe("TEST COMPONENT : TwoFactorAuthentication", () => {
 
   it("next button functionality", async () => {
     jest.setTimeout(10000);
-    render(<TwoFactorAuthentication resetTime={0} />);
+    render(<CustomParent resetTime={0} />);
     const nextButton = screen.getByTestId("tfaForm_nextButton");
     const inp1 = screen.getByTestId("otpInput_0");
     const inp2 = screen.getByTestId("otpInput_1");
@@ -61,7 +71,7 @@ describe("TEST COMPONENT : TwoFactorAuthentication", () => {
     mockCheckOtpToken.mockReturnValue(
       new Promise((res) => res({ status: true, msg: "" }))
     );
-    render(<TwoFactorAuthentication resetTime={0} />);
+    // render(<CustomParent resetTime={0} />);
     jest.useFakeTimers();
 
     // because inputs are empty

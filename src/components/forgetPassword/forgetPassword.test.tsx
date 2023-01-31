@@ -2,6 +2,8 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import forgetPassword from "../../utils/forgetPassword";
 import ForgetPassword from "./forgetPassword";
+import { Provider } from "react-redux";
+import makeStore from "../../store/authentication/authenticationStore";
 
 jest.mock("../../utils/forgetPassword");
 
@@ -9,7 +11,11 @@ const mockForgetPassword = forgetPassword as jest.Mock;
 
 describe("TEST COMPONENT: ForgetPassword Form", () => {
   beforeEach(() => {
-    render(<ForgetPassword />);
+    render(
+      <Provider store={makeStore()}>
+        <ForgetPassword />
+      </Provider>
+    );
   });
   it("its must render perfectly", () => {
     expect(screen.getByTestId("forgetPasswordForm")).toBeInTheDocument();
@@ -18,7 +24,7 @@ describe("TEST COMPONENT: ForgetPassword Form", () => {
       screen.getByTestId("forgetPasswordForm_emailInput")
     ).toBeInTheDocument();
     expect(
-      screen.getByTestId("forgetPasswordForm_createAccountButton")
+      screen.getByTestId("forgetPasswordForm_loginButton")
     ).toBeInTheDocument();
     expect(
       screen.getByTestId("forgetPasswordForm_nextButton")

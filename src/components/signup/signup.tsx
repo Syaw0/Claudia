@@ -10,8 +10,11 @@ import TextInput from "../input/text/textInput";
 import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./signup.module.css";
+import { useDispatch } from "react-redux";
+import { setComponentAction } from "../../store/authentication/authenticationStore";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([signup], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
@@ -25,11 +28,8 @@ const Signup = () => {
     setInputDate((s) => ({ ...s, [name]: value }));
   };
 
-  const forgetPassword = () => {
-    //navigate to forgetPasswordComponent
-  };
   const loginInstead = () => {
-    //navigate to create Account component
+    dispatch(setComponentAction("login"));
   };
   const next = async () => {
     if (!checkInputs()) {

@@ -10,8 +10,11 @@ import style from "./login.module.css";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import checkEmailForm from "../../utils/checkEmailForm";
 import checkPasswordValidity from "../../utils/checkPasswordValidity";
+import { useDispatch } from "react-redux";
+import { setComponentAction } from "../../store/authentication/authenticationStore";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([checkLoginForm], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
@@ -25,10 +28,10 @@ const LoginForm = () => {
   };
 
   const forgetPassword = () => {
-    //navigate to forgetPasswordComponent
+    dispatch(setComponentAction("forgetPassword"));
   };
   const createAccount = () => {
-    //navigate to create Account component
+    dispatch(setComponentAction("signup"));
   };
   const next = async () => {
     if (!checkInputs()) {

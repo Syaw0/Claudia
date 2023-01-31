@@ -8,8 +8,11 @@ import TextInput from "../input/text/textInput";
 import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./forgetPassword.module.css";
+import { useDispatch } from "react-redux";
+import { setComponentAction } from "../../store/authentication/authenticationStore";
 
 const ForgetPassword = () => {
+  const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([forgetPassword], [loaderMsg]);
 
   const [inputDate, setInputDate] = useState({
@@ -22,7 +25,7 @@ const ForgetPassword = () => {
   };
 
   const loginButton = () => {
-    //navigate to create Account component
+    dispatch(setComponentAction("login"));
   };
   const next = async () => {
     if (!checkInputs()) {
@@ -69,7 +72,7 @@ const ForgetPassword = () => {
       <div className={style.buttonHolder}>
         <Button
           onClick={loginButton}
-          testid="forgetPasswordForm_createAccountButton"
+          testid="forgetPasswordForm_loginButton"
           variant="shadow"
         >
           Login

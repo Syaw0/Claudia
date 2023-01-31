@@ -11,6 +11,8 @@ import getAnotherAuthenticationToken, {
   getAnotherAuthTokenLoaderMsg,
 } from "../../utils/getAnotherAuthenticationToken";
 import { act } from "react-dom/test-utils";
+import { useDispatch } from "react-redux";
+import { setComponentAction } from "../../store/authentication/authenticationStore";
 
 interface TwoFactorAuthenticationPropsType {
   resetTime?: number;
@@ -19,6 +21,8 @@ interface TwoFactorAuthenticationPropsType {
 const TwoFactorAuthentication = ({
   resetTime = 120,
 }: TwoFactorAuthenticationPropsType) => {
+  const dispatch = useDispatch();
+
   const [trigger, state, msg, setMsg] = useFetch(
     [checkOtpToken, getAnotherAuthenticationToken],
     [loaderMsg, getAnotherAuthTokenLoaderMsg]
@@ -32,7 +36,7 @@ const TwoFactorAuthentication = ({
   });
 
   const loginButton = () => {
-    //navigate to create Account component
+    dispatch(setComponentAction("login"));
   };
   const next = async () => {
     if (!checkInputs()) {

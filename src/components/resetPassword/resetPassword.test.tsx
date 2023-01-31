@@ -2,6 +2,8 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ResetPassword from "./resetPassword";
 import resetPassword from "../../utils/resetPassword";
+import makeStore from "../../store/authentication/authenticationStore";
+import { Provider } from "react-redux";
 
 jest.mock("../../utils/resetPassword");
 
@@ -9,7 +11,11 @@ const mockResetPassword = resetPassword as jest.Mock;
 
 describe("TEST COMPONENT: ResetPassword Form", () => {
   beforeEach(() => {
-    render(<ResetPassword />);
+    render(
+      <Provider store={makeStore()}>
+        <ResetPassword />
+      </Provider>
+    );
   });
   it("its must render perfectly", () => {
     expect(screen.getByTestId("resetPasswordForm")).toBeInTheDocument();
