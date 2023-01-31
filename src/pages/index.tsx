@@ -1,3 +1,4 @@
+import StickyLeftNavbar from "../components/stickyLeftNavbar/stickyLeftNavbar";
 import Head from "next/head";
 
 export default function Home() {
@@ -7,7 +8,9 @@ export default function Home() {
         <title>Claudia</title>
         <meta name="description" content="Claudia home page" />
       </Head>
-      <div>homepage</div>
+      <div style={{ height: "100vh", backgroundColor: "", width: "100%" }}>
+        <StickyLeftNavbar />
+      </div>
     </>
   );
 }

@@ -1,0 +1,16 @@
+.holder {
+  position: sticky;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--primaryCon);
+  width: 16rem;
+  height: 100%;
+  padding: 1rem 0.5rem;
+}
+
+.middle {
+  height: 100%;
+  padding: 3rem 0;
+}
