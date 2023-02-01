@@ -26,6 +26,8 @@
   display: flex;
   padding: 0.2rem 0.3rem;
   cursor: pointer;
+  z-index: 200;
+  position: relative;
 }
 
 .holderMenu .icon {

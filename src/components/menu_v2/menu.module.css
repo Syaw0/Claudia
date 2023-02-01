@@ -1,7 +1,3 @@
-.holder {
-  position: relative;
-}
-
 .itemHolder {
   background-color: var(--onBg);
   padding: 0.2rem;
