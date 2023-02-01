@@ -6,8 +6,14 @@ import Toolbar from "../toolbar/toolbar";
 import Text from "../typography/typography";
 import style from "./card.module.css";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import {
+  setSideInfoAction,
+  toggleSideInfoAction,
+} from "../../store/mycloud/mycloudStore";
 
 const Card = ({ type, date, name }: CardPropsType) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const handleDoubleClick = () => {
     if (type == "dir") {
@@ -15,7 +21,8 @@ const Card = ({ type, date, name }: CardPropsType) => {
     }
   };
   const handleClick = () => {
-    // open side or show toolbar if viewport is low
+    dispatch(setSideInfoAction({ type, date, name, size: 0 }));
+    dispatch(toggleSideInfoAction(true));
   };
   return (
     <div

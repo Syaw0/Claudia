@@ -27,7 +27,8 @@ declare global {
   interface CardPropsType {
     name: string;
     date: string;
-    type: "file" | "dir";
+    type: "file" | "dir" | string;
+    size?: number;
   }
 }
 export {};

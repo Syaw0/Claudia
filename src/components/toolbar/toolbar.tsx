@@ -5,7 +5,7 @@ interface ToolbarPropsType {
   items: Omit<ToolBarItemPropsType, "sideInfo">[];
   data?: any;
   isFromSide?: boolean;
-  type: "dir" | "file";
+  type: "dir" | "file" | string;
   className?: string;
 }
 

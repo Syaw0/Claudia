@@ -4,12 +4,26 @@ import Text from "../typography/typography";
 import style from "./sideInformation.module.css";
 import Toolbar from "../toolbar/toolbar";
 import toolbarItems from "../../shared/toolbarItems";
+import IconClose from "../../assets/icons/iconClose";
+import { useDispatch } from "react-redux";
+import { toggleSideInfoAction } from "../../store/mycloud/mycloudStore";
 
 const SideInformation = () => {
   const { name, size, date, type } = useMycloudSelector((s) => s.sideData);
+  const dispatch = useDispatch();
+  const closeSideInfo = () => {
+    dispatch(toggleSideInfoAction(false));
+  };
   return (
     <div data-testid="sideInformationHolder" className={style.holder}>
       <div className={style.iconHolder}>
+        <IconClose
+          onClick={closeSideInfo}
+          className={style.closeIcon}
+          data-testid="sideInfoCloseIcon"
+          width="25"
+          height="25"
+        />
         {/* //TODO we must use dynamic import for icon from name */}
         <IconDocx
           data-testid="sideInformationIcon"

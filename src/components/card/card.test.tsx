@@ -3,6 +3,9 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import router from "next-router-mock";
+import { Provider } from "react-redux";
+import makeStore from "../../store/mycloud/mycloudStore";
+import mycloudFakeProps from "../../shared/mycloudFakeProps";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -18,7 +21,11 @@ const cardInfo2 = {
 };
 
 const CustomParent = ({ ...params }: any) => {
-  return <Card {...params} />;
+  return (
+    <Provider store={makeStore(mycloudFakeProps)}>
+      <Card {...params} />
+    </Provider>
+  );
 };
 
 describe("TEST COMPONENT : Card ", () => {

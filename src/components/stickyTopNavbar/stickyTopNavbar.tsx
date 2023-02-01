@@ -16,6 +16,7 @@ const StickyTopNavbar = () => {
         StartIcon={IconAdd}
       >
         Upload File
+        <input multiple type={"file"} className={style.uploadInput} />
       </Button>
 
       <Profile
