@@ -6,7 +6,10 @@ import StickyTopNavbar from "../components/stickyTopNavbar/stickyTopNavbar";
 import mycloudFakeProps from "../shared/mycloudFakeProps";
 import SideInformation from "../components/sideInformation/sideInformation";
 import Card from "../components/card/card";
-import MainLayout from "@/components/layouts/mainLayout/mainLayout";
+import MainLayout from "../components/layouts/mainLayout/mainLayout";
+import MainHolder from "../components/mainHolder/mainHolder";
+import Toolbar from "@/components/toolbar/toolbar";
+import toolbarItems from "@/shared/toolbarItems";
 
 export default function Home() {
   return (
@@ -21,15 +24,14 @@ export default function Home() {
           side={<SideInformation />}
           topNavbar={<StickyTopNavbar />}
           main={
-            <div
-              style={{
-                width: "100%",
-                height: "200vh",
-                overflow: "auto",
-              }}
-            >
-              <Card date="2022-22-22" name="Png File" type="dir" />
-            </div>
+            <MainHolder
+              head="My Cloud"
+              rightHead={
+                <Toolbar items={toolbarItems} isFromSide type="file" />
+              }
+              subhead={``}
+              content={<Card name="png" date="2" type="file" />}
+            />
           }
         />
       </Provider>

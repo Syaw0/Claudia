@@ -1,0 +1,20 @@
+.holder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  min-height: 100vh;
+}
+.head {
+  width: 100%;
+  display: flex;
+  /* border: 1px solid black; */
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.bottom {
+  width: 100%;
+  display: flex;
+}
