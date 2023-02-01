@@ -1,0 +1,50 @@
+.holder {
+  display: flex;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 100vh;
+  z-index: 1;
+}
+
+.navHolder {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.rightHolder {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topNavHolder {
+  /*  */
+}
+
+.mainHolder {
+  display: flex;
+  width: 100%;
+  overflow: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.mainContentHolder {
+  width: 100%;
+}
+
+.mainSideHolder {
+  position: sticky;
+  right: 0;
+  top: 0;
+  z-index: 4;
+}
+
+/* @media (max-width: 1000px) {
+  .navHolder {
+    display: none;
+  }
+} */

@@ -14,3 +14,10 @@
   height: 100%;
   padding: 3rem 0;
 }
+
+@media (max-width: 1000px) {
+  .holder {
+    position: absolute;
+    box-shadow: var(--shadow8dp);
+  }
+}
