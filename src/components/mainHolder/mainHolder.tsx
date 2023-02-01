@@ -22,7 +22,7 @@ const MainHolder = ({
           {subhead}
         </div>
 
-        <div>{rightHead}</div>
+        <div className={style.headRight}>{rightHead}</div>
       </div>
 
       <div className={style.bottom}>{content}</div>

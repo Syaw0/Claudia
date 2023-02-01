@@ -1,4 +1,4 @@
-const IconMenu = (params: IconTypes) => {
+const IconInfo = (params: IconTypes) => {
   return (
     <svg
       {...params}
@@ -31,4 +31,4 @@ const IconMenu = (params: IconTypes) => {
   );
 };
 
-export default IconMenu;
+export default IconInfo;

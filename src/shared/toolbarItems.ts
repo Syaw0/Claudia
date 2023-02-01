@@ -6,6 +6,7 @@ import IconEditFile from "../assets/icons/iconEditFile";
 import IconRemoveFile from "../assets/icons/iconRemoveFile";
 import IconStar from "../assets/icons/iconStar";
 import useEx from "../hooks/ex";
+import IconInfo from "../assets/icons/iconInfo";
 
 const toolbarItems: Omit<ToolBarItemPropsType, "sideInfo">[] = [
   { name: "Star", Icon: IconStar, hook: useEx, type: "file" },
@@ -22,6 +23,19 @@ const toolbarItems: Omit<ToolBarItemPropsType, "sideInfo">[] = [
   {
     name: "Rename Dir",
     Icon: IconEditDirectory,
+    hook: useEx,
+    type: "dir",
+  },
+
+  {
+    name: "info",
+    Icon: IconInfo,
+    hook: useEx,
+    type: "file",
+  },
+  {
+    name: "info",
+    Icon: IconInfo,
     hook: useEx,
     type: "dir",
   },

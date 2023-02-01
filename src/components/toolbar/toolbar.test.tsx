@@ -16,7 +16,7 @@ describe("TEST COMPONENT : ToolbarItem", () => {
         expect(
           screen.getByTestId(`toolbarItem_${item.name}`)
         ).toBeInTheDocument();
-      } else {
+      } else if (item.name != "info") {
         let toolbar;
         try {
           toolbar = screen.getByTestId(`toolbarItem_${item.name}`);
@@ -30,11 +30,11 @@ describe("TEST COMPONENT : ToolbarItem", () => {
     render(<CustomComponent type="dir" />);
     expect(screen.getByTestId("toolbarHolder")).toBeInTheDocument();
     toolbarItems.forEach((item) => {
-      if (item.type == "dir") {
+      if (item.type == "dir" && item.name != "info") {
         expect(
           screen.getByTestId(`toolbarItem_${item.name}`)
         ).toBeInTheDocument();
-      } else {
+      } else if (item.name != "info") {
         let toolbar;
         try {
           toolbar = screen.getByTestId(`toolbarItem_${item.name}`);

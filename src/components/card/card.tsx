@@ -16,6 +16,8 @@ import {
 import React, { useState } from "react";
 import useOutsideClickHandler from "../../hooks/useOutsideClickHandle";
 
+var tappedTwice = false;
+
 const Card = ({ type, date, name }: CardPropsType) => {
   const [isSelected, setIsSelected] = useState(false);
   const dispatch = useDispatch();
@@ -35,12 +37,25 @@ const Card = ({ type, date, name }: CardPropsType) => {
     dispatch(toggleSideInfoAction(true));
     setIsSelected(true);
   };
+
+  const handleTouch = (event: any) => {
+    if (!tappedTwice) {
+      tappedTwice = true;
+      setTimeout(function () {
+        tappedTwice = false;
+      }, 300);
+      return false;
+    }
+    event.preventDefault();
+    handleDoubleClick();
+  };
   return (
     <div
       ref={ref}
+      onClick={handleClick}
       data-testid={`cardHolder_${name}`}
       onDoubleClick={handleDoubleClick}
-      onClick={handleClick}
+      onTouchStart={handleTouch}
       className={`${style.holder} card ${
         isSelected ? style.selectedHolder : ""
       }`}
