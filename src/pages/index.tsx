@@ -5,6 +5,7 @@ import makeStore from "../store/mycloud/mycloudStore";
 import StickyTopNavbar from "../components/stickyTopNavbar/stickyTopNavbar";
 import mycloudFakeProps from "../shared/mycloudFakeProps";
 import SideInformation from "../components/sideInformation/sideInformation";
+import Card from "../components/card/card";
 
 export default function Home() {
   return (
@@ -53,6 +54,7 @@ export default function Home() {
                 <h1>data</h1>
                 <h1>data</h1>
                 <h1>data</h1>
+                <Card date="2022-22-22" name="Png File" type="dir" />
               </div>
               <SideInformation />
             </div>

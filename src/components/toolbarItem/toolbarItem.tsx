@@ -12,7 +12,7 @@ const ToolBarItem = ({ name, Icon, hook, sideInfo }: ToolBarItemPropsType) => {
       }}
       className={sideInfo.isFromSide ? style.holderSide : style.holderMenu}
     >
-      <Icon width="24" height="24" />
+      <Icon className={style.icon} width="24" height="24" />
       <Text>{name}</Text>
     </div>
   );

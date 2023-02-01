@@ -6,6 +6,7 @@ interface ToolbarPropsType {
   data?: any;
   isFromSide?: boolean;
   type: "dir" | "file";
+  className?: string;
 }
 
 const Toolbar = ({
@@ -13,9 +14,10 @@ const Toolbar = ({
   data = {},
   isFromSide = false,
   type,
+  className = "",
 }: ToolbarPropsType) => {
   return (
-    <div data-testid="toolbarHolder" className={style.holder}>
+    <div data-testid="toolbarHolder" className={`${style.holder} ${className}`}>
       {items.map((item) => {
         if (type === item.type) {
           return (

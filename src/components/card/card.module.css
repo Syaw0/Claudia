@@ -1,0 +1,39 @@
+.holder {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surfaceVariant);
+  width: 15rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.top svg {
+  fill: var(--primary);
+}
+
+.bottom p:nth-child(1) {
+  font-family: var(--font-sub);
+}
+
+.bottom p:nth-child(2) {
+  color: var(--onBg700);
+}
+
+.toolbarHolder {
+  border: none;
+  background-color: var(--onBg);
+  display: flex;
+  flex-direction: column;
+}
+
+.holderMenu {
+  display: flex;
+}

@@ -23,5 +23,21 @@
 }
 
 .holderMenu {
-  /*  */
+  display: flex;
+  padding: 0.2rem 0.3rem;
+  cursor: pointer;
+}
+
+.holderMenu .icon {
+  stroke: var(--bg);
+  fill: none;
+}
+
+.holderMenu p {
+  color: var(--bg);
+  padding-left: 0.5rem;
+}
+
+.holderMenu:hover {
+  background-color: var(--bg400);
 }
