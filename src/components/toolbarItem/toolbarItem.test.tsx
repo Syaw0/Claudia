@@ -12,6 +12,7 @@ const toolbarProps = {
   name: "star",
   Icon: () => <div></div>,
   hook: useExampleHook,
+  type: "file",
   sideInfo: {
     isFromSide: false,
     data: null,
@@ -19,7 +20,7 @@ const toolbarProps = {
 };
 
 const CustomComponent = () => {
-  return <ToolBarItem {...toolbarProps} />;
+  return <ToolBarItem {...toolbarProps} type="file" />;
 };
 
 describe("TEST COMPONENT : ToolbarItem", () => {

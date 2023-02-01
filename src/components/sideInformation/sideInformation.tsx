@@ -3,10 +3,10 @@ import IconDocx from "../../assets/icons/iconDocx";
 import Text from "../typography/typography";
 import style from "./sideInformation.module.css";
 import Toolbar from "../toolbar/toolbar";
-import toolbarItems from "@/shared/toolbarItems";
+import toolbarItems from "../../shared/toolbarItems";
 
 const SideInformation = () => {
-  const { name, size, date } = useMycloudSelector((s) => s.sideData);
+  const { name, size, date, type } = useMycloudSelector((s) => s.sideData);
   return (
     <div data-testid="sideInformationHolder" className={style.holder}>
       <div className={style.iconHolder}>
@@ -20,7 +20,7 @@ const SideInformation = () => {
       </div>
       {/* //*this toolbar is just for files! not directory */}
       <div data-testid="sideInformationToolbar">
-        <Toolbar isFromSide items={toolbarItems} />
+        <Toolbar type={type} isFromSide items={toolbarItems} />
       </div>
 
       <div

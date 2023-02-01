@@ -5,23 +5,27 @@ interface ToolbarPropsType {
   items: Omit<ToolBarItemPropsType, "sideInfo">[];
   data?: any;
   isFromSide?: boolean;
+  type: "dir" | "file";
 }
 
 const Toolbar = ({
   items,
   data = {},
   isFromSide = false,
+  type,
 }: ToolbarPropsType) => {
   return (
     <div data-testid="toolbarHolder" className={style.holder}>
       {items.map((item) => {
-        return (
-          <ToolBarItem
-            key={item.name}
-            {...item}
-            sideInfo={{ data, isFromSide }}
-          />
-        );
+        if (type === item.type) {
+          return (
+            <ToolBarItem
+              key={item.name}
+              {...item}
+              sideInfo={{ data, isFromSide }}
+            />
+          );
+        }
       })}
     </div>
   );

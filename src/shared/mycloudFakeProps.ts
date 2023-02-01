@@ -1,5 +1,5 @@
 const mycloudFakeProps = {
-  storageUsage: { max: 1000, min: 120 },
+  storageUsage: { max: 10000, min: 7000 },
   user: {
     name: "siavash",
     profileUrl:

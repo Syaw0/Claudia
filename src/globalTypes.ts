@@ -18,6 +18,7 @@ declare global {
     name: string;
     Icon: (props: IconTypes) => JSX.Element;
     hook: (d: any) => () => void;
+    type: "dir" | "file";
     sideInfo: {
       isFromSide: boolean;
       data: any;

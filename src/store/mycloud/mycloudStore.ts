@@ -6,6 +6,7 @@ interface PageBasicStates {
     name: string;
     size: number;
     date: string;
+    type: "file" | "dir";
   };
 }
 
@@ -15,6 +16,7 @@ const pageBasicStates: PageBasicStates = {
     name: "",
     size: 0,
     date: "",
+    type: "file",
   },
 };
 
