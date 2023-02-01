@@ -10,6 +10,7 @@ import MainLayout from "../components/layouts/mainLayout/mainLayout";
 import MainHolder from "../components/mainHolder/mainHolder";
 import Toolbar from "@/components/toolbar/toolbar";
 import toolbarItems from "@/shared/toolbarItems";
+import CardHolder from "@/components/cardHolder/cardHolder";
 
 export default function Home() {
   return (
@@ -30,7 +31,15 @@ export default function Home() {
                 <Toolbar items={toolbarItems} isFromSide type="file" />
               }
               subhead={``}
-              content={<Card name="png" date="2" type="file" />}
+              content={
+                <CardHolder
+                  cards={[
+                    { name: "file", date: "2", type: "dir" },
+                    { name: "file", date: "2", type: "dir" },
+                    { name: "file", date: "2", type: "dir" },
+                  ]}
+                />
+              }
             />
           }
         />

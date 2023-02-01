@@ -1,0 +1,9 @@
+.holder {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.holder > * {
+  margin: 0.3rem;
+}

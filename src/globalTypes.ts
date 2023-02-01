@@ -24,5 +24,10 @@ declare global {
       data: any;
     };
   }
+  interface CardPropsType {
+    name: string;
+    date: string;
+    type: "file" | "dir";
+  }
 }
 export {};

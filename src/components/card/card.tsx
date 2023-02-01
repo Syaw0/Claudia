@@ -7,12 +7,6 @@ import Text from "../typography/typography";
 import style from "./card.module.css";
 import { useRouter } from "next/router";
 
-interface CardPropsType {
-  name: string;
-  date: string;
-  type: "file" | "dir";
-}
-
 const Card = ({ type, date, name }: CardPropsType) => {
   const router = useRouter();
   const handleDoubleClick = () => {

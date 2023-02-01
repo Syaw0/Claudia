@@ -8,13 +8,13 @@
 .head {
   width: 100%;
   display: flex;
-  /* border: 1px solid black; */
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
 }
 
 .bottom {
+  padding: 1rem 0;
   width: 100%;
   display: flex;
 }
