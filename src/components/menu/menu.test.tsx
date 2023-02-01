@@ -1,6 +1,9 @@
 import Menu from "./menu";
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { Provider } from "react-redux";
+import mycloudFakeProps from "../../shared/mycloudFakeProps";
+import makeStore from "../../store/mycloud/mycloudStore";
 
 const mock1 = jest.fn(() => {});
 const mock2 = jest.fn(() => {});
@@ -11,7 +14,11 @@ const options = [
 ];
 
 const CustomParent = () => {
-  return <Menu items={options} />;
+  return (
+    <Provider store={makeStore(mycloudFakeProps)}>
+      <Menu items={options} />
+    </Provider>
+  );
 };
 
 describe("Component Test : Menu", () => {

@@ -8,20 +8,41 @@ import StickyTopNavbar from "../../../components/stickyTopNavbar/stickyTopNavbar
 import Toolbar from "../../../components/toolbar/toolbar";
 import toolbarItems from "../../../shared/toolbarItems";
 import style from "./mycloud.module.css";
-import { useMycloudSelector } from "@/store/mycloud/mycloudStoreHooks";
+import { useMycloudSelector } from "../../../store/mycloud/mycloudStoreHooks";
+import IconCreateDirectory from "../../../assets/icons/IconCreateDirectory";
+import useControlSelectFileState from "../../../hooks/controlSelectFileState";
+import useChangeViewPortWidth from "../../../hooks/useChangeViewportWidth";
 
 const Mycloud = () => {
   const isSideOpen = useMycloudSelector((s) => s.isSideOpen);
+  const isFileSelected = useMycloudSelector((s) => s.isFileSelected);
+  const isNavOpen = useMycloudSelector((s) => s.isNavOpen);
+  useControlSelectFileState();
+  useChangeViewPortWidth();
   return (
     <div className={style.holder}>
       <MainLayout
-        leftNavbar={<StickyLeftNavbar />}
+        leftNavbar={isNavOpen ? <StickyLeftNavbar /> : <span></span>}
         side={isSideOpen ? <SideInformation /> : <span></span>}
         topNavbar={<StickyTopNavbar />}
         main={
           <MainHolder
             head="My Cloud"
-            rightHead={<Toolbar items={toolbarItems} isFromSide type="file" />}
+            rightHead={
+              <div className={style.iconBar}>
+                {isFileSelected && (
+                  <Toolbar
+                    className={style.selectFileToolbar}
+                    items={toolbarItems}
+                    isFromSide
+                    type="file"
+                  />
+                )}
+                <div className={style.createDirIcon}>
+                  <IconCreateDirectory width="24" height="24" />
+                </div>
+              </div>
+            }
             subhead={``}
             content={<CardHolder cards={fakeCards} />}
           />

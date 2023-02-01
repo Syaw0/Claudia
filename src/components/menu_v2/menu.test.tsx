@@ -3,9 +3,16 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Toolbar from "../toolbar/toolbar";
 import toolbarItems from "../../shared/toolbarItems";
+import { Provider } from "react-redux";
+import makeStore from "../../store/mycloud/mycloudStore";
+import mycloudFakeProps from "../../shared/mycloudFakeProps";
 
 const CustomParent = () => {
-  return <Menu toolbarHolder={<Toolbar items={toolbarItems} type="dir" />} />;
+  return (
+    <Provider store={makeStore(mycloudFakeProps)}>
+      <Menu toolbarHolder={<Toolbar items={toolbarItems} type="dir" />} />
+    </Provider>
+  );
 };
 
 describe("Component Test : Menu", () => {

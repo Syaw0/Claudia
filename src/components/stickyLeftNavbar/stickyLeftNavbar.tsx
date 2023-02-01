@@ -5,8 +5,12 @@ import IconSetting from "../../assets/icons/iconSetting";
 import IconStar from "../../assets/icons/iconStar";
 import NavbarItem from "../stickyLeftNavbarItem/stickyLeftNavbarItem";
 import style from "./stickyLeftNavbar.module.css";
-import Text from "../typography/typography";
 import UsageMeter from "../usageMeter/usageMeter";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { toggleNavOpen } from "../../store/mycloud/mycloudStore";
+import IconClose from "../../assets/icons/iconClose";
+import { keyframe, timing } from "../../styles/keyframes/translate";
 
 const navItemsList = [
   { text: "My Cloud", Icon: IconCloud, href: "/mycloud" },
@@ -20,10 +24,22 @@ const navItemsList = [
 ];
 
 const StickyLeftNavbar = () => {
+  const ref: any = useRef(null);
+  const dispatch = useDispatch();
+  const closeNav = () => {
+    const current = ref.current as HTMLElement;
+    current.animate(keyframe, timing);
+    setTimeout(() => {
+      dispatch(toggleNavOpen(false));
+    }, 1000);
+  };
   return (
-    <div data-testid="stickyLeftNavbar" className={style.holder}>
+    <div ref={ref} data-testid="stickyLeftNavbar" className={style.holder}>
       <div data-testid="stickyLeftNavbarTop" className={style.top}>
         <IconLogo width="190" height="40" />
+        <div className={style.close}>
+          <IconClose onClick={closeNav} width="24" height="24" />
+        </div>
       </div>
 
       <div data-testid="stickyLeftNavbarMiddle" className={style.middle}>

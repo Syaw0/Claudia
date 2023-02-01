@@ -8,6 +8,17 @@
   width: 16rem;
   height: 100%;
   padding: 1rem 0.5rem;
+  transition: transform 2s;
+  animation: translateToOpen 1s ease 0s both;
+}
+
+@keyframes translateToOpen {
+  0% {
+    transform: translate(-16rem, -0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
 }
 
 .middle {
@@ -15,9 +26,40 @@
   padding: 3rem 0;
 }
 
+.top {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: -2.4rem;
+  top: -1.2rem;
+  background-color: var(--primaryCon);
+  padding: 0.6rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  display: none;
+}
+
+.close svg {
+  width: 25px;
+  height: 25px;
+  fill: var(--onBg800);
+}
+
+.close:hover svg {
+  fill: var(--onBg);
+}
+
 @media (max-width: 1000px) {
   .holder {
     position: absolute;
     box-shadow: var(--shadow8dp);
+  }
+  .close {
+    display: flex;
   }
 }

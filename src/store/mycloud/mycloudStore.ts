@@ -1,17 +1,29 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface FileData {
+  name: string;
+  size: number;
+  date: string;
+  type: "file" | "dir" | string;
+}
 interface PageBasicStates {
   isSideOpen: boolean;
-  sideData: {
-    name: string;
-    size: number;
-    date: string;
-    type: "file" | "dir" | string;
-  };
+  isFileSelected: boolean;
+  selectedFileData: FileData;
+  sideData: FileData;
+  isNavOpen: boolean;
 }
 
 const pageBasicStates: PageBasicStates = {
   isSideOpen: false,
+  isFileSelected: false,
+  isNavOpen: false,
+  selectedFileData: {
+    name: "",
+    size: 0,
+    date: "",
+    type: "file",
+  },
   sideData: {
     name: "",
     size: 0,
@@ -54,6 +66,30 @@ const mycloudSlice = createSlice({
         },
       };
     },
+
+    toggleFileSelected(preState, action: PayloadAction<boolean | null>) {
+      const status =
+        action.payload == null ? !preState.isSideOpen : action.payload;
+      return {
+        ...preState,
+        isFileSelected: status,
+      };
+    },
+    setSelectedFileData(preState, action: PayloadAction<FileData>) {
+      return {
+        ...preState,
+        selectedFileData: action.payload,
+      };
+    },
+
+    toggleNavOpen(preState, action: PayloadAction<boolean | null>) {
+      const status =
+        action.payload == null ? !preState.isSideOpen : action.payload;
+      return {
+        ...preState,
+        isNavOpen: status,
+      };
+    },
   },
 });
 
@@ -66,5 +102,9 @@ const makeStore = (params: Partial<typeof states>) => {
 
 export const toggleSideInfoAction = mycloudSlice.actions.toggleSideInfo;
 export const setSideInfoAction = mycloudSlice.actions.setSideInfo;
+export const toggleSelectFile = mycloudSlice.actions.toggleFileSelected;
+export const setSelectedFileData = mycloudSlice.actions.setSelectedFileData;
+export const toggleNavOpen = mycloudSlice.actions.toggleNavOpen;
+
 export type RootState = typeof states;
 export default makeStore;

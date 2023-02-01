@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const useOutsideClickHandler = (ref: any, setShow: any) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -11,6 +13,6 @@ const useOutsideClickHandler = (ref: any, setShow: any) => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [ref, setShow]);
+  }, [dispatch, ref, setShow]);
 };
 export default useOutsideClickHandler;
