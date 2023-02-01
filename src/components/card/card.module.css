@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--surfaceVariant);
-  width: 15rem;
+  width: 14rem;
   margin: 2rem;
   border-radius: 1rem;
   padding: 0.5rem;
@@ -44,4 +44,22 @@
 
 .holderMenu {
   display: flex;
+}
+
+@media (max-width: 1100px) {
+  .holder {
+    width: 12rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .holder {
+    width: 11rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .holder {
+    width: 9rem;
+  }
 }

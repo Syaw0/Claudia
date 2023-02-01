@@ -1,9 +1,32 @@
 .holder {
   width: 100%;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: stretch; */
+  display: grid;
+  /* grid-column-gap: 10px; */
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
 }
 
 .holder > * {
   margin: 0.3rem;
+}
+
+@media (max-width: 1100px) {
+  .holder {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .holder {
+    grid-template-columns: repeat(auto-fill, minmax(11.1rem, 1fr));
+  }
+}
+
+@media (max-width: 400px) {
+  .holder {
+    grid-template-columns: repeat(auto-fill, minmax(9.1rem, 1fr));
+  }
 }

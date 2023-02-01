@@ -19,6 +19,7 @@ const Mycloud = () => {
   const isNavOpen = useMycloudSelector((s) => s.isNavOpen);
   useControlSelectFileState();
   useChangeViewPortWidth();
+  console.log(isNavOpen);
   return (
     <div className={style.holder}>
       <MainLayout
