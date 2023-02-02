@@ -5,17 +5,18 @@ import IconDownload from "../assets/icons/iconDownload";
 import IconEditFile from "../assets/icons/iconEditFile";
 import IconRemoveFile from "../assets/icons/iconRemoveFile";
 import IconStar from "../assets/icons/iconStar";
-import useEx from "../hooks/ex";
 import IconInfo from "../assets/icons/iconInfo";
 import useRename from "../hooks/useRename";
 import useRemoveConfirm from "../hooks/useRemoveConfirm";
 import useInfo from "../hooks/useInfo";
+import useStar from "../hooks/useStar";
+import useCopy from "../hooks/useCopy";
 
 const toolbarItems: Omit<ToolBarItemPropsType, "sideInfo">[] = [
-  { name: "Star", Icon: IconStar, hook: useEx, type: "file" },
+  { name: "Star", Icon: IconStar, hook: useStar, type: "file" },
   { name: "Rename File", Icon: IconEditFile, hook: useRename, type: "file" },
-  { name: "Make Copy", Icon: IconCopy, hook: useEx, type: "file" },
-  { name: "Download", Icon: IconDownload, hook: useEx, type: "file" },
+  { name: "Make Copy", Icon: IconCopy, hook: useCopy, type: "file" },
+  { name: "Download", Icon: IconDownload, hook: useRename, type: "file" },
   {
     name: "Delete File",
     Icon: IconRemoveFile,

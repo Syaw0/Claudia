@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { toggleNavOpen } from "@/store/mycloud/mycloudStore";
-import { useMycloudSelector } from "@/store/mycloud/mycloudStoreHooks";
+import { toggleNavOpen } from "../store/mycloud/mycloudStore";
+import { useMycloudSelector } from "../store/mycloud/mycloudStoreHooks";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
