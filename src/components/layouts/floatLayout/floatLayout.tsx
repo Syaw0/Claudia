@@ -1,3 +1,4 @@
+import Info from "../../../components/info/info";
 import CreateDirectory from "../../../components/createDirectory/createDirectory";
 import RemoveConfirmation from "../../../components/removeConfirm/removeConfirm";
 import Rename from "../../../components/rename/rename";
@@ -17,6 +18,7 @@ const FloatLayout = () => {
           {floatType === "edit" && <Rename />}
           {floatType === "removeConfirm" && <RemoveConfirmation />}
           {floatType === "createDirectory" && <CreateDirectory />}
+          {floatType === "info" && <Info />}
         </div>
       )}
     </>

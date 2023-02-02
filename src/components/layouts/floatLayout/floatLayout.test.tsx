@@ -94,4 +94,22 @@ describe("TEST COMPONENT : FloatLayout", () => {
 
     await waitFor(() => expect(createHolder).not.toBeInTheDocument());
   });
+
+  it("Info In The Float ", async () => {
+    jest.useFakeTimers();
+    const state = { ...preState, floatType: "info" };
+    render(<CustomParent state={state} />);
+    const floatLayout = screen.getByTestId("floatLayout");
+    const createHolder = screen.getByTestId("infoHolder");
+    const cancelButton = screen.getByTestId("infoQuitButton");
+    expect(floatLayout).toBeInTheDocument();
+    expect(createHolder).toBeInTheDocument();
+
+    // if click on the cancel(in the rename ) float will close...
+    fireEvent.click(cancelButton);
+    jest.runAllTimers();
+    await waitFor(() => expect(floatLayout).not.toBeInTheDocument());
+
+    await waitFor(() => expect(createHolder).not.toBeInTheDocument());
+  });
 });

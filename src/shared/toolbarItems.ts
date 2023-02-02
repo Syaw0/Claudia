@@ -9,6 +9,7 @@ import useEx from "../hooks/ex";
 import IconInfo from "../assets/icons/iconInfo";
 import useRename from "../hooks/useRename";
 import useRemoveConfirm from "../hooks/useRemoveConfirm";
+import useInfo from "../hooks/useInfo";
 
 const toolbarItems: Omit<ToolBarItemPropsType, "sideInfo">[] = [
   { name: "Star", Icon: IconStar, hook: useEx, type: "file" },
@@ -37,13 +38,13 @@ const toolbarItems: Omit<ToolBarItemPropsType, "sideInfo">[] = [
   {
     name: "info",
     Icon: IconInfo,
-    hook: useEx,
+    hook: useInfo,
     type: "file",
   },
   {
     name: "info",
     Icon: IconInfo,
-    hook: useEx,
+    hook: useInfo,
     type: "dir",
   },
 ];

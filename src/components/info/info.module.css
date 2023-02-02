@@ -1,0 +1,28 @@
+.headText {
+  font-weight: 800;
+  font-size: var(--headline5);
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.infosItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infosItem p:nth-child(1) {
+  font-size: var(--headline6);
+  line-height: var(--headline6_lineHeight);
+  color: var(--onBg800);
+}
+
+.infosItem p:nth-child(2) {
+  font-size: var(--headline6);
+  line-height: var(--headline6_lineHeight);
+  color: var(--onBg);
+  font-weight: 600;
+}
