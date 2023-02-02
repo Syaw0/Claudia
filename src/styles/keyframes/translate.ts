@@ -9,4 +9,15 @@ const timing: KeyframeAnimationOptions = {
   easing: "ease",
 };
 
-export { timing, keyframe };
+const keyframeTranslateToRight: Keyframe[] = [
+  { transform: "translate(0)" },
+  { transform: "translate(21rem)" },
+];
+
+const timingTranslateToRight: KeyframeAnimationOptions = {
+  duration: 1000,
+  fill: "both",
+  easing: "ease",
+};
+
+export { timing, keyframe, keyframeTranslateToRight, timingTranslateToRight };

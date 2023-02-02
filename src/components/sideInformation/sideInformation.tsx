@@ -7,15 +7,26 @@ import toolbarItems from "../../shared/toolbarItems";
 import IconClose from "../../assets/icons/iconClose";
 import { useDispatch } from "react-redux";
 import { toggleSideInfoAction } from "../../store/mycloud/mycloudStore";
+import { useRef } from "react";
+import {
+  keyframeTranslateToRight,
+  timingTranslateToRight,
+} from "../../styles/keyframes/translate";
 
 const SideInformation = () => {
+  const ref: any = useRef(null);
   const { name, size, date, type } = useMycloudSelector((s) => s.sideData);
   const dispatch = useDispatch();
   const closeSideInfo = () => {
-    dispatch(toggleSideInfoAction(false));
+    if (ref.current != null) {
+      ref.current.animate(keyframeTranslateToRight, timingTranslateToRight);
+    }
+    setTimeout(() => {
+      dispatch(toggleSideInfoAction(false));
+    }, 800);
   };
   return (
-    <div data-testid="sideInformationHolder" className={style.holder}>
+    <div ref={ref} data-testid="sideInformationHolder" className={style.holder}>
       <div className={style.iconHolder}>
         <IconClose
           onClick={closeSideInfo}

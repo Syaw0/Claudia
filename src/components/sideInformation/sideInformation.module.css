@@ -8,8 +8,17 @@
   padding: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
+  animation: translateToOpen 1s ease 0s both;
 }
 
+@keyframes translateToOpen {
+  0% {
+    transform: translate(21rem, -0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
 .iconHolder {
   width: 100%;
   display: flex;
