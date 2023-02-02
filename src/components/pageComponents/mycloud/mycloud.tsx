@@ -24,7 +24,6 @@ const Mycloud = () => {
   const isNavOpen = useMycloudSelector((s) => s.isNavOpen);
   useControlSelectFileState();
   useChangeViewPortWidth();
-  const dispatch = useDispatch();
 
   console.log(isGlobalMsgOpen);
   return (

@@ -11,12 +11,13 @@ import useRemoveConfirm from "../hooks/useRemoveConfirm";
 import useInfo from "../hooks/useInfo";
 import useStar from "../hooks/useStar";
 import useCopy from "../hooks/useCopy";
+import useDownload from "../hooks/useDownload";
 
 const toolbarItems: Omit<ToolBarItemPropsType, "sideInfo">[] = [
   { name: "Star", Icon: IconStar, hook: useStar, type: "file" },
   { name: "Rename File", Icon: IconEditFile, hook: useRename, type: "file" },
   { name: "Make Copy", Icon: IconCopy, hook: useCopy, type: "file" },
-  { name: "Download", Icon: IconDownload, hook: useRename, type: "file" },
+  { name: "Download", Icon: IconDownload, hook: useDownload, type: "file" },
   {
     name: "Delete File",
     Icon: IconRemoveFile,

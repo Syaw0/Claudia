@@ -41,6 +41,7 @@ const Card = ({ type, date, name }: CardPropsType) => {
   const router = useRouter();
   const ref: any = useRef(null);
   const draggableRef: any = useRef(null);
+
   const handleDoubleClick = () => {
     if (type == "dir") {
       router.push(`/${name}`);
