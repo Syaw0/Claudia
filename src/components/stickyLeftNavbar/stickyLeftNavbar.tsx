@@ -37,8 +37,8 @@ const StickyLeftNavbar = () => {
     <div ref={ref} data-testid="stickyLeftNavbar" className={style.holder}>
       <div data-testid="stickyLeftNavbarTop" className={style.top}>
         <IconLogo width="190" height="40" />
-        <div className={style.close}>
-          <IconClose onClick={closeNav} width="24" height="24" />
+        <div onClick={closeNav} className={style.close}>
+          <IconClose width="24" height="24" />
         </div>
       </div>
 

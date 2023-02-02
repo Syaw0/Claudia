@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Text from "../typography/typography";
 import style from "./stickyLeftNavbarItem.module.css";
 
