@@ -1,5 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type floatTypes = "edit" | "none" | string;
 interface FileData {
   name: string;
   size: number;
@@ -12,12 +13,14 @@ interface PageBasicStates {
   selectedFileData: FileData;
   sideData: FileData;
   isNavOpen: boolean;
+  floatType: floatTypes;
 }
 
 const pageBasicStates: PageBasicStates = {
   isSideOpen: false,
   isFileSelected: false,
   isNavOpen: false,
+  floatType: "none",
   selectedFileData: {
     name: "",
     size: 0,
@@ -90,6 +93,13 @@ const mycloudSlice = createSlice({
         isNavOpen: status,
       };
     },
+
+    setFloatType(preState, action: PayloadAction<floatTypes>) {
+      return {
+        ...preState,
+        floatType: action.payload,
+      };
+    },
   },
 });
 
@@ -105,6 +115,7 @@ export const setSideInfoAction = mycloudSlice.actions.setSideInfo;
 export const toggleSelectFile = mycloudSlice.actions.toggleFileSelected;
 export const setSelectedFileData = mycloudSlice.actions.setSelectedFileData;
 export const toggleNavOpen = mycloudSlice.actions.toggleNavOpen;
+export const setFloatType = mycloudSlice.actions.setFloatType;
 
 export type RootState = typeof states;
 export default makeStore;

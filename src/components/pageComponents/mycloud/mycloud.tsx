@@ -12,6 +12,8 @@ import { useMycloudSelector } from "../../../store/mycloud/mycloudStoreHooks";
 import IconCreateDirectory from "../../../assets/icons/IconCreateDirectory";
 import useControlSelectFileState from "../../../hooks/controlSelectFileState";
 import useChangeViewPortWidth from "../../../hooks/useChangeViewportWidth";
+import FloatLayout from "../../../components/layouts/floatLayout/floatLayout";
+import Rename from "../../../components/rename/rename";
 
 const Mycloud = () => {
   const isSideOpen = useMycloudSelector((s) => s.isSideOpen);
@@ -21,6 +23,7 @@ const Mycloud = () => {
   useChangeViewPortWidth();
   return (
     <div className={style.holder}>
+      <FloatLayout />
       <MainLayout
         leftNavbar={isNavOpen ? <StickyLeftNavbar /> : <span></span>}
         side={isSideOpen ? <SideInformation /> : <span></span>}

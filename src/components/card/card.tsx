@@ -28,6 +28,7 @@ const Card = ({ type, date, name }: CardPropsType) => {
       router.push(`/${name}`);
     }
   };
+
   useOutsideClickHandler(ref, setIsSelected);
 
   const handleClick = (e: React.MouseEvent) => {

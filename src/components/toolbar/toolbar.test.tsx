@@ -2,9 +2,16 @@ import ToolBar from "./toolbar";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import toolbarItems from "../../shared/toolbarItems";
+import { Provider } from "react-redux";
+import makeStore from "../../store/mycloud/mycloudStore";
+import mycloudFakeProps from "../../shared/mycloudFakeProps";
 
 const CustomComponent = ({ type = "file" }: any) => {
-  return <ToolBar type={type} items={toolbarItems} />;
+  return (
+    <Provider store={makeStore(mycloudFakeProps)}>
+      <ToolBar type={type} items={toolbarItems} />
+    </Provider>
+  );
 };
 
 describe("TEST COMPONENT : ToolbarItem", () => {

@@ -20,4 +20,19 @@ const timingTranslateToRight: KeyframeAnimationOptions = {
   easing: "ease",
 };
 
-export { timing, keyframe, keyframeTranslateToRight, timingTranslateToRight };
+const keyframeFadeIn: Keyframe[] = [{ opacity: 1 }, { opacity: 0 }];
+
+const timingFadeIn: KeyframeAnimationOptions = {
+  duration: 1000,
+  fill: "both",
+  easing: "ease",
+};
+
+export {
+  timing,
+  keyframe,
+  keyframeTranslateToRight,
+  timingTranslateToRight,
+  keyframeFadeIn,
+  timingFadeIn,
+};
