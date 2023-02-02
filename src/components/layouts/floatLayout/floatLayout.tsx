@@ -1,3 +1,4 @@
+import RemoveConfirmation from "../../../components/removeConfirm/removeConfirm";
 import Rename from "../../../components/rename/rename";
 import { useMycloudSelector } from "../../../store/mycloud/mycloudStoreHooks";
 import style from "./floatLayout.module.css";
@@ -13,6 +14,7 @@ const FloatLayout = () => {
           className={style.holder}
         >
           {floatType === "edit" && <Rename />}
+          {floatType === "removeConfirm" && <RemoveConfirmation />}
         </div>
       )}
     </>

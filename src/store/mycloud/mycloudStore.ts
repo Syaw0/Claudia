@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type floatTypes = "edit" | "none" | string;
+type floatTypes = "edit" | "none" | "removeConfirm" | string;
 interface FileData {
   name: string;
   size: number;

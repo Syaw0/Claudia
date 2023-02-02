@@ -141,3 +141,10 @@
   --onMain500: var(--tertiaryOnCon500);
   --onMain200: var(--tertiaryOnCon200);
 }
+
+.error {
+  --main: var(--error);
+  --onMain: var(--onError);
+  --onMain500: var(--onError500);
+  --onMain200: var(--onError200);
+}

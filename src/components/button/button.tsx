@@ -4,7 +4,7 @@ import style from "./button.module.css";
 interface ButtonType {
   children: any;
   variant?: "contained" | "outlined" | "shadow";
-  color?: "primary" | "secondary" | "tertiary";
+  color?: "primary" | "secondary" | "tertiary" | "error";
   onClick?: any;
   id?: string;
   testid?: string;

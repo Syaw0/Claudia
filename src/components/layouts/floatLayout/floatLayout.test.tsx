@@ -23,9 +23,9 @@ const mockAnimated: Animated = (x, y) => {
 
 HTMLDivElement.prototype.animate = mockAnimated;
 
-const CustomParent = () => {
+const CustomParent = ({ state }: any) => {
   return (
-    <Provider store={makeStore(preState)}>
+    <Provider store={makeStore(state == null ? preState : state)}>
       <FloatLayout />
     </Provider>
   );
@@ -57,5 +57,23 @@ describe("TEST COMPONENT : FloatLayout", () => {
     await waitFor(() => expect(floatLayout).not.toBeInTheDocument());
 
     await waitFor(() => expect(renameHolder).not.toBeInTheDocument());
+  });
+
+  it("Remove In The Float ", async () => {
+    jest.useFakeTimers();
+    const state = { ...preState, floatType: "removeConfirm" };
+    render(<CustomParent state={state} />);
+    const floatLayout = screen.getByTestId("removeConfirmHolder");
+    const removeHolder = screen.getByTestId("removeConfirmButton");
+    const cancelButton = screen.getByTestId("removeConfirmCancelButton");
+    expect(floatLayout).toBeInTheDocument();
+    expect(removeHolder).toBeInTheDocument();
+
+    // if click on the cancel(in the rename ) float will close...
+    fireEvent.click(cancelButton);
+    jest.runAllTimers();
+    await waitFor(() => expect(floatLayout).not.toBeInTheDocument());
+
+    await waitFor(() => expect(removeHolder).not.toBeInTheDocument());
   });
 });

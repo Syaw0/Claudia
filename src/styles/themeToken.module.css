@@ -103,10 +103,10 @@
   --onSuccess: rgba(14, 77, 9, 1);
   --onSuccess500: rgba(14, 77, 9, 0.5);
 
-  --error: rgba(241, 202, 202, 1);
-  --error300: rgba(241, 202, 202, 0.3);
-  --onError: rgba(77, 9, 9, 1);
-  --onError500: rgba(77, 9, 9, 0.5);
+  --error: rgb(186, 26, 26);
+  --error300: rgba(186, 26, 26, 0.3);
+  --onError: rgb(255, 255, 255);
+  --onError500: rgba(255, 255, 255, 0.5);
 
   --warn: rgba(241, 228, 202, 1);
   --onWarn: rgba(77, 54, 9, 1);

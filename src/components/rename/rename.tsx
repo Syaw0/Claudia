@@ -11,24 +11,18 @@ import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
 import { useDispatch } from "react-redux";
 import { setFloatType } from "../../store/mycloud/mycloudStore";
 import { act } from "react-dom/test-utils";
+import useCloseFloat from "../../hooks/useCloseFloat";
 
 const Rename = () => {
   const dispatch = useDispatch();
+  const closeFloat = useCloseFloat();
   const selectedFile = useMycloudSelector((s) => s.selectedFileData);
   const [trigger, state, msg, setMsg] = useFetch([rename], [loaderMsg]);
   const [inputData, setInputData] = useState({
     renameInput: selectedFile.name,
   });
   const cancelRename = () => {
-    setTimeout(() => {
-      act(() => dispatch(setFloatType("none")));
-    }, 1000);
-    const floatLayout = document.getElementById(
-      "floatLayout"
-    ) as HTMLDivElement;
-    if (floatLayout != null) {
-      floatLayout.animate(keyframeFadeIn, timingFadeIn);
-    }
+    closeFloat();
   };
   const performRename = async () => {
     if (!checkInputs()) {
