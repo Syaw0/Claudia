@@ -7,6 +7,12 @@ declare global {
     "data-testid"?: string;
     className?: string;
   }
+  interface MessageType {
+    msg: string;
+    type: MessageStateType;
+    className?: string;
+  }
+
   type FetchStateTypes = "error" | "success" | "pending" | "loader";
   type MessageStateType = FetchStateTypes | "warn";
   interface FetchResponse {

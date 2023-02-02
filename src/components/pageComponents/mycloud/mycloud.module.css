@@ -29,6 +29,14 @@
   display: none;
 }
 
+.floatMsg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  z-index: 1000;
+}
+
 @media (max-width: 850px) {
   .selectFileToolbar {
     display: flex;

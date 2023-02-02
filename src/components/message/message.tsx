@@ -3,12 +3,6 @@ import SuccessMessage from "./successMessage";
 import WaitMessage from "./waitMessage";
 import WarnMessage from "./warnMessage";
 
-interface MessageType {
-  msg: string;
-  type: MessageStateType;
-  className?: string;
-}
-
 const Message = ({ msg, type, className = "" }: MessageType) => {
   return (
     <>
