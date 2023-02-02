@@ -27,6 +27,13 @@
   transition: transform 0.1s;
 }
 
+.notSelectedHolder {
+  border: 4px solid transparent;
+  /* box-shadow: var(--shadow2dp);
+  transform: scale(1.021);
+  transition: transform 0.1s; */
+}
+
 .top {
   display: flex;
   justify-content: space-between;

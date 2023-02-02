@@ -13,7 +13,6 @@ const Message = () => {
   const dispatch = useDispatch();
   const { type, msg } = globalMsgData;
   const close = () => {
-    console.log("hoy");
     dispatch(toggleGlobalMsgOpen(false));
   };
   return (

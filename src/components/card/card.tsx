@@ -8,19 +8,36 @@ import style from "./card.module.css";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import {
+  setGlobalMsgData,
   setSelectedFileData,
   setSideInfoAction,
+  toggleGlobalMsgOpen,
   toggleSelectFile,
   toggleSideInfoAction,
 } from "../../store/mycloud/mycloudStore";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useOutsideClickHandler from "../../hooks/useOutsideClickHandle";
+import useFetch from "../../hooks/useFetch";
+import move, { loaderMsg } from "../../utils/move";
 
 var tappedTwice = false;
 
 const Card = ({ type, date, name }: CardPropsType) => {
-  const [isSelected, setIsSelected] = useState(false);
+  const [trigger, state, msg, setMsg] = useFetch([move], [loaderMsg]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(toggleGlobalMsgOpen(false));
+    dispatch(
+      setGlobalMsgData({
+        msg,
+        type: state,
+      })
+    );
+    dispatch(toggleGlobalMsgOpen(true));
+  }, [dispatch, msg, state]);
+
+  const [isSelected, setIsSelected] = useState(false);
   const router = useRouter();
   const ref: any = useRef(null);
   const draggableRef: any = useRef(null);
@@ -60,8 +77,16 @@ const Card = ({ type, date, name }: CardPropsType) => {
     const data = e.dataTransfer.getData("text");
     const { id } = e.currentTarget;
     if (id !== JSON.parse(data).name) {
-      div.style.border = "4px solid transparent";
-      console.log("not-same");
+      div.classList.replace(style.selectedHolder, style.notSelectedHolder);
+      // now we can do operate on the move
+      dispatch(
+        setGlobalMsgData({
+          msg: "Moving files ....",
+          type: "loader",
+        })
+      );
+      dispatch(toggleGlobalMsgOpen(true));
+      trigger(0);
     }
   };
 
@@ -71,13 +96,17 @@ const Card = ({ type, date, name }: CardPropsType) => {
     const data = e.dataTransfer.getData("text");
     const { id } = e.currentTarget;
     if (id !== JSON.parse(data).name) {
-      div.style.border = "4px solid var(--primary)";
+      if (div.classList.contains(style.notSelectedHolder)) {
+        div.classList.replace(style.notSelectedHolder, style.selectedHolder);
+      } else {
+        div.classList.add(style.selectedHolder);
+      }
     }
   };
 
   const dragExit = () => {
     const div = ref.current as HTMLDivElement;
-    div.style.border = "4px solid transparent";
+    div.classList.replace(style.selectedHolder, style.notSelectedHolder);
   };
 
   const dragStart = (e: React.DragEvent<HTMLDivElement>) => {
