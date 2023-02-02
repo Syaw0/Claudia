@@ -76,4 +76,22 @@ describe("TEST COMPONENT : FloatLayout", () => {
 
     await waitFor(() => expect(removeHolder).not.toBeInTheDocument());
   });
+
+  it("createDirectory In The Float ", async () => {
+    jest.useFakeTimers();
+    const state = { ...preState, floatType: "createDirectory" };
+    render(<CustomParent state={state} />);
+    const floatLayout = screen.getByTestId("floatLayout");
+    const createHolder = screen.getByTestId("createDirectoryHolder");
+    const cancelButton = screen.getByTestId("createDirectoryCancelButton");
+    expect(floatLayout).toBeInTheDocument();
+    expect(createHolder).toBeInTheDocument();
+
+    // if click on the cancel(in the rename ) float will close...
+    fireEvent.click(cancelButton);
+    jest.runAllTimers();
+    await waitFor(() => expect(floatLayout).not.toBeInTheDocument());
+
+    await waitFor(() => expect(createHolder).not.toBeInTheDocument());
+  });
 });

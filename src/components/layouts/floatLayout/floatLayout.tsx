@@ -1,3 +1,4 @@
+import CreateDirectory from "../../../components/createDirectory/createDirectory";
 import RemoveConfirmation from "../../../components/removeConfirm/removeConfirm";
 import Rename from "../../../components/rename/rename";
 import { useMycloudSelector } from "../../../store/mycloud/mycloudStoreHooks";
@@ -15,6 +16,7 @@ const FloatLayout = () => {
         >
           {floatType === "edit" && <Rename />}
           {floatType === "removeConfirm" && <RemoveConfirmation />}
+          {floatType === "createDirectory" && <CreateDirectory />}
         </div>
       )}
     </>

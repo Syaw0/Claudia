@@ -1,0 +1,15 @@
+.holder {
+  width: 30rem;
+}
+
+.headText {
+  font-family: var(--font-sub);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.buttonHolder {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}

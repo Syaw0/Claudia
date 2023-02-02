@@ -13,7 +13,7 @@ import IconCreateDirectory from "../../../assets/icons/IconCreateDirectory";
 import useControlSelectFileState from "../../../hooks/controlSelectFileState";
 import useChangeViewPortWidth from "../../../hooks/useChangeViewportWidth";
 import FloatLayout from "../../../components/layouts/floatLayout/floatLayout";
-import Rename from "../../../components/rename/rename";
+import useCreateDirectory from "../../../hooks/useCreateDirectory";
 
 const Mycloud = () => {
   const isSideOpen = useMycloudSelector((s) => s.isSideOpen);
@@ -42,7 +42,11 @@ const Mycloud = () => {
                   />
                 )}
                 <div className={style.createDirIcon}>
-                  <IconCreateDirectory width="24" height="24" />
+                  <IconCreateDirectory
+                    onClick={useCreateDirectory()}
+                    width="24"
+                    height="24"
+                  />
                 </div>
               </div>
             }
