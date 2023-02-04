@@ -21,7 +21,9 @@ const NavbarItem = ({ text, Icon, href, testId }: NavbarItemPropsType) => {
         data-testid={`navbarItemAnchor${href}`}
         href={href}
         className={
-          activeLink === href ? style.activeLinkHolder : style.linkHolder
+          activeLink.search(href) != -1
+            ? style.activeLinkHolder
+            : style.linkHolder
         }
       >
         <Icon className={style.icon} width="24" height="24" />

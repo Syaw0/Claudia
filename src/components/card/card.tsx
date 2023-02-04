@@ -38,7 +38,7 @@ const Card = ({ type, date, name }: CardPropsType) => {
 
   const handleDoubleClick = () => {
     if (type == "dir") {
-      router.push(`/${name}`);
+      router.push(location.pathname + `/${name}`);
     }
   };
 

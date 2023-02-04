@@ -53,11 +53,11 @@ describe("TEST COMPONENT : Card ", () => {
 
     fireEvent.doubleClick(screen.getByTestId(`cardHolder_${cardInfo.name}`));
     // ! but this happen just if type is equal to dir!
-    expect(router.asPath).toEqual(`/${cardInfo.name}`);
+    expect(router.asPath).toEqual(`//${cardInfo.name}`);
   });
   it("if card render as file", () => {
     render(<CustomParent {...cardInfo2} />, { wrapper: MemoryRouterProvider });
     fireEvent.doubleClick(screen.getByTestId(`cardHolder_${cardInfo2.name}`));
-    expect(router.asPath).not.toEqual(`/${cardInfo2.name}`);
+    expect(router.asPath).not.toEqual(`//${cardInfo2.name}`);
   });
 });
