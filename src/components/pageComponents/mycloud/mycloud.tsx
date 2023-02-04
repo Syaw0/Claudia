@@ -14,8 +14,8 @@ import useControlSelectFileState from "../../../hooks/controlSelectFileState";
 import useChangeViewPortWidth from "../../../hooks/useChangeViewportWidth";
 import FloatLayout from "../../../components/layouts/floatLayout/floatLayout";
 import useCreateDirectory from "../../../hooks/useCreateDirectory";
-import Message from "@/components/message_v2/message";
-import { useDispatch } from "react-redux";
+// import Message from "@/components/message_v2/message";
+import OperationAlerter from "../../../components/operationAlerter/operationAlerter";
 
 const Mycloud = () => {
   const isSideOpen = useMycloudSelector((s) => s.isSideOpen);
@@ -29,7 +29,8 @@ const Mycloud = () => {
   return (
     <div className={style.holder}>
       <FloatLayout />
-      {isGlobalMsgOpen && <Message />}
+      <OperationAlerter />
+      {/* {isGlobalMsgOpen && <Message />} */}
       <MainLayout
         leftNavbar={isNavOpen ? <StickyLeftNavbar /> : <span></span>}
         side={isSideOpen ? <SideInformation /> : <span></span>}

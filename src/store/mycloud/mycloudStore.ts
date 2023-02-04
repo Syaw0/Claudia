@@ -14,8 +14,9 @@ interface PageBasicStates {
   sideData: FileData;
   isNavOpen: boolean;
   floatType: floatTypes;
-  isGlobalMsgOpen: boolean;
+  isGlobalMsgOpen: boolean; // TODO REMOVE IT
   globalMsg: MessageType;
+  alerts: MessageType[];
 }
 
 const pageBasicStates: PageBasicStates = {
@@ -24,6 +25,14 @@ const pageBasicStates: PageBasicStates = {
   isNavOpen: false,
   floatType: "none",
   isGlobalMsgOpen: false,
+  alerts: [
+    { msg: "something", type: "error" },
+    { msg: "something", type: "error" },
+    { msg: "something", type: "error" },
+    { msg: "something", type: "error" },
+    { msg: "something", type: "error" },
+    { msg: "something", type: "error" },
+  ],
   globalMsg: {
     msg: "",
     type: "pending",
@@ -122,6 +131,26 @@ const mycloudSlice = createSlice({
         globalMsg: action.payload,
       };
     },
+    insertToAlerts(preState, action: PayloadAction<MessageType>) {
+      return {
+        ...preState,
+        alerts: [...preState.alerts, action.payload],
+      };
+    },
+    popAlert(preState, action: PayloadAction<number>) {
+      let newAlerts = [...preState.alerts];
+      newAlerts.splice(action.payload, 1);
+      return {
+        ...preState,
+        alerts: newAlerts,
+      };
+    },
+    rmAllAlerts(preState, action: PayloadAction<null | undefined>) {
+      return {
+        ...preState,
+        alerts: [],
+      };
+    },
   },
 });
 
@@ -140,6 +169,10 @@ export const toggleNavOpen = mycloudSlice.actions.toggleNavOpen;
 export const setFloatType = mycloudSlice.actions.setFloatType;
 export const toggleGlobalMsgOpen = mycloudSlice.actions.toggleGlobalMsgOpen;
 export const setGlobalMsgData = mycloudSlice.actions.setGlobalMsgData;
+
+export const insertAlert = mycloudSlice.actions.insertToAlerts;
+export const popAlert = mycloudSlice.actions.popAlert;
+export const rmAllAlerts = mycloudSlice.actions.rmAllAlerts;
 
 export type RootState = typeof states;
 export default makeStore;

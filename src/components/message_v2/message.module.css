@@ -10,7 +10,6 @@
   max-width: 17rem;
   margin: 1rem;
   --svgColor: var(--onError);
-  position: absolute;
   bottom: 0.4rem;
   left: 0.4rem;
   z-index: 1000;
