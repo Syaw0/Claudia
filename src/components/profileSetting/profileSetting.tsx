@@ -1,10 +1,10 @@
-import useFetch from "@/hooks/useFetch";
-import { insertAlert } from "@/store/mycloud/mycloudStore";
-import { useMycloudSelector } from "@/store/mycloud/mycloudStoreHooks";
-import changeProfile, { loaderMsg } from "@/utils/changeProfile";
+import useFetch from "../../hooks/useFetch";
+import { insertAlert } from "../../store/mycloud/mycloudStore";
+import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
+import changeProfile, { loaderMsg } from "../../utils/changeProfile";
 import deleteProfile, {
   loaderMsg as deleteLoader,
-} from "@/utils/deleteProfile";
+} from "../../utils/deleteProfile";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../button/button";
@@ -34,8 +34,9 @@ const ProfileSetting = () => {
   };
   const user = useMycloudSelector((s) => s.user);
   return (
-    <div className={style.holder}>
+    <div className={style.holder} data-testid="profileSettingHolder">
       <Profile
+        data-testid="profileSettingProfile"
         className={style.profileHolder}
         alt={user.name}
         url={user.profileUrl}
@@ -44,16 +45,21 @@ const ProfileSetting = () => {
       />
       <div className={style.buttonHolder}>
         <Button
+          testid="profileSettingDeleteButton"
           className={style.deleteButton}
           onClick={deleteProf}
           variant="shadow"
         >
           Delete
         </Button>
-        <Button className={style.changeButton}>
+        <Button
+          testid="profileSettingChangeButton"
+          className={style.changeButton}
+        >
           Change
           {
             <input
+              data-testid="profileSettingFileInput"
               onChange={changeFile}
               className={style.fileInput}
               type={"file"}
