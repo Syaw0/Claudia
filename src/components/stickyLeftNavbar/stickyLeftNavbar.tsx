@@ -14,12 +14,12 @@ import { keyframe, timing } from "../../styles/keyframes/translate";
 
 const navItemsList = [
   { text: "My Cloud", Icon: IconCloud, href: "/mycloud" },
-  {
-    text: "All Files",
-    Icon: IconAllFiles,
-    href: "/allFiles",
-  },
-  { text: "Favorite", Icon: IconStar, href: "/fav" },
+  // {
+  //   text: "All Files",
+  //   Icon: IconAllFiles,
+  //   href: "/allFiles",
+  // },
+  // { text: "Favorite", Icon: IconStar, href: "/fav" },
   { text: "Setting", Icon: IconSetting, href: "/setting" },
 ];
 

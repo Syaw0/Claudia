@@ -59,18 +59,18 @@ describe("TEST PAGE : Mycloud", () => {
       wrapper: MemoryRouterProvider,
     });
     const mycloudBtn = screen.getByTestId("navbarItemAnchor/mycloud");
-    const allFilsBtn = screen.getByTestId("navbarItemAnchor/allFiles");
-    const favBtn = screen.getByTestId("navbarItemAnchor/fav");
+    // const allFilsBtn = screen.getByTestId("navbarItemAnchor/allFiles");
+    // const favBtn = screen.getByTestId("navbarItemAnchor/fav");
     const settingBtn = screen.getByTestId("navbarItemAnchor/setting");
 
-    fireEvent.click(allFilsBtn);
-    expect(mockRouter.asPath).toEqual("/allFiles");
+    // fireEvent.click(allFilsBtn);
+    // expect(mockRouter.asPath).toEqual("/allFiles");
 
     fireEvent.click(mycloudBtn);
     expect(mockRouter.asPath).toEqual("/mycloud");
 
-    fireEvent.click(favBtn);
-    expect(mockRouter.asPath).toEqual("/fav");
+    // fireEvent.click(favBtn);
+    // expect(mockRouter.asPath).toEqual("/fav");
 
     fireEvent.click(settingBtn);
     expect(mockRouter.asPath).toEqual("/setting");
@@ -141,9 +141,9 @@ describe("TEST PAGE : Mycloud", () => {
     const renameFile = side.querySelector(
       '[data-testid="toolbarItem_Rename File"]'
     ) as Element;
-    const star = side.querySelector(
-      '[data-testid="toolbarItem_Star"]'
-    ) as Element;
+    // const star = side.querySelector(
+    //   '[data-testid="toolbarItem_Star"]'
+    // ) as Element;
 
     fireEvent.click(info);
     const float = screen.getByTestId("floatLayout");
@@ -177,17 +177,17 @@ describe("TEST PAGE : Mycloud", () => {
       expect(screen.getByTestId("successMessage")).toBeInTheDocument()
     );
 
-    mockStar.mockReturnValue(new Promise((res) => res({ status: false })));
-    fireEvent.click(star);
-    expect(mockStar).toHaveBeenCalledTimes(1);
-    await waitFor(() =>
-      expect(screen.getByTestId("errorMessage")).toBeInTheDocument()
-    );
-    mockStar.mockReturnValue(new Promise((res) => res({ status: true })));
-    fireEvent.click(star);
-    await waitFor(() =>
-      expect(screen.getByTestId("successMessage")).toBeInTheDocument()
-    );
+    // mockStar.mockReturnValue(new Promise((res) => res({ status: false })));
+    // fireEvent.click(star);
+    // expect(mockStar).toHaveBeenCalledTimes(1);
+    // await waitFor(() =>
+    //   expect(screen.getByTestId("errorMessage")).toBeInTheDocument()
+    // );
+    // mockStar.mockReturnValue(new Promise((res) => res({ status: true })));
+    // fireEvent.click(star);
+    // await waitFor(() =>
+    //   expect(screen.getByTestId("successMessage")).toBeInTheDocument()
+    // );
 
     mockMakeCopy.mockReturnValue(new Promise((res) => res({ status: false })));
     fireEvent.click(makeCopy);

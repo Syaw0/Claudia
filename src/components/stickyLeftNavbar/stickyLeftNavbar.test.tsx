@@ -22,8 +22,8 @@ describe("TEST COMPONENT : stickyLeftNavbar", () => {
     expect(screen.getByTestId("stickyLeftBottom")).toBeInTheDocument();
 
     expect(screen.getByTestId("leftNavbarItem/mycloud")).toBeInTheDocument();
-    expect(screen.getByTestId("leftNavbarItem/fav")).toBeInTheDocument();
+    // expect(screen.getByTestId("leftNavbarItem/fav")).toBeInTheDocument();
     expect(screen.getByTestId("leftNavbarItem/setting")).toBeInTheDocument();
-    expect(screen.getByTestId("leftNavbarItem/allFiles")).toBeInTheDocument();
+    // expect(screen.getByTestId("leftNavbarItem/allFiles")).toBeInTheDocument();
   });
 });
