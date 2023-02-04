@@ -10,7 +10,8 @@
     "test": "npm run test:component &&npm run test:pages",
     "prettier": "npx prettier . -c -w",
     "test:component": "npx jest ./src/components",
-    "test:pages": "npx jest ./src/__test__/"
+    "test:pages": "npx jest ./src/__test__/",
+    "test:db": "npx jest --forceExit --testTimeout=50000 --config=./jest.config.node.ts ./tests/db/"
   },
   "dependencies": {
     "@next/font": "13.1.2",
