@@ -1,0 +1,12 @@
+.holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.changeButton {
+  min-width: fit-content;
+}
+
+.buttonHolder {
+  margin-top: 1rem;
+}

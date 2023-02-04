@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import Button from "../button/button";
 import Profile from "../profile/profile";
 import style from "./profileSetting.module.css";
+import Text from "../typography/typography";
 
 const ProfileSetting = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,9 @@ const ProfileSetting = () => {
   );
 
   useEffect(() => {
-    dispatch(insertAlert({ type: state, msg }));
+    if (state != "pending") {
+      dispatch(insertAlert({ type: state, msg }));
+    }
   }, [dispatch, msg, state]);
 
   // const changeProf = async () => {
@@ -35,6 +38,10 @@ const ProfileSetting = () => {
   const user = useMycloudSelector((s) => s.user);
   return (
     <div className={style.holder} data-testid="profileSettingHolder">
+      <Text variant="headline4" className={style.headText}>
+        Profile
+      </Text>
+
       <Profile
         data-testid="profileSettingProfile"
         className={style.profileHolder}
@@ -53,6 +60,7 @@ const ProfileSetting = () => {
           Delete
         </Button>
         <Button
+          variant="outlined"
           testid="profileSettingChangeButton"
           className={style.changeButton}
         >

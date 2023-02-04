@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.headText {
+  margin: 1rem 0;
+}
+
 .profileHolder {
   width: 100px;
   height: 100px;
