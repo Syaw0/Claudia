@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import mycloudFakeProps from "../../shared/mycloudFakeProps";
 import makeStore from "../../store/mycloud/mycloudStore";
 
-const MyCloudPage = () => {
+const MyCloudPage = (props: any) => {
   return (
     <>
       <Head>
@@ -12,11 +12,17 @@ const MyCloudPage = () => {
         <meta name="description" content="Claudia dashboard page" />
       </Head>
 
-      <Provider store={makeStore(mycloudFakeProps)}>
+      <Provider store={makeStore(props)}>
         <Mycloud />
       </Provider>
     </>
   );
+};
+
+export const getServerSideProps = async () => {
+  return {
+    props: mycloudFakeProps,
+  };
 };
 
 export default MyCloudPage;

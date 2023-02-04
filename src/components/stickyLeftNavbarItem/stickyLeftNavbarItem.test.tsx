@@ -22,7 +22,7 @@ describe("TEST COMPONENT : stickyLeftNavbarItem", () => {
     expect(screen.getByTestId("homeNavbarItem")).toBeInTheDocument();
     expect(screen.getByTestId("icon")).toBeInTheDocument();
     expect(screen.getByTestId("navbarItemText")).toHaveTextContent("Home");
-    fireEvent.click(screen.getByTestId("navbarItemAnchor"));
+    fireEvent.click(screen.getByTestId("navbarItemAnchor/home"));
     await waitFor(() => expect(router.asPath).toEqual("/home"));
   });
 });

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { act } from "react-dom/test-utils";
 import { useDispatch } from "react-redux";
 
 const useOutsideClickHandler = (ref: any, setShow: any) => {
@@ -7,8 +8,8 @@ const useOutsideClickHandler = (ref: any, setShow: any) => {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
         setTimeout(() => {
-          setShow(false);
-        }, 10);
+          act(() => setShow(false));
+        }, 100);
       }
     }
     document.addEventListener("click", handleClickOutside);

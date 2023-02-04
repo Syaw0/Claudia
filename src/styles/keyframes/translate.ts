@@ -23,7 +23,7 @@ const timingTranslateToRight: KeyframeAnimationOptions = {
 const keyframeFadeIn: Keyframe[] = [{ opacity: 1 }, { opacity: 0 }];
 
 const timingFadeIn: KeyframeAnimationOptions = {
-  duration: 1000,
+  duration: 500,
   fill: "both",
   easing: "ease",
 };

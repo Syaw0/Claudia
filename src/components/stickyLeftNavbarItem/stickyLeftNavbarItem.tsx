@@ -18,7 +18,7 @@ const NavbarItem = ({ text, Icon, href, testId }: NavbarItemPropsType) => {
   return (
     <div data-testid={testId} className={style.holder}>
       <Link
-        data-testid="navbarItemAnchor"
+        data-testid={`navbarItemAnchor${href}`}
         href={href}
         className={
           activeLink === href ? style.activeLinkHolder : style.linkHolder

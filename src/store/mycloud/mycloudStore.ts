@@ -7,7 +7,7 @@ interface FileData {
   date: string;
   type: "file" | "dir" | string;
 }
-interface PageBasicStates {
+export interface PageBasicStates {
   isSideOpen: boolean;
   isFileSelected: boolean;
   selectedFileData: FileData;

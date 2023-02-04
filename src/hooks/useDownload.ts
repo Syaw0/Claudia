@@ -8,9 +8,7 @@ import download, { loaderMsg } from "../utils/download";
 const useDownload = () => {
   const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([download], [loaderMsg]);
-  console.log(state);
   useEffect(() => {
-    console.log(state);
     if (state != "pending") {
       dispatch(insertAlert({ msg, type: state }));
     }

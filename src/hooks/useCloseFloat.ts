@@ -8,7 +8,7 @@ const useCloseFloat = () => {
   return () => {
     setTimeout(() => {
       act(() => dispatch(setFloatType("none")));
-    }, 1000);
+    }, 400);
     const floatLayout = document.getElementById(
       "floatLayout"
     ) as HTMLDivElement;
