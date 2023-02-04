@@ -14,18 +14,14 @@ import useControlSelectFileState from "../../../hooks/controlSelectFileState";
 import useChangeViewPortWidth from "../../../hooks/useChangeViewportWidth";
 import FloatLayout from "../../../components/layouts/floatLayout/floatLayout";
 import useCreateDirectory from "../../../hooks/useCreateDirectory";
-// import Message from "@/components/message_v2/message";
 import OperationAlerter from "../../../components/operationAlerter/operationAlerter";
 
 const Mycloud = () => {
   const isSideOpen = useMycloudSelector((s) => s.isSideOpen);
-  const isGlobalMsgOpen = useMycloudSelector((s) => s.isGlobalMsgOpen);
   const isFileSelected = useMycloudSelector((s) => s.isFileSelected);
   const isNavOpen = useMycloudSelector((s) => s.isNavOpen);
   useControlSelectFileState();
   useChangeViewPortWidth();
-
-  console.log(isGlobalMsgOpen);
   return (
     <div className={style.holder}>
       <FloatLayout />

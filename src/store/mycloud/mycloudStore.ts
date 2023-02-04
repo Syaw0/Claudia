@@ -14,8 +14,6 @@ interface PageBasicStates {
   sideData: FileData;
   isNavOpen: boolean;
   floatType: floatTypes;
-  isGlobalMsgOpen: boolean; // TODO REMOVE IT
-  globalMsg: MessageType;
   alerts: MessageType[];
 }
 
@@ -24,19 +22,7 @@ const pageBasicStates: PageBasicStates = {
   isFileSelected: false,
   isNavOpen: false,
   floatType: "none",
-  isGlobalMsgOpen: false,
-  alerts: [
-    { msg: "something", type: "error" },
-    { msg: "something", type: "error" },
-    { msg: "something", type: "error" },
-    { msg: "something", type: "error" },
-    { msg: "something", type: "error" },
-    { msg: "something", type: "error" },
-  ],
-  globalMsg: {
-    msg: "",
-    type: "pending",
-  },
+  alerts: [],
   selectedFileData: {
     name: "",
     size: 0,
@@ -117,20 +103,6 @@ const mycloudSlice = createSlice({
       };
     },
 
-    toggleGlobalMsgOpen(preState, action: PayloadAction<boolean | null>) {
-      const status =
-        action.payload == null ? !preState.isSideOpen : action.payload;
-      return {
-        ...preState,
-        isGlobalMsgOpen: status,
-      };
-    },
-    setGlobalMsgData(preState, action: PayloadAction<MessageType>) {
-      return {
-        ...preState,
-        globalMsg: action.payload,
-      };
-    },
     insertToAlerts(preState, action: PayloadAction<MessageType>) {
       return {
         ...preState,
@@ -167,8 +139,6 @@ export const toggleSelectFile = mycloudSlice.actions.toggleFileSelected;
 export const setSelectedFileData = mycloudSlice.actions.setSelectedFileData;
 export const toggleNavOpen = mycloudSlice.actions.toggleNavOpen;
 export const setFloatType = mycloudSlice.actions.setFloatType;
-export const toggleGlobalMsgOpen = mycloudSlice.actions.toggleGlobalMsgOpen;
-export const setGlobalMsgData = mycloudSlice.actions.setGlobalMsgData;
 
 export const insertAlert = mycloudSlice.actions.insertToAlerts;
 export const popAlert = mycloudSlice.actions.popAlert;

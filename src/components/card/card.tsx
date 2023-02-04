@@ -8,10 +8,9 @@ import style from "./card.module.css";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import {
-  setGlobalMsgData,
+  insertAlert,
   setSelectedFileData,
   setSideInfoAction,
-  toggleGlobalMsgOpen,
   toggleSelectFile,
   toggleSideInfoAction,
 } from "../../store/mycloud/mycloudStore";
@@ -27,14 +26,9 @@ const Card = ({ type, date, name }: CardPropsType) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(toggleGlobalMsgOpen(false));
-    dispatch(
-      setGlobalMsgData({
-        msg,
-        type: state,
-      })
-    );
-    dispatch(toggleGlobalMsgOpen(true));
+    if (state != "pending") {
+      dispatch(insertAlert({ msg, type: state }));
+    }
   }, [dispatch, msg, state]);
 
   const [isSelected, setIsSelected] = useState(false);
@@ -80,13 +74,8 @@ const Card = ({ type, date, name }: CardPropsType) => {
     if (id !== JSON.parse(data).name) {
       div.classList.replace(style.selectedHolder, style.notSelectedHolder);
       // now we can do operate on the move
-      dispatch(
-        setGlobalMsgData({
-          msg: "Moving files ....",
-          type: "loader",
-        })
-      );
-      dispatch(toggleGlobalMsgOpen(true));
+
+      dispatch(insertAlert({ msg: "moving files...", type: "loader" }));
       trigger(0);
     }
   };

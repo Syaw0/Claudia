@@ -4,10 +4,10 @@ import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import makeStore from "../../store/mycloud/mycloudStore";
 
-const CustomParent = ({ type, msg }: any) => {
+const CustomParent = (params: any) => {
   return (
-    <Provider store={makeStore({ globalMsg: { msg, type } })}>
-      <Message />
+    <Provider store={makeStore({})}>
+      <Message {...params} />
     </Provider>
   );
 };
