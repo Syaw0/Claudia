@@ -1,0 +1,33 @@
+.holder {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profileHolder {
+  width: 100px;
+  height: 100px;
+}
+
+.buttonHolder {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.deleteButton {
+  min-width: fit-content;
+  margin-right: 2rem;
+}
+
+.changeButton {
+  min-width: fit-content;
+  position: relative;
+}
+
+.fileInput {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+}
