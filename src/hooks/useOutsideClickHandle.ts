@@ -6,7 +6,9 @@ const useOutsideClickHandler = (ref: any, setShow: any) => {
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
-        setShow(false);
+        setTimeout(() => {
+          setShow(false);
+        }, 10);
       }
     }
     document.addEventListener("click", handleClickOutside);

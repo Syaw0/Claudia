@@ -17,9 +17,6 @@ const useDownload = () => {
   }, [state, msg, dispatch]);
   return async () => {
     const result = await trigger(0);
-    if (result.status) {
-      dispatch(insertAlert({ msg: "Download Begin", type: "success" }));
-    }
   };
 };
 

@@ -7,6 +7,17 @@ import { Provider } from "react-redux";
 import makeStore from "../../store/mycloud/mycloudStore";
 import mycloudFakeProps from "../../shared/mycloudFakeProps";
 
+const mockSetTimeout = jest.spyOn(window, "setTimeout");
+mockSetTimeout.mockImplementationOnce(
+  (callback: (args: void) => void, ms?: number | undefined) => {
+    type x = ReturnType<typeof setTimeout>;
+    callback();
+    //  @ts-ignore
+    let x: any = "" as x;
+    return x;
+  }
+);
+
 const CustomParent = () => {
   return (
     <Provider store={makeStore(mycloudFakeProps)}>
@@ -43,7 +54,6 @@ describe("Component Test : Menu", () => {
 
   it("if click on outside of menu , menu will close", () => {
     render(<CustomParent />);
-
     fireEvent.click(screen.getByTestId("menuHolderIcon"));
     fireEvent.click(document);
 
@@ -55,8 +65,9 @@ describe("Component Test : Menu", () => {
   });
   it("if click on icon ,if menu is open ,so close it", () => {
     render(<CustomParent />);
-
+    jest.useFakeTimers();
     fireEvent.click(screen.getByTestId("menuHolderIcon"));
+    jest.runAllTimers();
 
     let itemHolder;
     try {
