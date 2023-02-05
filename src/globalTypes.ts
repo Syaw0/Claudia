@@ -36,5 +36,11 @@ declare global {
     type: "file" | "dir" | string;
     size?: number;
   }
+  interface FileData {
+    name: string;
+    size: number;
+    date: string;
+    isDirectory: boolean;
+  }
 }
 export {};

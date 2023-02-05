@@ -1,14 +1,14 @@
 import baseUrl from "./baseUrl";
 
 const checkOtpToken = async (tfaData: any) => {
-  const [otp, isReset, email] = tfaData;
+  const [otp, isReset, email, isSignup] = tfaData;
 
   const resp = await fetch(baseUrl + `/checkTfaToken`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ otp, isReset, email }),
+    body: JSON.stringify({ otp, isReset, email, isSignup }),
   });
   const data = await resp.json();
   console.log(data);

@@ -2,7 +2,7 @@ import Card from "../card/card";
 import style from "./cardHolder.module.css";
 
 interface CardHolderPropsType {
-  cards: CardPropsType[];
+  cards: FileData[];
 }
 
 const CardHolder = ({ cards }: CardHolderPropsType) => {

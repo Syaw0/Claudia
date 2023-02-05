@@ -5,7 +5,7 @@ interface ToolbarPropsType {
   items: Omit<ToolBarItemPropsType, "sideInfo">[];
   data?: any;
   isFromSide?: boolean;
-  type: "dir" | "file" | string;
+  isDirectory: boolean;
   className?: string;
 }
 
@@ -13,13 +13,16 @@ const Toolbar = ({
   items,
   data = {},
   isFromSide = false,
-  type,
+  isDirectory,
   className = "",
 }: ToolbarPropsType) => {
   return (
     <div data-testid="toolbarHolder" className={`${style.holder} ${className}`}>
       {items.map((item) => {
-        if (type === item.type) {
+        if (
+          (isDirectory && item.type == "dir") ||
+          (!isDirectory && item.type == "file")
+        ) {
           return (
             <ToolBarItem
               key={item.name}

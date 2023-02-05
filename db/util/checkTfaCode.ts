@@ -7,7 +7,7 @@ import setLoginSession from "./setLoginSession";
 const checkTfaCode = async (body: any, res: Response) => {
   let con;
   try {
-    const { email, otp, isReset } = body;
+    const { email, otp, isReset, isSignup } = body;
     await redisCheckAndConnect(redisClient);
     await redisClient.select(2);
     let formedEmail = email.split(".").join("");
@@ -26,11 +26,12 @@ const checkTfaCode = async (body: any, res: Response) => {
         // set reset password token
         const res = await redisClient.set(email, "exist");
         console.log(res);
-      } else {
+      } else if (!isSignup) {
         con = await pool.getConnection();
         let user = await con.query(
           `SELECT * FROM users WHERE email="${email}"`
         );
+
         // ! it may cause problem if not found?
         await setLoginSession(email, user[0].userId);
         res.cookie("session", SHA256(email).toString(), {
@@ -53,10 +54,15 @@ const checkTfaCode = async (body: any, res: Response) => {
       };
     }
   } catch (err) {
+    console.log(err);
     return {
       status: false,
       msg: "error during tfa code check",
     };
+  } finally {
+    if (con != null) {
+      await con.end();
+    }
   }
 };
 

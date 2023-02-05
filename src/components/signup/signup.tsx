@@ -35,6 +35,7 @@ const Signup = () => {
 
   const loginInstead = () => {
     dispatch(setComponentAction("login"));
+    dispatch(setIsSignupAction(false));
   };
   const next = async () => {
     if (!checkInputs()) {

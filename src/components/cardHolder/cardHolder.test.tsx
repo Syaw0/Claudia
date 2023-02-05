@@ -7,11 +7,11 @@ import mycloudFakeProps from "../../shared/mycloudFakeProps";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-const cards = [
-  { name: "file1", date: "123", type: "file" },
-  { name: "dir1", date: "123", type: "dir" },
-  { name: "file2", date: "123", type: "file" },
-  { name: "file3", date: "123", type: "file" },
+const cards: FileData[] = [
+  { name: "file1", date: "123", isDirectory: false, size: 0 },
+  { name: "dir1", date: "123", isDirectory: false, size: 0 },
+  { name: "file2", date: "123", isDirectory: true, size: 0 },
+  { name: "file3", date: "123", isDirectory: false, size: 0 },
 ];
 
 const CustomParent = () => {

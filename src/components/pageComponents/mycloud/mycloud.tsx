@@ -20,6 +20,7 @@ const Mycloud = () => {
   const isSideOpen = useMycloudSelector((s) => s.isSideOpen);
   const isFileSelected = useMycloudSelector((s) => s.isFileSelected);
   const isNavOpen = useMycloudSelector((s) => s.isNavOpen);
+  const files = useMycloudSelector((s) => s.fileList);
   useControlSelectFileState();
   useChangeViewPortWidth();
   return (
@@ -41,7 +42,7 @@ const Mycloud = () => {
                     className={style.selectFileToolbar}
                     items={toolbarItems}
                     isFromSide
-                    type="file"
+                    isDirectory={false}
                   />
                 )}
                 <div className={style.createDirIcon}>
@@ -54,7 +55,7 @@ const Mycloud = () => {
               </div>
             }
             subhead={``}
-            content={<CardHolder cards={fakeCards} />}
+            content={<CardHolder cards={files} />}
           />
         }
       />

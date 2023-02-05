@@ -9,7 +9,10 @@ import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./resetPassword.module.css";
 import checkPasswordEquality from "../../utils/checkPasswordEquality";
-import { setComponentAction } from "../../store/authentication/authenticationStore";
+import {
+  setComponentAction,
+  setIsSignupAction,
+} from "../../store/authentication/authenticationStore";
 import { useDispatch } from "react-redux";
 import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
 
@@ -29,6 +32,7 @@ const ResetPassword = () => {
 
   const loginButton = () => {
     dispatch(setComponentAction("login"));
+    dispatch(setIsSignupAction(false));
   };
   const next = async () => {
     if (!checkInputs()) {

@@ -21,7 +21,7 @@ import move, { loaderMsg } from "../../utils/move";
 
 var tappedTwice = false;
 
-const Card = ({ type, date, name }: CardPropsType) => {
+const Card = ({ isDirectory, date, name, size }: FileData) => {
   const [trigger, state, msg, setMsg] = useFetch([move], [loaderMsg]);
   const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ const Card = ({ type, date, name }: CardPropsType) => {
   const draggableRef: any = useRef(null);
 
   const handleDoubleClick = () => {
-    if (type == "dir") {
+    if (isDirectory) {
       router.push(location.pathname + `/${name}`);
     }
   };
@@ -46,8 +46,8 @@ const Card = ({ type, date, name }: CardPropsType) => {
 
   const handleClick = (e: React.MouseEvent) => {
     dispatch(toggleSelectFile(true));
-    dispatch(setSelectedFileData({ type, name, date, size: 0 }));
-    dispatch(setSideInfoAction({ type, date, name, size: 0 }));
+    dispatch(setSelectedFileData({ isDirectory, name, date, size: 0 }));
+    dispatch(setSideInfoAction({ isDirectory, date, name, size: 0 }));
     dispatch(toggleSideInfoAction(true));
     setIsSelected(true);
   };
@@ -102,7 +102,7 @@ const Card = ({ type, date, name }: CardPropsType) => {
   const dragStart = (e: React.DragEvent<HTMLDivElement>) => {
     e.dataTransfer.setData(
       "text/plain",
-      JSON.stringify({ name, type, date, size: 0 })
+      JSON.stringify({ name, isDirectory, date, size: 0 })
     );
   };
 
@@ -133,14 +133,14 @@ const Card = ({ type, date, name }: CardPropsType) => {
         {name}
       </div>
       <div data-testid={`cardHolder_${name}_top`} className={style.top}>
-        {type == "file" && <IconFile width="60" height="60" />}
-        {type == "dir" && <IconDirectory width="60" height="60" />}
+        {!isDirectory && <IconFile width="60" height="60" />}
+        {isDirectory && <IconDirectory width="60" height="60" />}
         <MenuV2
           toolbarHolder={
             <Toolbar
               className={style.toolbarHolder}
               items={toolbarItems}
-              type={type}
+              isDirectory={isDirectory}
             />
           }
         />

@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import {
   setComponentAction,
   setIsResetAction,
+  setIsSignupAction,
 } from "../../store/authentication/authenticationStore";
 import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
 import { useRouter } from "next/router";
@@ -48,13 +49,20 @@ const TwoFactorAuthentication = ({
 
   const loginButton = () => {
     dispatch(setIsResetAction(false));
+    dispatch(setIsSignupAction(false));
     dispatch(setComponentAction("login"));
   };
   const next = async () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger(0, inputData.otpValue, isReset, currentEmail);
+    const res = await trigger(
+      0,
+      inputData.otpValue,
+      isReset,
+      currentEmail,
+      isSignup
+    );
     if (res.status) {
       // if its signup do it...
       if (isSignup) {

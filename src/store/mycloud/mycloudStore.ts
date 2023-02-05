@@ -1,12 +1,7 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type floatTypes = "edit" | "none" | "removeConfirm" | "info" | string;
-interface FileData {
-  name: string;
-  size: number;
-  date: string;
-  type: "file" | "dir" | string;
-}
+
 export interface PageBasicStates {
   isSideOpen: boolean;
   isFileSelected: boolean;
@@ -15,6 +10,7 @@ export interface PageBasicStates {
   isNavOpen: boolean;
   floatType: floatTypes;
   alerts: MessageType[];
+  fileList: FileData[];
 }
 
 const pageBasicStates: PageBasicStates = {
@@ -22,18 +18,19 @@ const pageBasicStates: PageBasicStates = {
   isFileSelected: false,
   isNavOpen: false,
   floatType: "none",
+  fileList: [],
   alerts: [],
   selectedFileData: {
     name: "",
     size: 0,
     date: "",
-    type: "file",
+    isDirectory: false,
   },
   sideData: {
     name: "",
     size: 0,
     date: "",
-    type: "file",
+    isDirectory: false,
   },
 };
 
@@ -62,7 +59,7 @@ const mycloudSlice = createSlice({
         isSideOpen: status,
       };
     },
-    setSideInfo(preState, action: PayloadAction<CardPropsType>) {
+    setSideInfo(preState, action: PayloadAction<FileData>) {
       return {
         ...preState,
         sideData: {

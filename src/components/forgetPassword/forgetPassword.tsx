@@ -13,6 +13,7 @@ import {
   setComponentAction,
   setEmailAction,
   setIsResetAction,
+  setIsSignupAction,
 } from "../../store/authentication/authenticationStore";
 
 const ForgetPassword = () => {
@@ -30,6 +31,7 @@ const ForgetPassword = () => {
 
   const loginButton = () => {
     dispatch(setComponentAction("login"));
+    dispatch(setIsSignupAction(false));
   };
   const next = async () => {
     if (!checkInputs()) {

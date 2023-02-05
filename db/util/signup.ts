@@ -1,5 +1,6 @@
 import { SHA256 } from "crypto-js";
 import { Response } from "express";
+import createCloudForNewUser from "../../server/util/createCloudForNewUser";
 import { pool } from "../../db/dbController";
 import setLoginSession from "./setLoginSession";
 
@@ -18,7 +19,10 @@ const signup = async (signupData: any, res: Response) => {
       return { status: false, msg: "user is not created" };
     }
 
-    await setLoginSession(email, newUser.userId);
+    const id = newUser[0].userId;
+    createCloudForNewUser(id);
+
+    await setLoginSession(email, id);
     res.cookie("session", SHA256(email).toString(), {
       httpOnly: true,
       sameSite: "strict",
