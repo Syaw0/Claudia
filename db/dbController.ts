@@ -13,7 +13,7 @@ const pool = createPool({
   host: "localhost",
   user: MariaUser,
   password: MariaPassword,
-  database: "blogish",
+  database: "cloudia",
 });
 
 const redisClient = createClient({

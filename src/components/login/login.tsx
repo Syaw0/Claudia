@@ -17,14 +17,14 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([checkLoginForm], [loaderMsg]);
 
-  const [inputDate, setInputDate] = useState({
+  const [inputData, setInputData] = useState({
     loginForm_emailInput: "",
     loginForm_passwordInput: "",
   });
 
   const handleChanges = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
-    setInputDate((s) => ({ ...s, [name]: value }));
+    setInputData((s) => ({ ...s, [name]: value }));
   };
 
   const forgetPassword = () => {
@@ -37,7 +37,7 @@ const LoginForm = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger(0);
+    const res = await trigger(0, inputData);
     if (res.status) {
       // navigate to the 2 way authentication
       dispatch(setComponentAction("tfa"));
@@ -45,13 +45,13 @@ const LoginForm = () => {
   };
 
   const checkInputs = () => {
-    if (!checkInputsEmptiness(inputDate)) {
+    if (!checkInputsEmptiness(inputData)) {
       return setMsg("error", "please fill all fields");
     }
-    if (!checkEmailForm(inputDate.loginForm_emailInput)) {
+    if (!checkEmailForm(inputData.loginForm_emailInput)) {
       return setMsg("error", "email is not valid");
     }
-    if (!checkPasswordValidity(inputDate.loginForm_passwordInput)) {
+    if (!checkPasswordValidity(inputData.loginForm_passwordInput)) {
       return setMsg("error", "please use 5 or more Character for password");
     }
     return true;
@@ -73,7 +73,7 @@ const LoginForm = () => {
           label="Email Address"
           placeholder="Please write your email address "
           name="loginForm_emailInput"
-          value={inputDate.loginForm_emailInput}
+          value={inputData.loginForm_emailInput}
           onChange={handleChanges}
         />
         <div>
@@ -83,7 +83,7 @@ const LoginForm = () => {
             label="Password"
             placeholder="Please write your account password "
             name="loginForm_passwordInput"
-            value={inputDate.loginForm_passwordInput}
+            value={inputData.loginForm_passwordInput}
             onChange={handleChanges}
           />
           <Text

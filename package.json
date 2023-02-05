@@ -11,7 +11,10 @@
     "prettier": "npx prettier . -c -w",
     "test:component": "npx jest ./src/components",
     "test:pages": "npx jest ./src/__test__/",
-    "test:db": "npx jest --forceExit --testTimeout=50000 --config=./jest.config.node.ts ./tests/db/"
+    "test:db": "npx jest --forceExit --testTimeout=50000 --config=./jest.config.node.ts ./tests/db/",
+    "server": "ts-node-esm --esm -P ./tsconfig.script.json ./server/index.ts",
+    "server:dev": "nodemon",
+    "server:build": "NODE_ENV=production npm run server"
   },
   "dependencies": {
     "@next/font": "13.1.2",
@@ -57,5 +60,12 @@
   "author": {
     "email": "siamhb7@protonmail.com",
     "name": "syaw0"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "./server/**/*"
+    ],
+    "exec": "npm run server",
+    "ext": "*.ts"
   }
 }
