@@ -63,7 +63,7 @@ const TwoFactorAuthentication = ({
           return;
         }
       } else if (isReset) {
-        dispatch(setIsResetAction(false));
+        // dispatch(setIsResetAction(false));
         return dispatch(setComponentAction("resetPassword"));
       }
       router.replace("/mycloud");

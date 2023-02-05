@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import {
   setComponentAction,
   setEmailAction,
+  setIsResetAction,
 } from "../../store/authentication/authenticationStore";
 import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
 import { useRouter } from "next/router";
@@ -50,6 +51,7 @@ const LoginForm = () => {
       if (!isReset) {
         dispatch(setComponentAction("tfa"));
       } else {
+        dispatch(setIsResetAction(false));
         router.replace("/mycloud");
       }
     }

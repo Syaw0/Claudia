@@ -26,8 +26,10 @@ nextApp
     app.use(express.static(__dirname + "/static"));
     app.use(bodyParser.json());
     app.use(cookieParser());
-    // app.use("*", (req, res, next) => {
-    //   console.log(req.cookies);
+    // app.use("*", async (req, res, next) => {
+    //   await redisClient.select(1);
+    //   console.log(req.cookies.session);
+    //   console.log(await redisClient.get(req.cookies.session));
     //   next();
     // });
     app.post("/login", loginRoute);

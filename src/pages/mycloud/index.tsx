@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import mycloudFakeProps from "../../shared/mycloudFakeProps";
 import makeStore from "../../store/mycloud/mycloudStore";
+import { GetServerSideProps } from "next";
 
 const MyCloudPage = (props: any) => {
   return (
@@ -19,7 +20,7 @@ const MyCloudPage = (props: any) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   return {
     props: mycloudFakeProps,
   };

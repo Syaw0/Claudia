@@ -2,7 +2,6 @@ import { pool } from "../dbController";
 
 const login = async ({ email, password }: any) => {
   let con;
-  console.log(email, password);
   try {
     con = await pool.getConnection();
     let checkExistence = await con.query(
@@ -14,7 +13,6 @@ const login = async ({ email, password }: any) => {
         msg: "such email is not exist",
       };
     }
-    console.log(checkExistence[0].password, password);
 
     if (checkExistence[0].password !== password) {
       return {
@@ -27,7 +25,6 @@ const login = async ({ email, password }: any) => {
       msg: "the email and password match",
     };
   } catch (err) {
-    console.log(err);
     return {
       status: false,
       msg: "error during authenticate login information",
