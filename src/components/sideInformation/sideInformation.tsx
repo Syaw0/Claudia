@@ -15,7 +15,9 @@ import {
 
 const SideInformation = () => {
   const ref: any = useRef(null);
-  const { name, size, date, type } = useMycloudSelector((s) => s.sideData);
+  const { name, size, date, isDirectory } = useMycloudSelector(
+    (s) => s.sideData
+  );
   const dispatch = useDispatch();
   const closeSideInfo = () => {
     if (ref.current != null) {
@@ -45,7 +47,7 @@ const SideInformation = () => {
       </div>
       {/* //*this toolbar is just for files! not directory */}
       <div data-testid="sideInformationToolbar">
-        <Toolbar type={type} isFromSide items={toolbarItems} />
+        <Toolbar isDirectory={isDirectory} isFromSide items={toolbarItems} />
       </div>
 
       <div

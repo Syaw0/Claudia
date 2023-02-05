@@ -5,7 +5,12 @@ import { Provider } from "react-redux";
 import Info from "./info";
 
 const preState = {
-  selectedFileData: { name: "this is it", date: "0", size: 0, type: "file" },
+  selectedFileData: {
+    name: "this is it",
+    date: "0",
+    size: 0,
+    isDirectory: false,
+  },
 };
 
 const CustomParent = () => {

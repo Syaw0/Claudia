@@ -10,7 +10,12 @@ jest.mock("../../utils/rename");
 const renameMock = rename as jest.Mock;
 
 const preState = {
-  selectedFileData: { name: "this is it", date: "0", size: 0, type: "file" },
+  selectedFileData: {
+    name: "this is it",
+    date: "0",
+    size: 0,
+    isDirectory: false,
+  },
 };
 
 const CustomParent = () => {

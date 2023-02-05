@@ -5,7 +5,12 @@ import { Provider } from "react-redux";
 import makeStore from "../../../store/mycloud/mycloudStore";
 
 const preState = {
-  selectedFileData: { name: "this is it", date: "0", size: 0, type: "file" },
+  selectedFileData: {
+    name: "this is it",
+    date: "0",
+    size: 0,
+    isDirectory: false,
+  },
   floatType: "edit",
 };
 

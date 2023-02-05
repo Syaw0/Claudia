@@ -7,13 +7,31 @@ import mockRouter from "next-router-mock";
 import download from "../../utils/download";
 import starOrUnStar from "../../utils/starOrUnStar";
 import makeCopy from "../../utils/makeCopy";
+import checkSession from "../../../db/util/checkSession";
+import getUserById from "../../../db/util/getUserById";
+import { RootState } from "../../store/mycloud/mycloudStore";
+import fakeCards from "../../shared/fakecards";
 
+jest.mock("../../../db/util/checkSession.ts", () => jest.fn(() => {}));
+jest.mock("../../../db/util/getUserById.ts", () => jest.fn(() => {}));
 jest.mock("../../utils/download.ts");
 jest.mock("../../utils/starOrUnStar.ts");
 jest.mock("../../utils/makeCopy.ts");
+
+const mockCheckSession = checkSession as jest.Mock;
+const mockGetUserById = getUserById as jest.Mock;
 const mockStar = starOrUnStar as jest.Mock;
 const mockMakeCopy = makeCopy as jest.Mock;
 const mockDownload = download as jest.Mock;
+
+const fakeUser: any = mycloudFakeProps.user;
+fakeUser["userId"] = fakeUser.id;
+mockCheckSession.mockReturnValue(
+  new Promise((res) => res({ status: true, data: 1 }))
+);
+mockGetUserById.mockReturnValue(
+  new Promise((res) => res({ status: true, data: fakeUser }))
+);
 
 HTMLDivElement.prototype.scrollTo = jest.fn();
 // @ts-ignore
@@ -34,8 +52,13 @@ jest.useFakeTimers();
 
 jest.mock("next/router", () => require("next-router-mock"));
 
+const data: Partial<RootState> = {
+  fileList: fakeCards,
+  ...mycloudFakeProps,
+};
+
 const CustomParent = (props: any) => {
-  return <MyCloudPage {...props} />;
+  return <MyCloudPage {...data} />;
 };
 
 describe("TEST PAGE : Mycloud", () => {
@@ -55,7 +78,7 @@ describe("TEST PAGE : Mycloud", () => {
   });
 
   it("navigation", () => {
-    render(<CustomParent {...mycloudFakeProps} />, {
+    render(<CustomParent {...data} />, {
       wrapper: MemoryRouterProvider,
     });
     const mycloudBtn = screen.getByTestId("navbarItemAnchor/mycloud");
@@ -77,7 +100,7 @@ describe("TEST PAGE : Mycloud", () => {
   });
 
   it("click on the card and side show up", async () => {
-    render(<CustomParent {...mycloudFakeProps} />);
+    render(<CustomParent {...data} />);
     const card = screen.getByTestId("cardHolder_file");
     fireEvent.click(card);
     const side = screen.getByTestId("sideInformationHolder");
@@ -89,7 +112,7 @@ describe("TEST PAGE : Mycloud", () => {
   });
 
   it("lets check toolbar items (Directory)", async () => {
-    render(<CustomParent {...mycloudFakeProps} />);
+    render(<CustomParent {...data} />);
     const card = screen.getByTestId("cardHolder_file");
     fireEvent.click(card);
     const side = screen.getByTestId("sideInformationHolder");
@@ -121,7 +144,7 @@ describe("TEST PAGE : Mycloud", () => {
   });
 
   it("lets check toolbar items (Files)", async () => {
-    render(<CustomParent {...mycloudFakeProps} />);
+    render(<CustomParent {...data} />);
     const card = screen.getByTestId("cardHolder_file3");
     fireEvent.click(card);
     const side = screen.getByTestId("sideInformationHolder");

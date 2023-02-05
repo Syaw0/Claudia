@@ -6,10 +6,10 @@ import { Provider } from "react-redux";
 import makeStore from "../../store/mycloud/mycloudStore";
 import mycloudFakeProps from "../../shared/mycloudFakeProps";
 
-const CustomComponent = ({ type = "file" }: any) => {
+const CustomComponent = ({ isDirectory = false }: any) => {
   return (
     <Provider store={makeStore(mycloudFakeProps)}>
-      <ToolBar type={type} items={toolbarItems} />
+      <ToolBar isDirectory={isDirectory} items={toolbarItems} />
     </Provider>
   );
 };
@@ -34,7 +34,7 @@ describe("TEST COMPONENT : ToolbarItem", () => {
   });
 
   it("if type is directory just show toolbar items that have this type", () => {
-    render(<CustomComponent type="dir" />);
+    render(<CustomComponent isDirectory={true} />);
     expect(screen.getByTestId("toolbarHolder")).toBeInTheDocument();
     toolbarItems.forEach((item) => {
       if (item.type == "dir" && item.name != "info") {

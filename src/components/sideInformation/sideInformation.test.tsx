@@ -8,21 +8,12 @@ const fakeSideData = {
   name: "pic.png",
   date: "2022-01-02",
   size: 200,
-  type: "file",
+  isDirectory: false,
 };
 
 const CustomParent = () => {
   return (
-    <Provider
-      store={makeStore({
-        sideData: {
-          name: "pic.png",
-          date: "2022-01-02",
-          size: 200,
-          type: "file",
-        },
-      })}
-    >
+    <Provider store={makeStore({ sideData: fakeSideData })}>
       <SideInformation />
     </Provider>
   );

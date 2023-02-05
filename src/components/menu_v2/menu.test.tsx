@@ -21,7 +21,9 @@ mockSetTimeout.mockImplementationOnce(
 const CustomParent = () => {
   return (
     <Provider store={makeStore(mycloudFakeProps)}>
-      <Menu toolbarHolder={<Toolbar items={toolbarItems} type="dir" />} />
+      <Menu
+        toolbarHolder={<Toolbar items={toolbarItems} isDirectory={true} />}
+      />
     </Provider>
   );
 };

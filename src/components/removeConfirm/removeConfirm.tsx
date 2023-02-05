@@ -28,7 +28,7 @@ const RemoveConfirmation = () => {
       <Text className={style.head} variant="headline5">
         Are You Sure You want to remove {selectedFile.name}?!
       </Text>
-      {selectedFile.type == "dir" && (
+      {selectedFile.isDirectory && (
         <Text className={style.subhead}>
           if you remove directory all files under it will gone!
         </Text>
