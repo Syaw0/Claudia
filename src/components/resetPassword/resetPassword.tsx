@@ -9,7 +9,10 @@ import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./resetPassword.module.css";
 import checkPasswordEquality from "../../utils/checkPasswordEquality";
-import { setComponentAction } from "../../store/authentication/authenticationStore";
+import {
+  setComponentAction,
+  setEmailAction,
+} from "../../store/authentication/authenticationStore";
 import { useDispatch } from "react-redux";
 
 const ResetPassword = () => {

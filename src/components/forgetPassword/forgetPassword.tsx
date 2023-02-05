@@ -11,6 +11,7 @@ import style from "./forgetPassword.module.css";
 import { useDispatch } from "react-redux";
 import {
   setComponentAction,
+  setEmailAction,
   setIsResetAction,
 } from "../../store/authentication/authenticationStore";
 
@@ -36,6 +37,7 @@ const ForgetPassword = () => {
     }
     const res = await trigger(0);
     if (res.status) {
+      dispatch(setEmailAction(inputDate.forgetPasswordForm_emailInput));
       // navigate to the 2 way authentication
       dispatch(setComponentAction("tfa"));
       dispatch(setIsResetAction(true));

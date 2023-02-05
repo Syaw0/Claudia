@@ -10,11 +10,13 @@ type componentTypes =
 interface authenticationStoreStates {
   currentComponent: componentTypes;
   isReset: boolean;
+  email: string;
 }
 
 const states: authenticationStoreStates = {
   currentComponent: "login",
   isReset: false,
+  email: "",
 };
 
 const authenticateSlice = createSlice({
@@ -33,6 +35,12 @@ const authenticateSlice = createSlice({
         isReset: action.payload,
       };
     },
+    setEmail(preState, action: PayloadAction<string>) {
+      return {
+        ...preState,
+        email: action.payload,
+      };
+    },
   },
 });
 
@@ -44,5 +52,7 @@ const makeStore = () => {
 
 export const setComponentAction = authenticateSlice.actions.setComponent;
 export const setIsResetAction = authenticateSlice.actions.setIsReset;
+export const setEmailAction = authenticateSlice.actions.setEmail;
+
 export type RootState = authenticationStoreStates;
 export default makeStore;

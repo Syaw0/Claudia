@@ -28,6 +28,7 @@ const TwoFactorAuthentication = ({
 }: TwoFactorAuthenticationPropsType) => {
   const router = useRouter();
   const isReset = useAuthenticateSelector((s) => s.isReset);
+  const currentEmail = useAuthenticateSelector((s) => s.email);
   const dispatch = useDispatch();
 
   const [trigger, state, msg, setMsg] = useFetch(
@@ -35,10 +36,10 @@ const TwoFactorAuthentication = ({
     [loaderMsg, getAnotherAuthTokenLoaderMsg]
   );
   const [timer, setTimer] = useState(resetTime);
-  const [inputDate, setInputDate] = useState({
+  const [inputData, setInputData] = useState({
     otpValue: "",
     setOtp(value: string) {
-      setInputDate((s) => ({ ...s, otpValue: value }));
+      setInputData((s) => ({ ...s, otpValue: value }));
     },
   });
 
@@ -50,7 +51,7 @@ const TwoFactorAuthentication = ({
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger(0);
+    const res = await trigger(0, inputData.otpValue, isReset, currentEmail);
     if (res.status) {
       if (isReset) {
         dispatch(setIsResetAction(false));
@@ -71,7 +72,7 @@ const TwoFactorAuthentication = ({
   };
 
   const checkInputs = () => {
-    if (inputDate.otpValue.length != 6) {
+    if (inputData.otpValue.length != 6) {
       return setMsg("error", "please fill all fields");
     }
     return true;
@@ -99,8 +100,8 @@ const TwoFactorAuthentication = ({
         <OtpInput
           className={style.otpHolder}
           len={6}
-          value={inputDate.otpValue}
-          setValue={inputDate.setOtp}
+          value={inputData.otpValue}
+          setValue={inputData.setOtp}
         />
       </div>
       <div className={style.buttonHolder}>

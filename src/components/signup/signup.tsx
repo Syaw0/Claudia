@@ -11,7 +11,10 @@ import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./signup.module.css";
 import { useDispatch } from "react-redux";
-import { setComponentAction } from "../../store/authentication/authenticationStore";
+import {
+  setComponentAction,
+  setEmailAction,
+} from "../../store/authentication/authenticationStore";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -37,6 +40,7 @@ const Signup = () => {
     }
     const res = await trigger(0);
     if (res.status) {
+      dispatch(setEmailAction(inputDate.signupForm_emailInput));
       // navigate to the 2 way authentication
       dispatch(setComponentAction("tfa"));
     }

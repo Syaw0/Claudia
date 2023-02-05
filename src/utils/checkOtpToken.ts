@@ -1,10 +1,18 @@
-const checkOtpToken = async () => {
-  const resp = await fetch("");
-  // const data = await resp.json()
-  return {
-    status: true,
-    msg: "otp is correct",
-  };
+import baseUrl from "./baseUrl";
+
+const checkOtpToken = async (tfaData: any) => {
+  const [otp, isReset, email] = tfaData;
+
+  const resp = await fetch(baseUrl + `/checkTfaToken`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ otp, isReset, email }),
+  });
+  const data = await resp.json();
+  console.log(data);
+  return data;
 };
 
 export const loaderMsg = "please wait until server response.";

@@ -18,7 +18,9 @@ const loginRoute = async (req: Request, res: Response) => {
       await redisClient.select(2);
       let randomNum = random(100000, 1000000);
       let email = req.body.email;
-      await redisClient.set(email, `${randomNum}`);
+      email = email.split(".").join(""); // when store . in redis hash we got error
+      await redisClient.hSet(email, "token", `${randomNum}`);
+      await redisClient.hSet(email, "try", `0`);
 
       setTimeout(async () => {
         // set the timeout to del session after 10min

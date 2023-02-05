@@ -11,7 +11,10 @@ import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import checkEmailForm from "../../utils/checkEmailForm";
 import checkPasswordValidity from "../../utils/checkPasswordValidity";
 import { useDispatch } from "react-redux";
-import { setComponentAction } from "../../store/authentication/authenticationStore";
+import {
+  setComponentAction,
+  setEmailAction,
+} from "../../store/authentication/authenticationStore";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -39,6 +42,7 @@ const LoginForm = () => {
     }
     const res = await trigger(0, inputData);
     if (res.status) {
+      dispatch(setEmailAction(inputData.loginForm_emailInput));
       // navigate to the 2 way authentication
       dispatch(setComponentAction("tfa"));
     }
