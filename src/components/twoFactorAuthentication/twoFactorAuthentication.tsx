@@ -57,7 +57,6 @@ const TwoFactorAuthentication = ({
     const res = await trigger(0, inputData.otpValue, isReset, currentEmail);
     if (res.status) {
       // if its signup do it...
-      console.log(isSignup, res);
       if (isSignup) {
         let signupResult = await trigger(2, signupData);
         if (!signupResult.status) {
@@ -74,7 +73,7 @@ const TwoFactorAuthentication = ({
 
   const getFreshCode = async () => {
     if (timer <= 0) {
-      const res = await trigger(1);
+      const res = await trigger(1, currentEmail);
       if (res.status) {
         act(() => setTimer(resetTime));
       }

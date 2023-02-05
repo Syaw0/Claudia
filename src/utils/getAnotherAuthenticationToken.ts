@@ -1,10 +1,16 @@
-const getAnotherAuthenticationToken = async () => {
-  const resp = await fetch("");
-  // const data = await resp.json()
-  return {
-    status: true,
-    msg: "send it",
-  };
+import baseUrl from "./baseUrl";
+
+const getAnotherAuthenticationToken = async (emailData: any) => {
+  const email = emailData[0];
+  const resp = await fetch(baseUrl + "/generateAnotherTfaToken", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+  const data = await resp.json();
+  return data;
 };
 
 export const getAnotherAuthTokenLoaderMsg =
