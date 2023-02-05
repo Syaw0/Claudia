@@ -3,7 +3,7 @@ import checkTfaCode from "../../db/util/checkTfaCode";
 
 const checkTfaToken = async (req: Request, res: Response) => {
   try {
-    const result = await checkTfaCode(req.body);
+    const result = await checkTfaCode(req.body, res);
 
     res.send(result);
   } catch (err) {

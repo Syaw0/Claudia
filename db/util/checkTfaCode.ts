@@ -1,8 +1,12 @@
+import { SHA256 } from "crypto-js";
+import { Response } from "express";
 import { redisClient } from "../../db/dbController";
 import redisCheckAndConnect from "./redisCheckAndConnect";
+import setLoginSession from "./setLoginSession";
 
-const checkTfaCode = async ({ email, otp, isReset }: any) => {
+const checkTfaCode = async (body: any, res: Response) => {
   try {
+    const { email, otp, isReset } = body;
     await redisCheckAndConnect(redisClient);
     let formedEmail = email.split(".").join("");
     const sessionInfo = await redisClient.hGetAll(formedEmail);
@@ -19,6 +23,13 @@ const checkTfaCode = async ({ email, otp, isReset }: any) => {
         await redisClient.select(3);
         // set reset password token
         await redisClient.set(email, "");
+      } else {
+        await setLoginSession(email);
+        res.cookie("session", SHA256(email).toString(), {
+          httpOnly: true,
+          sameSite: "strict",
+          secure: true,
+        });
       }
       await redisClient.del(formedEmail);
       return {
