@@ -7,15 +7,28 @@ type componentTypes =
   | "tfa"
   | "resetPassword";
 
+type SignupData = {
+  name: string;
+  email: string;
+  password: string;
+};
 interface authenticationStoreStates {
   currentComponent: componentTypes;
   isReset: boolean;
   email: string;
+  isSignup: boolean;
+  signupData: SignupData;
 }
 
 const states: authenticationStoreStates = {
-  currentComponent: "login",
+  currentComponent: "signup",
   isReset: false,
+  isSignup: false,
+  signupData: {
+    name: "",
+    email: "",
+    password: "",
+  },
   email: "",
 };
 
@@ -41,6 +54,20 @@ const authenticateSlice = createSlice({
         email: action.payload,
       };
     },
+
+    setIsSignup(preState, action: PayloadAction<boolean>) {
+      return {
+        ...preState,
+        isSignup: action.payload,
+      };
+    },
+
+    setSignupData(preState, action: PayloadAction<SignupData>) {
+      return {
+        ...preState,
+        signupData: action.payload,
+      };
+    },
   },
 });
 
@@ -53,6 +80,8 @@ const makeStore = () => {
 export const setComponentAction = authenticateSlice.actions.setComponent;
 export const setIsResetAction = authenticateSlice.actions.setIsReset;
 export const setEmailAction = authenticateSlice.actions.setEmail;
+export const setIsSignupAction = authenticateSlice.actions.setIsSignup;
+export const setSignupDataAction = authenticateSlice.actions.setSignupData;
 
 export type RootState = authenticationStoreStates;
 export default makeStore;

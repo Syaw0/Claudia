@@ -32,6 +32,10 @@ const login = async ({ email, password }: any) => {
       status: false,
       msg: "error during authenticate login information",
     };
+  } finally {
+    if (con != null) {
+      await con.end();
+    }
   }
 };
 

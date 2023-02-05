@@ -5,7 +5,8 @@ import cookieParser from "cookie-parser";
 import { redisClient } from "../db/dbController";
 import loginRoute from "./routes/loginRoute";
 import checkTfaToken from "./routes/checkTfaToken";
-// import signupRoute from "./routes/signupRoute";
+import checkForSignupRoute from "./routes/checkForSignup";
+import signupRoute from "./routes/signupRoute";
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
 const port = 3000;
@@ -27,6 +28,8 @@ nextApp
     // });
     app.post("/login", loginRoute);
     app.post("/checkTfaToken", checkTfaToken);
+    app.post("/checkForSignup", checkForSignupRoute);
+    app.post("/signup", signupRoute);
 
     app.get("*", (req, res) => {
       return handle(req, res);

@@ -18,6 +18,7 @@ import {
 } from "../../store/authentication/authenticationStore";
 import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
 import { useRouter } from "next/router";
+import signup, { loaderMsg as signupLoaderMsg } from "@/utils/signup";
 
 interface TwoFactorAuthenticationPropsType {
   resetTime?: number;
@@ -28,12 +29,14 @@ const TwoFactorAuthentication = ({
 }: TwoFactorAuthenticationPropsType) => {
   const router = useRouter();
   const isReset = useAuthenticateSelector((s) => s.isReset);
+  const isSignup = useAuthenticateSelector((s) => s.isSignup);
+  const signupData = useAuthenticateSelector((s) => s.signupData);
   const currentEmail = useAuthenticateSelector((s) => s.email);
   const dispatch = useDispatch();
 
   const [trigger, state, msg, setMsg] = useFetch(
-    [checkOtpToken, getAnotherAuthenticationToken],
-    [loaderMsg, getAnotherAuthTokenLoaderMsg]
+    [checkOtpToken, getAnotherAuthenticationToken, signup],
+    [loaderMsg, getAnotherAuthTokenLoaderMsg, signupLoaderMsg]
   );
   const [timer, setTimer] = useState(resetTime);
   const [inputData, setInputData] = useState({
@@ -53,7 +56,14 @@ const TwoFactorAuthentication = ({
     }
     const res = await trigger(0, inputData.otpValue, isReset, currentEmail);
     if (res.status) {
-      if (isReset) {
+      // if its signup do it...
+      console.log(isSignup, res);
+      if (isSignup) {
+        let signupResult = await trigger(2, signupData);
+        if (!signupResult.status) {
+          return;
+        }
+      } else if (isReset) {
         dispatch(setIsResetAction(false));
         return dispatch(setComponentAction("resetPassword"));
       }

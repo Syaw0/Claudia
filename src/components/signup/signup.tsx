@@ -2,7 +2,6 @@ import useFetch from "../../hooks/useFetch";
 import checkEmailForm from "../../utils/checkEmailForm";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import checkPasswordValidity from "../../utils/checkPasswordValidity";
-import signup, { loaderMsg } from "../../utils/signup";
 import { ChangeEvent, useState } from "react";
 import Button from "../button/button";
 import PasswordInput from "../input/password/passwordInput";
@@ -14,13 +13,16 @@ import { useDispatch } from "react-redux";
 import {
   setComponentAction,
   setEmailAction,
+  setIsSignupAction,
+  setSignupDataAction,
 } from "../../store/authentication/authenticationStore";
+import checkForSignup, { loaderMsg } from "../../utils/checkForSignup";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const [trigger, state, msg, setMsg] = useFetch([signup], [loaderMsg]);
+  const [trigger, state, msg, setMsg] = useFetch([checkForSignup], [loaderMsg]);
 
-  const [inputDate, setInputDate] = useState({
+  const [inputData, setInputData] = useState({
     signupForm_emailInput: "",
     signupForm_passwordInput: "",
     signupForm_nameInput: "",
@@ -28,7 +30,7 @@ const Signup = () => {
 
   const handleChanges = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
-    setInputDate((s) => ({ ...s, [name]: value }));
+    setInputData((s) => ({ ...s, [name]: value }));
   };
 
   const loginInstead = () => {
@@ -38,22 +40,31 @@ const Signup = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger(0);
+    const res = await trigger(0, inputData);
     if (res.status) {
-      dispatch(setEmailAction(inputDate.signupForm_emailInput));
+      dispatch(setEmailAction(inputData.signupForm_emailInput));
+      dispatch(setIsSignupAction(true));
+      dispatch(
+        setSignupDataAction({
+          name: inputData.signupForm_nameInput,
+          email: inputData.signupForm_emailInput,
+          password: inputData.signupForm_passwordInput,
+        })
+      );
+      dispatch(setEmailAction(inputData.signupForm_emailInput));
       // navigate to the 2 way authentication
       dispatch(setComponentAction("tfa"));
     }
   };
 
   const checkInputs = () => {
-    if (!checkInputsEmptiness(inputDate)) {
+    if (!checkInputsEmptiness(inputData)) {
       return setMsg("error", "please fill all fields");
     }
-    if (!checkEmailForm(inputDate.signupForm_emailInput)) {
+    if (!checkEmailForm(inputData.signupForm_emailInput)) {
       return setMsg("error", "email is not valid");
     }
-    if (!checkPasswordValidity(inputDate.signupForm_passwordInput)) {
+    if (!checkPasswordValidity(inputData.signupForm_passwordInput)) {
       return setMsg("error", "please use 5 or more Character for password");
     }
     return true;
@@ -75,7 +86,7 @@ const Signup = () => {
           label="Name"
           placeholder="Please write your Name "
           name="signupForm_nameInput"
-          value={inputDate.signupForm_nameInput}
+          value={inputData.signupForm_nameInput}
           onChange={handleChanges}
         />
 
@@ -86,7 +97,7 @@ const Signup = () => {
           label="Email Address"
           placeholder="Please write your email address "
           name="signupForm_emailInput"
-          value={inputDate.signupForm_emailInput}
+          value={inputData.signupForm_emailInput}
           onChange={handleChanges}
         />
         <PasswordInput
@@ -95,7 +106,7 @@ const Signup = () => {
           label="Password"
           placeholder="Please write your account password "
           name="signupForm_passwordInput"
-          value={inputDate.signupForm_passwordInput}
+          value={inputData.signupForm_passwordInput}
           onChange={handleChanges}
         />
       </div>
