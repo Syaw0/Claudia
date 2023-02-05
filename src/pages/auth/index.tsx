@@ -10,7 +10,7 @@ const AuthenticationPage = () => {
         <title>Authentication</title>
         <meta name="description" content="Claudia Authentication page" />
       </Head>
-      <Provider store={makeStore()}>
+      <Provider store={makeStore({})}>
         <Authentication />
       </Provider>
     </>

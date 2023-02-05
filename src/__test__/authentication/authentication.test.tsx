@@ -9,7 +9,9 @@ import getAnotherAuthenticationToken from "../../utils/getAnotherAuthenticationT
 import checkOtpToken from "../../utils/checkOtpToken";
 import resetPassword from "../../utils/resetPassword";
 import forgetPassword from "../../utils/forgetPassword";
+import checkForSignup from "../../utils/checkForSignup";
 import router from "next-router-mock";
+import { MemoryRouterProvider } from "next-router-mock/dist/MemoryRouterProvider";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("../../utils/forgetPassword");
@@ -18,6 +20,7 @@ jest.mock("../../utils/getAnotherAuthenticationToken");
 jest.mock("../../utils/checkOtpToken");
 jest.mock("../../utils/checkLoginForm");
 jest.mock("../../utils/signup");
+jest.mock("../../utils/checkForSignup.ts");
 
 // TODO why don`t i mock useRouter ?
 // TODO i just lazy to test resetPassword login button action :)
@@ -28,10 +31,11 @@ const mockGetAnotherAuthToken = getAnotherAuthenticationToken as jest.Mock;
 const mockCheckOtpToken = checkOtpToken as jest.Mock;
 const mockSignup = signup as jest.Mock;
 const mockCheckLoginForm = checkLoginForm as jest.Mock;
+const mockCheckForSignup = checkForSignup as jest.Mock;
 
 const CustomParent = () => {
   return (
-    <Provider store={makeStore()}>
+    <Provider store={makeStore({})}>
       <AuthenticationPage />
     </Provider>
   );
@@ -39,7 +43,7 @@ const CustomParent = () => {
 
 describe("TEST PAGE : Authentication page", () => {
   beforeEach(() => {
-    render(<CustomParent />);
+    render(<CustomParent />, { wrapper: MemoryRouterProvider });
   });
 
   it("lets see if it render properly", () => {
@@ -121,7 +125,7 @@ describe("TEST PAGE : Authentication page", () => {
   it("signup flow", async () => {
     await waitFor(() => router.replace("/auth"));
     fireEvent.click(screen.getByTestId("loginForm_createAccountButton"));
-    mockSignup.mockReturnValue(
+    mockCheckForSignup.mockReturnValue(
       new Promise((res) => res({ status: false, msg: "" }))
     );
     fireEvent.change(screen.getByTestId("signupForm_nameInput"), {
@@ -134,7 +138,7 @@ describe("TEST PAGE : Authentication page", () => {
       target: { value: "123123123" },
     });
     fireEvent.click(screen.getByTestId("signupForm_nextButton"));
-    expect(mockSignup).toHaveBeenCalledTimes(1);
+    expect(mockCheckForSignup).toHaveBeenCalledTimes(1);
 
     let tfa;
     try {
@@ -143,7 +147,7 @@ describe("TEST PAGE : Authentication page", () => {
 
     expect(tfa).toBeUndefined();
 
-    mockSignup.mockReturnValue(
+    mockCheckForSignup.mockReturnValue(
       new Promise((res) => res({ status: true, msg: "" }))
     );
     fireEvent.click(screen.getByTestId("signupForm_nextButton"));
@@ -168,6 +172,8 @@ describe("TEST PAGE : Authentication page", () => {
     fireEvent.change(inp4, { target: { value: 4 } });
     fireEvent.change(inp5, { target: { value: 5 } });
     fireEvent.change(inp6, { target: { value: 6 } });
+
+    mockSignup.mockReturnValue(new Promise((res) => res({ status: true })));
 
     fireEvent.click(screen.getByTestId("tfaForm_nextButton"));
     await waitFor(() => expect(router.asPath).toEqual("/mycloud"));

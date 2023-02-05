@@ -5,7 +5,7 @@ import checkForSignup from "../../utils/checkForSignup";
 import { Provider } from "react-redux";
 import makeStore from "../../store/authentication/authenticationStore";
 
-jest.mock("../../utils/signup");
+jest.mock("../../utils/checkForSignup.ts");
 
 const mockCheckForSignup = checkForSignup as jest.Mock;
 

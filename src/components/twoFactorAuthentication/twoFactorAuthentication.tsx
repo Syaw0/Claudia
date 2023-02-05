@@ -18,7 +18,7 @@ import {
 } from "../../store/authentication/authenticationStore";
 import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
 import { useRouter } from "next/router";
-import signup, { loaderMsg as signupLoaderMsg } from "@/utils/signup";
+import signup, { loaderMsg as signupLoaderMsg } from "../../utils/signup";
 
 interface TwoFactorAuthenticationPropsType {
   resetTime?: number;

@@ -5,6 +5,7 @@ import checkLoginForm from "../../utils/checkLoginForm";
 import makeStore from "../../store/authentication/authenticationStore";
 import { Provider } from "react-redux";
 
+jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("../../utils/checkLoginForm");
 
 const mockCheckLoginForm = checkLoginForm as jest.Mock;
