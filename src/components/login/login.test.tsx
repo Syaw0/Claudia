@@ -12,7 +12,7 @@ const mockCheckLoginForm = checkLoginForm as jest.Mock;
 describe("TEST COMPONENT: Login Form", () => {
   beforeEach(() => {
     render(
-      <Provider store={makeStore()}>
+      <Provider store={makeStore({ isReset: false })}>
         <LoginForm />
       </Provider>
     );

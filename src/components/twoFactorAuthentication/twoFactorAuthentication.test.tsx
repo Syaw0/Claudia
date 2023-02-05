@@ -34,7 +34,7 @@ const mockCheckOtpToken = checkOtpToken as jest.Mock;
 
 const CustomParent = ({ resetTime = 1 }: any) => {
   return (
-    <Provider store={makeStore()}>
+    <Provider store={makeStore({})}>
       <TwoFactorAuthentication resetTime={resetTime} />
     </Provider>
   );

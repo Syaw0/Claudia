@@ -5,7 +5,7 @@ const resetAccountPassword = async ({ email, password }: any) => {
   let con;
   try {
     await redisCheckAndConnect(redisClient);
-    await redisClient.select(2);
+    await redisClient.select(3);
 
     let resetSession = await redisClient.get(email);
     if (resetSession == null) {

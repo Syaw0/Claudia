@@ -19,10 +19,13 @@ const checkTfaCode = async (body: any, res: Response) => {
 
     await redisClient.hIncrBy(formedEmail, "try", 1);
     if (sessionInfo.token == otp) {
+      console.log(isReset);
       if (isReset) {
+        console.log("its reset");
         await redisClient.select(3);
         // set reset password token
-        await redisClient.set(email, "exist");
+        const res = await redisClient.set(email, "exist");
+        console.log(res);
       } else {
         await setLoginSession(email);
         res.cookie("session", SHA256(email).toString(), {

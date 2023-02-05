@@ -15,11 +15,14 @@ import {
   setComponentAction,
   setEmailAction,
 } from "../../store/authentication/authenticationStore";
+import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([checkLoginForm], [loaderMsg]);
-
+  const isReset = useAuthenticateSelector((s) => s.isReset);
   const [inputData, setInputData] = useState({
     loginForm_emailInput: "",
     loginForm_passwordInput: "",
@@ -44,7 +47,11 @@ const LoginForm = () => {
     if (res.status) {
       dispatch(setEmailAction(inputData.loginForm_emailInput));
       // navigate to the 2 way authentication
-      dispatch(setComponentAction("tfa"));
+      if (!isReset) {
+        dispatch(setComponentAction("tfa"));
+      } else {
+        router.replace("/mycloud");
+      }
     }
   };
 

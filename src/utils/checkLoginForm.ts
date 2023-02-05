@@ -3,8 +3,7 @@ import baseUrl from "./baseUrl";
 
 const checkLoginForm = async (loginData: any) => {
   const email = loginData[0].loginForm_emailInput;
-  const password = SHA256(loginData[0].loginForm_emailInput).toString();
-
+  const password = SHA256(loginData[0].loginForm_passwordInput).toString();
   const resp = await fetch(baseUrl + "/login", {
     method: "POST",
     headers: {

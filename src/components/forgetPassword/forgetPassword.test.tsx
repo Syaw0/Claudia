@@ -12,7 +12,7 @@ const mockForgetPassword = forgetPassword as jest.Mock;
 describe("TEST COMPONENT: ForgetPassword Form", () => {
   beforeEach(() => {
     render(
-      <Provider store={makeStore()}>
+      <Provider store={makeStore({})}>
         <ForgetPassword />
       </Provider>
     );

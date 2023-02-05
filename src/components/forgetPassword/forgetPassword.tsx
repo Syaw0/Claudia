@@ -19,13 +19,13 @@ const ForgetPassword = () => {
   const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([forgetPassword], [loaderMsg]);
 
-  const [inputDate, setInputDate] = useState({
+  const [inputData, setInputData] = useState({
     forgetPasswordForm_emailInput: "",
   });
 
   const handleChanges = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget;
-    setInputDate((s) => ({ ...s, [name]: value }));
+    setInputData((s) => ({ ...s, [name]: value }));
   };
 
   const loginButton = () => {
@@ -35,9 +35,11 @@ const ForgetPassword = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger(0);
+    const res = await trigger(0, {
+      email: inputData.forgetPasswordForm_emailInput,
+    });
     if (res.status) {
-      dispatch(setEmailAction(inputDate.forgetPasswordForm_emailInput));
+      dispatch(setEmailAction(inputData.forgetPasswordForm_emailInput));
       // navigate to the 2 way authentication
       dispatch(setComponentAction("tfa"));
       dispatch(setIsResetAction(true));
@@ -45,10 +47,10 @@ const ForgetPassword = () => {
   };
 
   const checkInputs = () => {
-    if (!checkInputsEmptiness(inputDate)) {
+    if (!checkInputsEmptiness(inputData)) {
       return setMsg("error", "please fill all fields");
     }
-    if (!checkEmailForm(inputDate.forgetPasswordForm_emailInput)) {
+    if (!checkEmailForm(inputData.forgetPasswordForm_emailInput)) {
       return setMsg("error", "email is not valid");
     }
     return true;
@@ -71,7 +73,7 @@ const ForgetPassword = () => {
           label="Email Address"
           placeholder="Please write your email address "
           name="forgetPasswordForm_emailInput"
-          value={inputDate.forgetPasswordForm_emailInput}
+          value={inputData.forgetPasswordForm_emailInput}
           onChange={handleChanges}
         />
       </div>

@@ -1,18 +1,18 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Signup from "./signup";
-import signup from "../../utils/signup";
+import checkForSignup from "../../utils/checkForSignup";
 import { Provider } from "react-redux";
 import makeStore from "../../store/authentication/authenticationStore";
 
 jest.mock("../../utils/signup");
 
-const mockSignup = signup as jest.Mock;
+const mockCheckForSignup = checkForSignup as jest.Mock;
 
 describe("TEST COMPONENT: Signup Form", () => {
   beforeEach(() => {
     render(
-      <Provider store={makeStore()}>
+      <Provider store={makeStore({})}>
         <Signup />;
       </Provider>
     );
@@ -74,7 +74,9 @@ describe("TEST COMPONENT: Signup Form", () => {
   });
 
   it("if inputs are ok click on the next trigger a fetch to server to check data", async () => {
-    mockSignup.mockReturnValue(new Promise((res) => res({ status: false })));
+    mockCheckForSignup.mockReturnValue(
+      new Promise((res) => res({ status: false }))
+    );
     const nameInput = screen.getByTestId("signupForm_nameInput");
     const emailInput = screen.getByTestId("signupForm_emailInput");
     const passwordInput = screen.getByTestId("signupForm_passwordInput");
@@ -84,17 +86,19 @@ describe("TEST COMPONENT: Signup Form", () => {
     fireEvent.change(passwordInput, { target: { value: "something2" } });
     fireEvent.change(nameInput, { target: { value: "something3" } });
     fireEvent.click(nextButton);
-    expect(mockSignup).toBeCalledTimes(1);
+    expect(mockCheckForSignup).toBeCalledTimes(1);
     await waitFor(() =>
       expect(screen.getByTestId("waitMessage")).toBeInTheDocument()
     );
     await waitFor(() =>
       expect(screen.getByTestId("errorMessage")).toBeInTheDocument()
     );
-    mockSignup.mockReturnValue(new Promise((res) => res({ status: true })));
+    mockCheckForSignup.mockReturnValue(
+      new Promise((res) => res({ status: true }))
+    );
 
     fireEvent.click(nextButton);
-    expect(mockSignup).toBeCalledTimes(2);
+    expect(mockCheckForSignup).toBeCalledTimes(2);
     await waitFor(() =>
       expect(screen.getByTestId("waitMessage")).toBeInTheDocument()
     );

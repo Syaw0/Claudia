@@ -71,8 +71,9 @@ const authenticateSlice = createSlice({
   },
 });
 
-const makeStore = () => {
+const makeStore = (params: Partial<typeof states>) => {
   return configureStore({
+    preloadedState: { ...states, ...params },
     reducer: authenticateSlice.reducer,
   });
 };
