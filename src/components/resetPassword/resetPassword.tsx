@@ -9,16 +9,14 @@ import Message from "../message/message";
 import Text from "../typography/typography";
 import style from "./resetPassword.module.css";
 import checkPasswordEquality from "../../utils/checkPasswordEquality";
-import {
-  setComponentAction,
-  setEmailAction,
-} from "../../store/authentication/authenticationStore";
+import { setComponentAction } from "../../store/authentication/authenticationStore";
 import { useDispatch } from "react-redux";
+import { useAuthenticateSelector } from "../../store/authentication/authenticationStoreHooks";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const [trigger, state, msg, setMsg] = useFetch([resetPassword], [loaderMsg]);
-
+  const currentEmail = useAuthenticateSelector((s) => s.email);
   const [inputDate, setInputDate] = useState({
     resetPasswordForm_passwordInput: "",
     resetPasswordForm_RetypePasswordInput: "",
@@ -36,7 +34,10 @@ const ResetPassword = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger(0);
+    const res = await trigger(0, {
+      password: inputDate.resetPasswordForm_passwordInput,
+      email: currentEmail,
+    });
     if (res.status) {
       // navigate to the login page
       dispatch(setComponentAction("login"));

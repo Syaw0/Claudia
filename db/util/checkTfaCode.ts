@@ -22,7 +22,7 @@ const checkTfaCode = async (body: any, res: Response) => {
       if (isReset) {
         await redisClient.select(3);
         // set reset password token
-        await redisClient.set(email, "");
+        await redisClient.set(email, "exist");
       } else {
         await setLoginSession(email);
         res.cookie("session", SHA256(email).toString(), {

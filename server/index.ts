@@ -8,6 +8,7 @@ import checkTfaToken from "./routes/checkTfaToken";
 import checkForSignupRoute from "./routes/checkForSignup";
 import signupRoute from "./routes/signupRoute";
 import generateAnotherTfaTokenRoute from "./routes/generateAnotherTfaTokenRoute";
+import resetPasswordRoute from "./routes/resetPasswordRoute";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -33,6 +34,7 @@ nextApp
     app.post("/checkForSignup", checkForSignupRoute);
     app.post("/signup", signupRoute);
     app.post("/generateAnotherTfaToken", generateAnotherTfaTokenRoute);
+    app.post("/resetPassword", resetPasswordRoute);
     app.get("*", (req, res) => {
       return handle(req, res);
     });

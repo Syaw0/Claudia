@@ -21,7 +21,7 @@ interface authenticationStoreStates {
 }
 
 const states: authenticationStoreStates = {
-  currentComponent: "tfa",
+  currentComponent: "login",
   isReset: false,
   isSignup: false,
   signupData: {
@@ -29,7 +29,7 @@ const states: authenticationStoreStates = {
     email: "",
     password: "",
   },
-  email: "siaw0cpe@gmail.com",
+  email: "",
 };
 
 const authenticateSlice = createSlice({
