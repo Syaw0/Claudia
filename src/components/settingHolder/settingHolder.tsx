@@ -1,3 +1,4 @@
+import LogoutSetting from "../logoutSetting/logoutSetting";
 import NameSetting from "../nameSetting/nameSetting";
 import PasswordSetting from "../passwordSetting/passwordSetting";
 import ProfileSetting from "../profileSetting/profileSetting";
@@ -9,6 +10,7 @@ const SettingHolder = () => {
       <ProfileSetting />
       <NameSetting />
       <PasswordSetting />
+      <LogoutSetting />
     </div>
   );
 };
