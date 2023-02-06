@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import listAllFilesInDirectory from "./listAllFilesInDirectory";
 
-let __dirname = process.cwd();
+let __cwd = process.cwd();
 
 const getUsedVolume = (dirPath: string) => {
   let myPath = dirPath;

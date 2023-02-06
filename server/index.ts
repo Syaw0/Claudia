@@ -12,6 +12,7 @@ import resetPasswordRoute from "./routes/resetPasswordRoute";
 import forgetPasswordRoute from "./routes/forgetPasswordRoute";
 import uploadRoute from "./routes/uploadRoute";
 import fileUpload from "express-fileupload";
+import updateFileListRoute from "./routes/updateFileListRoute";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -43,6 +44,7 @@ nextApp
     app.post("/resetPassword", resetPasswordRoute);
     app.post("/forgetPassword", forgetPasswordRoute);
     app.post("/upload", uploadRoute);
+    app.get("/updateFileList", updateFileListRoute);
     app.get("*", (req, res) => {
       return handle(req, res);
     });

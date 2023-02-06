@@ -34,6 +34,11 @@ const pageBasicStates: PageBasicStates = {
   },
 };
 
+interface StorageUsage {
+  max: number;
+  min: number;
+}
+
 const states = {
   cwd: "",
   storageUsage: {
@@ -121,6 +126,19 @@ const mycloudSlice = createSlice({
         alerts: [],
       };
     },
+    replaceFileList(preState, action: PayloadAction<FileData[]>) {
+      return {
+        ...preState,
+        fileList: action.payload,
+      };
+    },
+
+    setStorageUsage(preState, action: PayloadAction<StorageUsage>) {
+      return {
+        ...preState,
+        storageUsage: action.payload,
+      };
+    },
   },
 });
 
@@ -141,6 +159,10 @@ export const setFloatType = mycloudSlice.actions.setFloatType;
 export const insertAlert = mycloudSlice.actions.insertToAlerts;
 export const popAlert = mycloudSlice.actions.popAlert;
 export const rmAllAlerts = mycloudSlice.actions.rmAllAlerts;
+
+export const setStorageUsage = mycloudSlice.actions.setStorageUsage;
+
+export const replaceFileList = mycloudSlice.actions.replaceFileList;
 
 export type RootState = typeof states;
 export default makeStore;

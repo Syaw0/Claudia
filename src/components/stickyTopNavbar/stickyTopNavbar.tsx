@@ -9,15 +9,19 @@ import Text from "../typography/typography";
 import style from "./stickyTopNavbar.module.css";
 import { ChangeEvent, useEffect } from "react";
 import useFetch from "@/hooks/useFetch";
-import upload, { loaderMsg } from "@/utils/upload";
-import checkFilesBeforeUpload from "@/utils/checkFilesBeforeUpload";
+import upload, { loaderMsg } from "../../utils/upload";
+import checkFilesBeforeUpload from "../../utils/checkFilesBeforeUpload";
+import useUpdateFileList from "../../hooks/useUpdateFileList";
 
 const StickyTopNavbar = () => {
   const [trigger, state, msg, setMsg] = useFetch([upload], [loaderMsg]);
+  const updateList = useUpdateFileList();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(insertAlert({ type: state, msg }));
+    if (state != "pending") {
+      dispatch(insertAlert({ type: state, msg }));
+    }
   }, [state, msg, dispatch]);
   const cwd = useMycloudSelector((s) => s.cwd);
   const usageData = useMycloudSelector((s) => s.storageUsage);
@@ -34,7 +38,9 @@ const StickyTopNavbar = () => {
       return dispatch(insertAlert({ type: "error", msg: checkResult.msg }));
     }
     const res = await trigger(0, files, cwd);
-    // TODO if upload was successful we must update list !
+    if (res.status) {
+      await updateList();
+    }
   };
 
   return (

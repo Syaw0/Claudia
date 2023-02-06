@@ -1,12 +1,15 @@
 import fs from "fs";
 import path from "path";
-
-let __dirname = process.cwd();
-
+interface FileData {
+  name: string;
+  size: number;
+  date: string;
+  isDirectory: boolean;
+}
+let __cwd = process.cwd();
 const listAllFilesInDirectory = (dirPath: string): FileData[] => {
-  let baseDir = path.resolve(__dirname + "/server/static/cloud/" + dirPath);
+  let baseDir = path.resolve(__cwd + "/server/static/cloud/" + `${dirPath}`);
   const files = fs.readdirSync(baseDir);
-
   let list: any = [];
 
   files.forEach((f) => {
