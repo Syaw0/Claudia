@@ -70,7 +70,6 @@ const mycloudSlice = createSlice({
         ...preState,
         sideData: {
           ...action.payload,
-          size: 0,
         },
       };
     },

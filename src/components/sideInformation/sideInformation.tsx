@@ -12,12 +12,14 @@ import {
   keyframeTranslateToRight,
   timingTranslateToRight,
 } from "../../styles/keyframes/translate";
+import byteToMgb from "../../utils/byteToMgb";
 
 const SideInformation = () => {
   const ref: any = useRef(null);
   const { name, size, date, isDirectory } = useMycloudSelector(
     (s) => s.sideData
   );
+  console.log(name, size, date, isDirectory);
   const dispatch = useDispatch();
   const closeSideInfo = () => {
     if (ref.current != null) {
@@ -63,7 +65,7 @@ const SideInformation = () => {
         <div className={style.detailItem}>
           <Text>Size</Text>
           {/* //TODO turn size to Gb if its larger than 1000 */}
-          <Text>{size}</Text>
+          <Text>{byteToMgb(size)} Mgb</Text>
         </div>
 
         <div className={style.detailItem}>

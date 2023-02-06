@@ -9,6 +9,8 @@ import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
 import useCloseFloat from "../../hooks/useCloseFloat";
 import useUpdateFileList from "@/hooks/useUpdateFileList";
+import { useDispatch } from "react-redux";
+import { toggleSideInfoAction } from "../../store/mycloud/mycloudStore";
 
 const Rename = () => {
   const updateList = useUpdateFileList();
@@ -19,6 +21,7 @@ const Rename = () => {
   const [inputData, setInputData] = useState({
     renameInput: selectedFile.name,
   });
+  const dispatch = useDispatch();
   const cancelRename = () => {
     closeFloat();
   };
@@ -33,6 +36,7 @@ const Rename = () => {
       inputData.renameInput
     );
     if (result.status) {
+      dispatch(toggleSideInfoAction(false));
       await updateList();
       cancelRename();
     }

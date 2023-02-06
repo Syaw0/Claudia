@@ -3,6 +3,7 @@ import Button from "../button/button";
 import Text from "../typography/typography";
 import style from "./info.module.css";
 import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
+import byteToMgb from "../../utils/byteToMgb";
 
 const Info = () => {
   const selectedFileData = useMycloudSelector((s) => s.selectedFileData);
@@ -30,7 +31,7 @@ const Info = () => {
 
         <div className={style.infosItem}>
           <Text>Size</Text>
-          <Text>{selectedFileData.size}</Text>
+          <Text>{byteToMgb(selectedFileData.size)} Mgb</Text>
         </div>
       </div>
 

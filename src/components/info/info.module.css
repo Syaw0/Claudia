@@ -1,3 +1,6 @@
+.holder {
+  width: fit-content;
+}
 .headText {
   font-weight: 800;
   font-size: var(--headline5);
@@ -25,4 +28,5 @@
   line-height: var(--headline6_lineHeight);
   color: var(--onBg);
   font-weight: 600;
+  margin-left: 2rem;
 }

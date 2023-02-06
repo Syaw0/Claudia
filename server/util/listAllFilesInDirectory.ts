@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import getUsedVolume from "./getUsedVolume";
 interface FileData {
   name: string;
   size: number;
@@ -15,9 +16,14 @@ const listAllFilesInDirectory = (dirPath: string): FileData[] => {
   files.forEach((f) => {
     const stat = fs.statSync(baseDir + `/${f}`);
     const isDirectory = stat.isDirectory();
-    const size = stat.size;
-    const modifiedTime = stat.mtime.getUTCDate();
-    list.push({ name: f, size, isDirectory, modifiedTime });
+    let size;
+    if (isDirectory) {
+      size = Number(getUsedVolume(dirPath + `/${f}`)) * 10 ** 6;
+    } else {
+      size = stat.size;
+    }
+    const date = stat.mtime.toLocaleString();
+    list.push({ name: f, size, isDirectory, date });
   });
   return list;
 };

@@ -46,8 +46,8 @@ const Card = ({ isDirectory, date, name, size }: FileData) => {
 
   const handleClick = (e: React.MouseEvent) => {
     dispatch(toggleSelectFile(true));
-    dispatch(setSelectedFileData({ isDirectory, name, date, size: 0 }));
-    dispatch(setSideInfoAction({ isDirectory, date, name, size: 0 }));
+    dispatch(setSelectedFileData({ isDirectory, name, date, size }));
+    dispatch(setSideInfoAction({ isDirectory, date, name, size }));
     dispatch(toggleSideInfoAction(true));
     setIsSelected(true);
   };
