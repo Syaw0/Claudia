@@ -6,19 +6,27 @@ import style from "./removeConfirm.module.css";
 import Message from "../message/message";
 import useFetch from "../../hooks/useFetch";
 import remove, { loaderMsg } from "../../utils/remove";
+import useUpdateFileList from "../../hooks/useUpdateFileList";
+import { useDispatch } from "react-redux";
+import { toggleSideInfoAction } from "../../store/mycloud/mycloudStore";
 
 const RemoveConfirmation = () => {
-  const [trigger, state, msg, setMsg] = useFetch([remove], [loaderMsg]);
+  const cwd = useMycloudSelector((s) => s.cwd);
+  const updateList = useUpdateFileList();
+  const [trigger, state, msg] = useFetch([remove], [loaderMsg]);
   const selectedFile = useMycloudSelector((s) => s.selectedFileData);
   const closeFloat = useCloseFloat();
+  const dispatch = useDispatch();
 
   const cancel = () => {
     closeFloat();
   };
 
   const performRemove = async () => {
-    const result = await trigger(0);
+    const result = await trigger(0, cwd, selectedFile.name);
     if (result.status) {
+      dispatch(toggleSideInfoAction(false));
+      await updateList();
       cancel();
     }
   };
