@@ -1,5 +1,5 @@
 .holder {
-  width: fit-content;
+  max-width: 25rem;
 }
 .headText {
   font-weight: 800;
@@ -15,6 +15,7 @@
 .infosItem {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1.2rem;
 }
 
 .infosItem p:nth-child(1) {

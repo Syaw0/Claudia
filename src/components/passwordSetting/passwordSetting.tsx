@@ -10,8 +10,10 @@ import { insertAlert } from "../../store/mycloud/mycloudStore";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import checkPasswordEquality from "../../utils/checkPasswordEquality";
 import checkPasswordValidity from "../../utils/checkPasswordValidity";
+import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
 
 const PasswordSetting = () => {
+  const user = useMycloudSelector((s) => s.user);
   const [trigger, state, msg] = useFetch([changePassword], [loaderMsg]);
   const dispatch = useDispatch();
   const [inputData, setInputData] = useState({
@@ -30,7 +32,20 @@ const PasswordSetting = () => {
     if (!checkInputs()) {
       return;
     }
-    const res = await trigger(0);
+    const res = await trigger(
+      0,
+      user.id,
+      inputData.previousPassword,
+      inputData.newPassword
+    );
+    if (res.status) {
+      // router.reload();
+      setInputData({
+        newPassword: "",
+        previousPassword: "",
+        retypeNewPassword: "",
+      });
+    }
   };
 
   const checkInputs = () => {

@@ -9,7 +9,7 @@ const download = async (downloadData: [x: string, y: string]) => {
   // TODO fix this:!!
   window.open(baseUrl + `/download?cwd=${cwd}&fileName=${fileName}`);
 
-  return { status: true, msg: "ok" };
+  return { status: true, msg: "download start..." };
 };
 
 export const loaderMsg = "please wait until server response.";

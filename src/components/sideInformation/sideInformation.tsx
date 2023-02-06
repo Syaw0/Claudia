@@ -19,7 +19,6 @@ const SideInformation = () => {
   const { name, size, date, isDirectory } = useMycloudSelector(
     (s) => s.sideData
   );
-  console.log(name, size, date, isDirectory);
   const dispatch = useDispatch();
   const closeSideInfo = () => {
     if (ref.current != null) {
