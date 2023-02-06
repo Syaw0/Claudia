@@ -8,8 +8,12 @@ import useFetch from "../../hooks/useFetch";
 import createDirectory, { loaderMsg } from "../../utils/createDirectory";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import Message from "../message/message";
+import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
+import useUpdateFileList from "../../hooks/useUpdateFileList";
 
 const CreateDirectory = () => {
+  const updateList = useUpdateFileList();
+  const cwd = useMycloudSelector((s) => s.cwd);
   const [trigger, state, msg, setMsg] = useFetch(
     [createDirectory],
     [loaderMsg]
@@ -29,8 +33,9 @@ const CreateDirectory = () => {
     if (!checkInputs()) {
       return;
     }
-    const result = await trigger(0);
+    const result = await trigger(0, inputData.directoryName, cwd);
     if (result.status) {
+      await updateList();
       cancel();
     }
   };

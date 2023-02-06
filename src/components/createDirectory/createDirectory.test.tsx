@@ -4,10 +4,20 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import CreateDirectory from "./createDirectory";
 import createDirectory from "../../utils/createDirectory";
+import updateFileList from "../../utils/updateFileList";
+import fakeCards from "../../shared/fakecards";
 
 jest.mock("../../utils/createDirectory");
+jest.mock("../../utils/updateFileList.ts");
 
 const createDirectoryMock = createDirectory as jest.Mock;
+const mockUpdateFileList = updateFileList as jest.Mock;
+
+mockUpdateFileList.mockReturnValue(
+  new Promise((res) =>
+    res({ files: fakeCards, storageUsage: { min: 1, max: 10 } })
+  )
+);
 
 const preState = {
   selectedFileData: {
@@ -26,7 +36,7 @@ const CustomParent = () => {
   );
 };
 
-describe("TEST COMPONENT : Remove ", () => {
+describe("TEST COMPONENT : Create Directory ", () => {
   it("its render properly", () => {
     render(<CustomParent />);
     expect(screen.getByTestId("createDirectoryHolder")).toBeInTheDocument();
@@ -70,5 +80,8 @@ describe("TEST COMPONENT : Remove ", () => {
     await waitFor(() =>
       expect(screen.getByTestId("successMessage")).toBeInTheDocument()
     );
+    await waitFor(() => {
+      expect(mockUpdateFileList).toBeCalledTimes(1);
+    });
   });
 });
