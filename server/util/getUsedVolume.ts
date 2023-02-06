@@ -19,7 +19,9 @@ const getUsedVolume = (dirPath: string) => {
   };
 
   recursive(myPath);
-
+  if (sizes.length == 0) {
+    return 0;
+  }
   const size: number = sizes.reduce((p: number, n: number) => n + p);
   return (size * 10 ** -6).toFixed(2);
 };

@@ -8,7 +8,7 @@ import Profile from "../profile/profile";
 import Text from "../typography/typography";
 import style from "./stickyTopNavbar.module.css";
 import { ChangeEvent, useEffect } from "react";
-import useFetch from "@/hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import upload, { loaderMsg } from "../../utils/upload";
 import checkFilesBeforeUpload from "../../utils/checkFilesBeforeUpload";
 import useUpdateFileList from "../../hooks/useUpdateFileList";

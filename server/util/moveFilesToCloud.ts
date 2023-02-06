@@ -1,3 +1,4 @@
+import { readdirSync } from "fs";
 import path from "path";
 interface UploadedFile {
   name: string;
@@ -19,19 +20,31 @@ const moveFilesToCloud = (files: any, cwd: string) => {
     if (files == null) {
       return { status: false, msg: "no file is presented" };
     }
-
-    // TODO what happen if file is duplicated?? we must give another name for it
+    const ls = readdirSync(basePath);
 
     let listOfFileKeys = Object.keys(files);
     listOfFileKeys.forEach(async (key) => {
-      let file: UploadedFile = files[key];
-      await file.mv(basePath + `/${file.name}`);
+      ls.forEach(async (name: string) => {
+        let file: UploadedFile = files[key];
+        let fileName = file.name;
+        if (name === files[key].name) {
+          let SplittedName = fileName.split(".");
+          // TODO what if file has not an extension!?
+          let format = SplittedName[SplittedName.length - 1];
+          let rest = SplittedName.slice(0, SplittedName.length - 1).join(".");
+          rest += "(2)";
+          fileName = rest + "." + format;
+        }
+        let path = basePath + `/${fileName}`;
+        await file.mv(path);
+      });
     });
     return {
       status: true,
       msg: "all files uploaded successfully",
     };
   } catch (err) {
+    console.log(err);
     return { status: false, msg: "error during transform files in cloud" };
   }
 };
