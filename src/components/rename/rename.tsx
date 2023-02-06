@@ -6,16 +6,14 @@ import TextInput from "../input/text/textInput";
 import Message from "../message/message";
 import style from "./rename.module.css";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
-import { keyframeFadeIn, timingFadeIn } from "../../styles/keyframes/translate";
 import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
-import { useDispatch } from "react-redux";
-import { setFloatType } from "../../store/mycloud/mycloudStore";
-import { act } from "react-dom/test-utils";
 import useCloseFloat from "../../hooks/useCloseFloat";
+import useUpdateFileList from "@/hooks/useUpdateFileList";
 
 const Rename = () => {
-  const dispatch = useDispatch();
+  const updateList = useUpdateFileList();
   const closeFloat = useCloseFloat();
+  const cwd = useMycloudSelector((s) => s.cwd);
   const selectedFile = useMycloudSelector((s) => s.selectedFileData);
   const [trigger, state, msg, setMsg] = useFetch([rename], [loaderMsg]);
   const [inputData, setInputData] = useState({
@@ -28,8 +26,14 @@ const Rename = () => {
     if (!checkInputs()) {
       return;
     }
-    const result = await trigger(0);
+    const result = await trigger(
+      0,
+      cwd,
+      selectedFile.name,
+      inputData.renameInput
+    );
     if (result.status) {
+      await updateList();
       cancelRename();
     }
   };

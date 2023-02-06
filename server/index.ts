@@ -16,6 +16,7 @@ import updateFileListRoute from "./routes/updateFileListRoute";
 import mkdirRoute from "./routes/mkdirRoute";
 import downloadRoute from "./routes/downloadRoute";
 import cors from "cors";
+import renameRoute from "./routes/renameRoute";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -50,6 +51,7 @@ nextApp
     //   next();
     // });
     app.get("/download", downloadRoute);
+    app.post("/rename", renameRoute);
     app.post("/login", loginRoute);
     app.post("/checkTfaToken", checkTfaToken);
     app.post("/checkForSignup", checkForSignupRoute);

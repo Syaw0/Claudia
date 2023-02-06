@@ -15,7 +15,6 @@ const upload = async (fileData: [x: FileList, y: string]) => {
     body: formData,
   });
   const data = await resp.json();
-  console.log(data);
   return data;
 };
 
