@@ -25,7 +25,7 @@ const changeProfile = async (
     const basePath = path.join(__cwd, "/server/static/profile/");
     await file.mv(basePath + `${userId}`);
 
-    if (userProf == "/prof/default.png") {
+    if (userProf.search("/prof/default") != -1) {
       const result = await changeProfileUrl(userId);
       if (!result.status) {
         return result;

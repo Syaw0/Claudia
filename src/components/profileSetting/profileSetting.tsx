@@ -35,7 +35,10 @@ const ProfileSetting = () => {
   // };
   const deleteProf = async () => {
     if (userData.profileUrl !== "/prof/default.png") {
-      const res = await trigger(0);
+      const res = await trigger(0, userData.id);
+      if (res.status) {
+        router.reload();
+      }
     }
   };
   const changeFile = async (e: ChangeEvent<HTMLInputElement>) => {

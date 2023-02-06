@@ -22,6 +22,7 @@ import moveRoute from "./routes/moveRoute";
 import getProfileById from "./routes/getProfileById";
 import changeProfileRoute from "./routes/changeProfile";
 import changeNameRoute from "./routes/changeNameRoute";
+import deleteProfileRoute from "./routes/deleteProfileRoute";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -61,6 +62,7 @@ nextApp
     app.post("/changeName", changeNameRoute);
     app.post("/move", moveRoute);
     app.post("/rename", renameRoute);
+    app.post("/deleteProfile", deleteProfileRoute);
     app.post("/rm", rmRoute);
     app.post("/login", loginRoute);
     app.post("/checkTfaToken", checkTfaToken);
