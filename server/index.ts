@@ -14,6 +14,8 @@ import uploadRoute from "./routes/uploadRoute";
 import fileUpload from "express-fileupload";
 import updateFileListRoute from "./routes/updateFileListRoute";
 import mkdirRoute from "./routes/mkdirRoute";
+import downloadRoute from "./routes/downloadRoute";
+import cors from "cors";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -29,14 +31,25 @@ nextApp
     const app = express();
     app.use(express.static(__dirname + "/static"));
     app.use(bodyParser.json());
+    app.use(
+      cors({
+        methods: "*",
+        allowedHeaders: "*",
+        origin: "*",
+        preflightContinue: false,
+        exposedHeaders: ["Content-Disposition"],
+      })
+    );
     app.use(cookieParser());
     app.use(fileUpload());
+    // app.use(express.static(path.join(process.cwd(), "/server/static/cloud/")));
     // app.use("*", async (req, res, next) => {
     //   await redisClient.select(1);
     //   console.log(req.cookies.session);
     //   console.log(await redisClient.get(req.cookies.session));
     //   next();
     // });
+    app.get("/download", downloadRoute);
     app.post("/login", loginRoute);
     app.post("/checkTfaToken", checkTfaToken);
     app.post("/checkForSignup", checkForSignupRoute);
