@@ -18,11 +18,15 @@ import React, { useEffect, useRef, useState } from "react";
 import useOutsideClickHandler from "../../hooks/useOutsideClickHandle";
 import useFetch from "../../hooks/useFetch";
 import move, { loaderMsg } from "../../utils/move";
+import useUpdateFileList from "../../hooks/useUpdateFileList";
+import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
 
 var tappedTwice = false;
 
 const Card = ({ isDirectory, date, name, size }: FileData) => {
-  const [trigger, state, msg, setMsg] = useFetch([move], [loaderMsg]);
+  const cwd = useMycloudSelector((s) => s.cwd);
+  const updateList = useUpdateFileList();
+  const [trigger, state, msg] = useFetch([move], [loaderMsg]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,17 +70,25 @@ const Card = ({ isDirectory, date, name, size }: FileData) => {
 
   // TODO wrap this in hooks?
 
-  const drop = (e: React.DragEvent<HTMLDivElement>) => {
+  const drop = async (e: React.DragEvent<HTMLDivElement>) => {
+    if (!isDirectory) {
+      return;
+    }
     e.preventDefault();
     const div = ref.current as HTMLDivElement;
     const data = e.dataTransfer.getData("text");
-    const { id } = e.currentTarget;
-    if (id !== JSON.parse(data).name) {
+    const init = JSON.parse(data);
+    if (name !== init.name) {
       div.classList.replace(style.selectedHolder, style.notSelectedHolder);
       // now we can do operate on the move
 
       dispatch(insertAlert({ msg: "moving files...", type: "loader" }));
-      trigger(0);
+
+      const result = await trigger(0, cwd, init.name, name);
+      if (result.status) {
+        updateList();
+        dispatch(toggleSideInfoAction(false));
+      }
     }
   };
 
@@ -84,8 +96,7 @@ const Card = ({ isDirectory, date, name, size }: FileData) => {
     e.preventDefault();
     const div = ref.current as HTMLDivElement;
     const data = e.dataTransfer.getData("text");
-    const { id } = e.currentTarget;
-    if (id !== JSON.parse(data).name) {
+    if (name !== JSON.parse(data).name && isDirectory) {
       if (div.classList.contains(style.notSelectedHolder)) {
         div.classList.replace(style.notSelectedHolder, style.selectedHolder);
       } else {
