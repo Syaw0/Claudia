@@ -38,9 +38,9 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   const list = listAllFilesInDirectory(userData.data.userId);
   const usedVolume = getUsedVolume(userData.data.userId);
-  console.log(usedVolume);
   return {
     props: {
+      cwd: userData.data.userId,
       user: {
         id: userData.data.userId,
         name: userData.data.name,

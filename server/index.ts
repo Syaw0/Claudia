@@ -10,6 +10,8 @@ import signupRoute from "./routes/signupRoute";
 import generateAnotherTfaTokenRoute from "./routes/generateAnotherTfaTokenRoute";
 import resetPasswordRoute from "./routes/resetPasswordRoute";
 import forgetPasswordRoute from "./routes/forgetPasswordRoute";
+import uploadRoute from "./routes/uploadRoute";
+import fileUpload from "express-fileupload";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -26,6 +28,7 @@ nextApp
     app.use(express.static(__dirname + "/static"));
     app.use(bodyParser.json());
     app.use(cookieParser());
+    app.use(fileUpload());
     // app.use("*", async (req, res, next) => {
     //   await redisClient.select(1);
     //   console.log(req.cookies.session);
@@ -39,6 +42,7 @@ nextApp
     app.post("/generateAnotherTfaToken", generateAnotherTfaTokenRoute);
     app.post("/resetPassword", resetPasswordRoute);
     app.post("/forgetPassword", forgetPasswordRoute);
+    app.post("/upload", uploadRoute);
     app.get("*", (req, res) => {
       return handle(req, res);
     });

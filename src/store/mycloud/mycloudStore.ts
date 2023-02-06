@@ -35,6 +35,7 @@ const pageBasicStates: PageBasicStates = {
 };
 
 const states = {
+  cwd: "",
   storageUsage: {
     max: 0,
     min: 0,
