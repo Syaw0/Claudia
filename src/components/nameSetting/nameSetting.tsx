@@ -9,8 +9,10 @@ import style from "./nameSetting.module.css";
 import { useDispatch } from "react-redux";
 import { insertAlert } from "../../store/mycloud/mycloudStore";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
+import { useRouter } from "next/router";
 
 const NameSetting = () => {
+  const router = useRouter();
   const [trigger, state, msg] = useFetch([changeName], [loaderMsg]);
   const user = useMycloudSelector((s) => s.user);
   const [inputData, setInputData] = useState({ name: user.name });
@@ -29,7 +31,10 @@ const NameSetting = () => {
     if (!checkInput()) {
       return;
     }
-    const res = await trigger(0);
+    const res = await trigger(0, inputData.name, user.id);
+    if (res.status) {
+      router.reload();
+    }
   };
   const checkInput = () => {
     if (!checkInputsEmptiness(inputData)) {
