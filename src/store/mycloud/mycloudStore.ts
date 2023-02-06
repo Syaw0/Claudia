@@ -16,7 +16,7 @@ export interface PageBasicStates {
 const pageBasicStates: PageBasicStates = {
   isSideOpen: false,
   isFileSelected: false,
-  isNavOpen: false,
+  isNavOpen: true,
   floatType: "none",
   fileList: [],
   alerts: [],

@@ -14,7 +14,7 @@ import checkFilesBeforeUpload from "../../utils/checkFilesBeforeUpload";
 import useUpdateFileList from "../../hooks/useUpdateFileList";
 
 const StickyTopNavbar = () => {
-  const [trigger, state, msg, setMsg] = useFetch([upload], [loaderMsg]);
+  const [trigger, state, msg] = useFetch([upload], [loaderMsg]);
   const updateList = useUpdateFileList();
   const dispatch = useDispatch();
 

@@ -5,15 +5,20 @@ import changeProfile, { loaderMsg } from "../../utils/changeProfile";
 import deleteProfile, {
   loaderMsg as deleteLoader,
 } from "../../utils/deleteProfile";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../button/button";
 import Profile from "../profile/profile";
 import style from "./profileSetting.module.css";
 import Text from "../typography/typography";
+import checkImageForProfile from "@/utils/checkImageForProfile";
+import { useRouter } from "next/router";
 
 const ProfileSetting = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const userData = useMycloudSelector((s) => s.user);
+
   const [trigger, state, msg] = useFetch(
     [deleteProfile, changeProfile],
     [deleteLoader, loaderMsg]
@@ -29,13 +34,23 @@ const ProfileSetting = () => {
   //   const res = await trigger(1);
   // };
   const deleteProf = async () => {
-    const res = await trigger(0);
+    if (userData.profileUrl !== "/prof/default.png") {
+      const res = await trigger(0);
+    }
   };
-  const changeFile = async () => {
-    //change profile
-    const res = await trigger(1);
+  const changeFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.currentTarget.files?.item(0) as File;
+    const checkImageResult = checkImageForProfile(file);
+    if (!checkImageResult.status) {
+      return dispatch(
+        insertAlert({ type: "error", msg: checkImageResult.msg })
+      );
+    }
+    const res = await trigger(1, file, userData.id, userData.profileUrl);
+    if (res.status) {
+      router.reload();
+    }
   };
-  const user = useMycloudSelector((s) => s.user);
   return (
     <div className={style.holder} data-testid="profileSettingHolder">
       <Text variant="headline4" className={style.headText}>
@@ -45,8 +60,8 @@ const ProfileSetting = () => {
       <Profile
         data-testid="profileSettingProfile"
         className={style.profileHolder}
-        alt={user.name}
-        url={user.profileUrl}
+        alt={userData.name}
+        url={userData.profileUrl}
         height={50}
         width={50}
       />
@@ -70,6 +85,7 @@ const ProfileSetting = () => {
               data-testid="profileSettingFileInput"
               onChange={changeFile}
               className={style.fileInput}
+              accept="image/*"
               type={"file"}
             />
           }

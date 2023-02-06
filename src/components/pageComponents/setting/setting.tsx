@@ -18,7 +18,6 @@ const Setting = () => {
     <div className={style.holder}>
       <FloatLayout />
       <OperationAlerter />
-      {/* {isGlobalMsgOpen && <Message />} */}
       <MainLayout
         leftNavbar={isNavOpen ? <StickyLeftNavbar /> : <span></span>}
         side={<span></span>}

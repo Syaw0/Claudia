@@ -19,6 +19,8 @@ import cors from "cors";
 import renameRoute from "./routes/renameRoute";
 import rmRoute from "./routes/rmRoute";
 import moveRoute from "./routes/moveRoute";
+import getProfileById from "./routes/getProfileById";
+import changeProfileRoute from "./routes/changeProfile";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -53,6 +55,8 @@ nextApp
     //   next();
     // });
     app.get("/download", downloadRoute);
+    app.get("/prof/:id", getProfileById);
+    app.post("/changeProfile", changeProfileRoute);
     app.post("/move", moveRoute);
     app.post("/rename", renameRoute);
     app.post("/rm", rmRoute);

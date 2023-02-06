@@ -9,7 +9,7 @@
   height: 100%;
   padding: 1rem 0.5rem;
   transition: transform 2s;
-  animation: translateToOpen 1s ease 0s both;
+  animation: translateToOpen 0.5s ease 0s both;
 }
 
 @keyframes translateToOpen {

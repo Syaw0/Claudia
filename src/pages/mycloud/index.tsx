@@ -8,7 +8,7 @@ import getUserById from "../../../db/util/getUserById";
 import listAllFilesInDirectory from "../../../server/util/listAllFilesInDirectory";
 import getUsedVolume from "../../../server/util/getUsedVolume";
 
-const MyCloudPage = (props: any) => {
+const MyCloudPage = (props: Partial<RootState>) => {
   return (
     <>
       <Head>
