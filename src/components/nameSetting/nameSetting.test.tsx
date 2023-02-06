@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import mycloudFakeProps from "../../shared/mycloudFakeProps";
 import makeStore from "../../store/mycloud/mycloudStore";
 
-jest.mock("next.router", () => require("next-router-mock"));
+jest.mock("next/router", () => require("next-router-mock"));
 
 const CustomParent = () => {
   return (

@@ -6,7 +6,7 @@ import style from "./settingHolder.module.css";
 
 const SettingHolder = () => {
   return (
-    <div className={style.holder}>
+    <div data-testid="settingHolder" className={style.holder}>
       <ProfileSetting />
       <NameSetting />
       <PasswordSetting />

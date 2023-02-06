@@ -11,7 +11,7 @@ import Button from "../button/button";
 import Profile from "../profile/profile";
 import style from "./profileSetting.module.css";
 import Text from "../typography/typography";
-import checkImageForProfile from "@/utils/checkImageForProfile";
+import checkImageForProfile from "../../utils/checkImageForProfile";
 import { useRouter } from "next/router";
 
 const ProfileSetting = () => {

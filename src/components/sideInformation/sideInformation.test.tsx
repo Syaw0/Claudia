@@ -3,11 +3,12 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import makeStore from "../../store/mycloud/mycloudStore";
+import byteToMgb from "../../utils/byteToMgb";
 
 const fakeSideData = {
   name: "pic.png",
   date: "2022-01-02",
-  size: 200,
+  size: 1000000,
   isDirectory: false,
 };
 
@@ -30,7 +31,7 @@ describe("TEST COMPONENT : SideInformation", () => {
     expect(mainInfo).toBeInTheDocument();
     expect(detail).toBeInTheDocument();
     expect(detail).toHaveTextContent(fakeSideData.date);
-    expect(detail).toHaveTextContent(`${fakeSideData.size}`);
+    expect(detail).toHaveTextContent(`${byteToMgb(fakeSideData.size)}`);
     expect(mainInfo).toHaveTextContent(`${fakeSideData.name}`);
   });
 });

@@ -8,7 +8,7 @@ import style from "./rename.module.css";
 import checkInputsEmptiness from "../../utils/checkInputEmptiness";
 import { useMycloudSelector } from "../../store/mycloud/mycloudStoreHooks";
 import useCloseFloat from "../../hooks/useCloseFloat";
-import useUpdateFileList from "@/hooks/useUpdateFileList";
+import useUpdateFileList from "../../hooks/useUpdateFileList";
 import { useDispatch } from "react-redux";
 import { toggleSideInfoAction } from "../../store/mycloud/mycloudStore";
 
