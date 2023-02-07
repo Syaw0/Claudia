@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { redisClient } from "../db/dbController";
 import loginRoute from "./routes/loginRoute";
-import checkTfaToken from "./routes/checkTfaToken";
+import checkTfaTokenRoute from "./routes/checkTfaTokenRoute";
 import checkForSignupRoute from "./routes/checkForSignup";
 import signupRoute from "./routes/signupRoute";
 import generateAnotherTfaTokenRoute from "./routes/generateAnotherTfaTokenRoute";
@@ -72,7 +72,7 @@ nextApp
     app.post("/changePassword", changePasswordRoute);
     app.post("/rm", rmRoute);
     app.post("/login", loginRoute);
-    app.post("/checkTfaToken", checkTfaToken);
+    app.post("/checkTfaToken", checkTfaTokenRoute);
     app.post("/checkForSignup", checkForSignupRoute);
     app.post("/signup", signupRoute);
     app.post("/generateAnotherTfaToken", generateAnotherTfaTokenRoute);

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import checkTfaCode from "../../db/util/checkTfaCode";
 
-const checkTfaToken = async (req: Request, res: Response) => {
+const checkTfaTokenRoute = async (req: Request, res: Response) => {
   try {
     const result = await checkTfaCode(req.body, res);
 
@@ -14,4 +14,4 @@ const checkTfaToken = async (req: Request, res: Response) => {
   }
 };
 
-export default checkTfaToken;
+export default checkTfaTokenRoute;

@@ -25,7 +25,6 @@ const checkTfaCode = async (body: any, res: Response) => {
         await redisClient.select(3);
         // set reset password token
         const res = await redisClient.set(email, "exist");
-        console.log(res);
       } else if (!isSignup) {
         con = await pool.getConnection();
         let user = await con.query(
@@ -40,6 +39,7 @@ const checkTfaCode = async (body: any, res: Response) => {
           secure: true,
         });
       }
+      await redisClient.select(2);
       await redisClient.del(formedEmail);
       return {
         status: true,

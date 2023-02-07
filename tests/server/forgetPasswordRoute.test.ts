@@ -6,7 +6,6 @@ import { SHA256 } from "crypto-js";
 import { pool, redisClient } from "../../db/dbController";
 import redisCheckAndConnect from "../../db/util/redisCheckAndConnect";
 import cookieParser from "cookie-parser";
-import random from "../../server/util/random";
 import forgetPasswordRoute from "../../server/routes/forgetPasswordRoute";
 
 jest.mock("nodemailer", () => ({
