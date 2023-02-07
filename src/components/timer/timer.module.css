@@ -1,0 +1,5 @@
+.timer {
+  padding: 0 0.4rem;
+  color: var(--onBg600);
+  text-decoration: underline;
+}

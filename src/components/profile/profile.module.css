@@ -1,0 +1,21 @@
+.holder {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1.5px solid var(--onBg600);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-clip: content-box;
+  background-origin: content-box;
+  background-position: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.holder img {
+  width: 100%;
+  height: auto;
+}

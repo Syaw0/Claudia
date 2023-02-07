@@ -1,0 +1,83 @@
+.holder {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surfaceVariant);
+  width: 14rem;
+  margin: 2rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  border: 4px solid transparent;
+}
+
+.draggable {
+  background-color: var(--primaryCon);
+  border: 1px solid black;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  display: none;
+  left: 0;
+  right: 0;
+}
+
+.selectedHolder {
+  border: 4px solid var(--primary);
+  box-shadow: var(--shadow2dp);
+  transform: scale(1.021);
+  transition: transform 0.1s;
+}
+
+.notSelectedHolder {
+  border: 4px solid transparent;
+  /* box-shadow: var(--shadow2dp);
+  transform: scale(1.021);
+  transition: transform 0.1s; */
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.top svg {
+  fill: var(--primary);
+}
+
+.bottom p:nth-child(1) {
+  font-family: var(--font-sub);
+}
+
+.bottom p:nth-child(2) {
+  color: var(--onBg700);
+}
+
+.toolbarHolder {
+  border: none;
+  background-color: var(--onBg);
+  display: flex;
+  flex-direction: column;
+}
+
+.holderMenu {
+  display: flex;
+}
+
+@media (max-width: 1100px) {
+  .holder {
+    width: 12rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .holder {
+    width: 11rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .holder {
+    width: 9rem;
+  }
+}

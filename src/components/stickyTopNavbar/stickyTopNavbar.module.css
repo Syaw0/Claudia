@@ -1,0 +1,84 @@
+.holder {
+  width: 100%;
+
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid var(--onBg100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileUploadButton {
+  min-width: fit-content;
+  padding: 0.5rem 0.5rem;
+  height: fit-content;
+  position: relative;
+  cursor: pointer;
+}
+
+.uploadInput {
+  opacity: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.profile {
+  width: 50px;
+  height: 50px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.menuIcon {
+  display: none;
+  fill: var(--onBg700);
+  cursor: pointer;
+}
+
+.menuIcon:hover {
+  fill: var(--onBg);
+}
+
+@media (max-width: 1000px) {
+  .fileUploadButton {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    background-color: var(--primary);
+    min-width: fit-content;
+    padding: 1rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .fileUploadButton p {
+    display: none;
+  }
+  .fileUploadButton svg {
+    fill: var(--onPrimary);
+    margin: 0;
+    width: 25px;
+    height: 25px;
+  }
+
+  .fileUploadButton:hover {
+    background-color: var(--primary700);
+  }
+
+  .fileUploadButton:hover svg {
+    fill: var(--onPrimary);
+  }
+  .menuIcon {
+    display: flex;
+  }
+}

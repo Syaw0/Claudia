@@ -1,0 +1,9 @@
+.holder {
+  width: 30rem;
+}
+
+.buttonHolder {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}

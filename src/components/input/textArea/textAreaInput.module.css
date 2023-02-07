@@ -1,0 +1,32 @@
+.holder {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.holder label {
+  font-size: var(--subhead3);
+  color: var(--onBg800);
+  font-family: var(--font-sub);
+  font-weight: 500;
+  padding: 0.4rem 0;
+}
+
+.holder textarea {
+  border: 2px solid var(--onBg400);
+  padding: 0.5rem 0.8rem;
+  background-color: transparent;
+  border-radius: 8px;
+  font-size: var(--subhead2);
+  font-weight: 600;
+  color: var(--onBg900);
+  resize: none;
+}
+
+.holder textarea:focus {
+  outline: none;
+  background-color: var(--primaryCon400);
+  outline-offset: 2px;
+  color: var(--primaryOnCon);
+}

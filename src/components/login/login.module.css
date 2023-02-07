@@ -1,0 +1,50 @@
+.holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+}
+
+.headlineTypography {
+  font-weight: 500;
+}
+
+.subheadTypography {
+  color: var(--onBg700);
+  margin-bottom: 1.2rem;
+}
+
+.forgetPassword {
+  color: var(--primaryOnCon600);
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.forgetPassword:hover {
+  color: var(--primaryOnCon);
+  font-weight: 600;
+}
+
+.buttonHolder {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.buttonHolder button {
+  min-width: fit-content;
+  box-shadow: none;
+}
+
+.msg {
+  position: absolute;
+  right: 0;
+  width: max-content;
+  transform: translate(0, 30%);
+}

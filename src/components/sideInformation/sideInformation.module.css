@@ -1,0 +1,80 @@
+.holder {
+  position: sticky;
+  right: 0;
+  top: 0;
+  width: 20rem;
+  height: 100%;
+  border-left: 2px solid var(--onBg100);
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  animation: translateToOpen 1s ease 0s both;
+}
+
+@keyframes translateToOpen {
+  0% {
+    transform: translate(21rem, -0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+.iconHolder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.holder p {
+  font-family: var(--font-sub);
+}
+
+.headIcon {
+  fill: var(--onBg800);
+}
+
+.mainInformation {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--onBg100);
+  padding: 1rem 0;
+}
+
+.mainInformation p:nth-child(1) {
+  color: var(--onBg);
+  font-weight: 600;
+}
+
+.detail > p {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.detailItem {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.detailItem p:nth-child(1) {
+  color: var(--onBg800);
+}
+
+.detailItem p:nth-child(2) {
+  color: var(--onBg);
+  font-weight: 600;
+}
+
+.closeIcon {
+  fill: var(--onBg800);
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+
+.closeIcon:hover {
+  fill: var(--onBg);
+}

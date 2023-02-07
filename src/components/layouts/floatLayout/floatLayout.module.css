@@ -1,0 +1,23 @@
+.holder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--onBg100);
+  position: absolute;
+  z-index: 2000;
+  animation: showup 0.5s ease both;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes showup {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+  }
+}

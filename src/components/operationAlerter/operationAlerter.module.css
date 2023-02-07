@@ -1,0 +1,12 @@
+.holder {
+  position: absolute;
+  z-index: 1000000;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  min-height: 5rem;
+  max-height: 15rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 25rem;
+}

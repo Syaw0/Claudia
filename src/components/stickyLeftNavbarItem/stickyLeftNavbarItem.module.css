@@ -1,0 +1,60 @@
+.holder {
+  display: flex;
+  width: 100%;
+}
+
+.linkHolder {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 16px;
+  margin-bottom: 0.4rem;
+}
+
+.linkHolder:hover {
+  background-color: var(--primaryOnCon200);
+}
+
+.linkHolder:hover .icon {
+  stroke: var(--primaryOnCon);
+}
+
+.linkHolder:hover .text {
+  color: var(--primaryOnCon);
+}
+
+.icon {
+  fill: none;
+  stroke: var(--primaryOnCon);
+  width: 34px;
+  height: 34px;
+}
+
+.text {
+  color: var(--primaryOnCon);
+  font-family: var(--font-sub);
+  padding: 0 0 0 0.7rem;
+}
+
+.activeLinkHolder {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 16px;
+  margin-bottom: 0.4rem;
+  background: var(--primaryOnCon);
+}
+
+.activeLinkHolder .icon {
+  stroke: var(--primaryCon);
+}
+
+.activeLinkHolder .text {
+  color: var(--primaryCon);
+}

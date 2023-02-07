@@ -1,0 +1,44 @@
+.holder {
+  width: 100%;
+  height: 100vh;
+}
+
+.iconBar {
+  display: flex;
+}
+
+.createDirIcon {
+  fill: var(--onBg800);
+  background-color: var(--onBg100);
+  padding: 0.3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.createDirIcon svg {
+  fill: var(--onBg800);
+}
+.createDirIcon:hover {
+  background-color: var(--onBg300);
+}
+
+.selectFileToolbar {
+  display: none;
+}
+
+.floatMsg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  z-index: 1000;
+}
+
+@media (max-width: 850px) {
+  .selectFileToolbar {
+    display: flex;
+  }
+}

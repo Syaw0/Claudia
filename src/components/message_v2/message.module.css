@@ -1,0 +1,98 @@
+/* .text {
+  font-size: var(--subhead3);
+} */
+
+.mainHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 15rem;
+  max-width: 17rem;
+  margin: 1rem;
+  --svgColor: var(--onError);
+  bottom: 0.4rem;
+  left: 0.4rem;
+  z-index: 1000;
+  animation: showup 0.6s ease both;
+}
+
+@keyframes showup {
+  0% {
+    transform: translate(0px, 4rem);
+  }
+  100% {
+    transform: translate(0px, 0);
+  }
+}
+
+.mainHolder > div:not(.closeIcon) {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 0.4rem;
+  top: 0.4rem;
+}
+
+.mainHolder svg {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--svgColor);
+  cursor: pointer;
+}
+
+.successMsg {
+  background-color: var(--success);
+  border: 1px solid var(--onSuccess500);
+}
+
+.successMsg p {
+  color: var(--onSuccess);
+}
+
+.loaderMsg {
+  background-color: var(--warn);
+  border: 1px solid var(--onWarn500);
+}
+
+.loaderMsg p {
+  color: var(--onWarn);
+}
+
+.warnMsg {
+  background-color: var(--warn);
+  border: 1px solid var(--onWarn500);
+}
+
+.warnMsg p {
+  color: var(--onWarn);
+}
+
+.errorMsg {
+  background-color: var(--error);
+  /* border: 1px solid var(--onError); */
+}
+
+.errorMsg p {
+  color: var(--onError);
+}
+
+.error {
+  --svgColor: var(--onError);
+}
+
+.success {
+  --svgColor: var(--onSuccess);
+}
+
+.warn {
+  --svgColor: var(--onWarn);
+}
+
+.loader {
+  --svgColor: var(--onWarn);
+}
