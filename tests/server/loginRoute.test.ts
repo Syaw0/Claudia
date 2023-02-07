@@ -47,6 +47,10 @@ describe("TEST END POINT : Login Router", () => {
         userData.email,
         userData.password,
       ]);
+    } else {
+      await con.query(
+        `UPDATE users SET password="${userData.password}" where email="${userData.email}"`
+      );
     }
     await con.end();
   });
