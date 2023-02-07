@@ -31,9 +31,6 @@ app.use(
 app.post("/generateAnotherTfaToken", generateAnotherTfaTokenRoute);
 
 describe("TEST END POINT : Generate Fresh Tfa Token Router", () => {
-  // 1.check if session is set in the redis then:
-  //    -if set just remove it  and clear cookies
-  //    -if not return error
   const userData = {
     name: "siavash",
     email: "siaw@gmail.com",

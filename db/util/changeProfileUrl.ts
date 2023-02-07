@@ -5,7 +5,6 @@ const changeProfileUrl = async (userId: string, url?: string) => {
   try {
     con = await pool.getConnection();
     let profUrl = url == null ? userId : url;
-    console.log(profUrl, "sss");
     await con.query(
       `UPDATE users SET profileUrl="/prof/${profUrl}" WHERE userId=${userId}`
     );

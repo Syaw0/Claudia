@@ -30,9 +30,6 @@ const userData = {
 };
 
 describe("TEST END POINT : Get Profile By Id Router", () => {
-  // 1.check if session is set in the redis then:
-  //    -if set just remove it  and clear cookies
-  //    -if not return error
   beforeAll(async () => {
     let con = await pool.getConnection();
     const res = await con.query(

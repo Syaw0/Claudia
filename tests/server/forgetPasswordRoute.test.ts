@@ -30,10 +30,7 @@ app.use(
 );
 app.post("/forgetPassword", forgetPasswordRoute);
 
-describe("TEST END POINT : Generate Fresh Tfa Token Router", () => {
-  // 1.check if session is set in the redis then:
-  //    -if set just remove it  and clear cookies
-  //    -if not return error
+describe("TEST END POINT : Forget Password Router", () => {
   const userData = {
     name: "siavash",
     email: "siaw@gmail.com",
@@ -75,5 +72,23 @@ describe("TEST END POINT : Generate Fresh Tfa Token Router", () => {
     const tryNumber2 = await redisClient.hGet(FormedEmail, "try");
     expect(token2).not.toBeNull();
     expect(tryNumber2).not.toBeNull();
+  });
+  it("if email is not set in db return false", async () => {
+    await redisCheckAndConnect(redisClient);
+    await redisClient.select(2);
+    const token = await redisClient.hGet(FormedEmail, "token");
+    const tryNumber = await redisClient.hGet(FormedEmail, "try");
+    expect(token).toBeNull();
+    expect(tryNumber).toBeNull();
+
+    const result = await request(app)
+      .post("/forgetPassword")
+      .send({ email: "belabela" });
+    expect(result.body.status).toBeFalsy();
+
+    const token2 = await redisClient.hGet(FormedEmail, "token");
+    const tryNumber2 = await redisClient.hGet(FormedEmail, "try");
+    expect(token2).toBeNull();
+    expect(tryNumber2).toBeNull();
   });
 });
