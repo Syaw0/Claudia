@@ -6,7 +6,8 @@ import { SHA256 } from "crypto-js";
 import { pool, redisClient } from "../../db/dbController";
 import redisCheckAndConnect from "../../db/util/redisCheckAndConnect";
 import cookieParser from "cookie-parser";
-import loginRoute from "../../server/routes/loginRoute";
+import random from "../../server/util/random";
+import forgetPasswordRoute from "../../server/routes/forgetPasswordRoute";
 
 jest.mock("nodemailer", () => ({
   createTransport: jest.fn().mockImplementation(() => ({
@@ -27,19 +28,22 @@ app.use(
     exposedHeaders: ["Content-Disposition"],
   })
 );
-app.post("/login", loginRoute);
+app.post("/forgetPassword", forgetPasswordRoute);
 
-const userData = {
-  name: "siavash",
-  email: "siaw@gmail.com",
-  password: SHA256("rootroot").toString(),
-};
-
-describe("TEST END POINT : Login Router", () => {
+describe("TEST END POINT : Generate Fresh Tfa Token Router", () => {
   // 1.check if session is set in the redis then:
   //    -if set just remove it  and clear cookies
   //    -if not return error
-  beforeAll(async () => {
+  const userData = {
+    name: "siavash",
+    email: "siaw@gmail.com",
+    password: SHA256("rootroot").toString(),
+  };
+  let FormedEmail = userData.email.split(".").join("");
+  beforeEach(async () => {
+    await redisCheckAndConnect(redisClient);
+    await redisClient.select(2);
+    await redisClient.del(FormedEmail);
     let con = await pool.getConnection();
     const res = await con.query(
       `SELECT * from users WHERE email="${userData.email}"`
@@ -54,32 +58,22 @@ describe("TEST END POINT : Login Router", () => {
     await con.end();
   });
 
-  it("check if user login and return proper data", async () => {
-    let result = await request(app)
-      .post("/login")
-      .send({ email: userData.email, password: userData.password });
-    expect(result.body.status).toBeTruthy();
-    // now redis has an tfa token
+  it("if email is set in db set tfa session", async () => {
     await redisCheckAndConnect(redisClient);
     await redisClient.select(2);
-    const formatEmail = userData.email.split(".").join("");
-    let isSessionSet = await redisClient.hmGet(formatEmail, "token");
-    expect(isSessionSet).not.toBeNull();
+    const token = await redisClient.hGet(FormedEmail, "token");
+    const tryNumber = await redisClient.hGet(FormedEmail, "try");
+    expect(token).toBeNull();
+    expect(tryNumber).toBeNull();
 
-    // also we set an timeout for 10 min to remove thi session
+    const result = await request(app)
+      .post("/forgetPassword")
+      .send({ email: userData.email });
+    expect(result.body.status).toBeTruthy();
 
-    // isSessionSet = await redisClient.hmGet(formatEmail, "token");
-    // expect(isSessionSet).toBeNull();
-  });
-  it("if information doesn't match return false", async () => {
-    let result = await request(app)
-      .post("/login")
-      .send({ email: "belabela", password: userData.password });
-    expect(result.body.status).toBeFalsy;
-
-    let result2 = await request(app)
-      .post("/login")
-      .send({ email: userData.email, password: "else" });
-    expect(result2.body.status).toBeFalsy;
+    const token2 = await redisClient.hGet(FormedEmail, "token");
+    const tryNumber2 = await redisClient.hGet(FormedEmail, "try");
+    expect(token2).not.toBeNull();
+    expect(tryNumber2).not.toBeNull();
   });
 });
