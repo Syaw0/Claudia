@@ -1,4 +1,4 @@
-const guestRegex = /\/logout|\/mycloud/;
+const guestRegex = /\/logout|\/mycloud|\/setting/;
 
 const checkGuestUserAccess = (url: string) => {
   return guestRegex.test(url) || url === "/";
