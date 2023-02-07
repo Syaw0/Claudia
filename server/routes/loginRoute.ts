@@ -37,6 +37,7 @@ const loginRoute = async (req: Request, res: Response) => {
     }
     return res.send(loginResult);
   } catch (err) {
+    console.log(err);
     return res.send({
       status: false,
       msg: "error during perform any action in login route",
