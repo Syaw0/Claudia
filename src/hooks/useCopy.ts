@@ -22,6 +22,7 @@ const useCopy = () => {
   return async () => {
     const result = await trigger(0, cwd, selectedFile.name);
     if (result.status) {
+      dispatch(insertAlert({ type: "success", msg: "successfully make copy" }));
       await updateList();
     }
   };

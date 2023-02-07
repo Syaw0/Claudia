@@ -50,7 +50,6 @@ const moveFilesToCloud = (files: any, cwd: string) => {
       msg: "all files uploaded successfully",
     };
   } catch (err) {
-    console.log(err);
     return { status: false, msg: "error during transform files in cloud" };
   }
 };
