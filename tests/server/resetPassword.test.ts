@@ -48,8 +48,8 @@ describe("TEST END POINT : ResetPassword Router", () => {
       await con.query(
         `UPDATE users set password="${prePass}" where email="${userData.email}"`
       );
-      await con.end();
     }
+    await con.end();
   });
   beforeEach(async () => {
     await redisCheckAndConnect(redisClient);

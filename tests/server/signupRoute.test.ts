@@ -41,6 +41,7 @@ describe("TEST END POINT : Sign up", () => {
         await con.query(`DELETE FROM users WHERE email="${email}"`);
       }
     }
+    await con.end();
   });
 
   it("just provide data and then sign up will be done", async () => {
