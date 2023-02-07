@@ -20,6 +20,27 @@
   display: flex;
 }
 
+.headText span {
+  margin-right: 1rem;
+  font-size: var(--headline4);
+  line-height: var(--headline4_lineHeight);
+  font-family: var(--font-head);
+  user-select: none;
+  cursor: pointer;
+  color: var(--onBg900);
+}
+
+.headText span:hover {
+  color: var(--onBg);
+}
+
+.headText span:not(.headText span:last-child)::after {
+  content: ">";
+  margin-left: 1rem;
+  cursor: default;
+  color: var(--onBg500);
+}
+
 @media (max-width: 500px) {
   .head {
     flex-direction: column;

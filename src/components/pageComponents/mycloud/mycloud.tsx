@@ -1,4 +1,3 @@
-import fakeCards from "../../../shared/fakecards";
 import CardHolder from "../../../components/cardHolder/cardHolder";
 import MainLayout from "../../../components/layouts/mainLayout/mainLayout";
 import MainHolder from "../../../components/mainHolder/mainHolder";
@@ -15,26 +14,53 @@ import useChangeViewPortWidth from "../../../hooks/useChangeViewportWidth";
 import FloatLayout from "../../../components/layouts/floatLayout/floatLayout";
 import useCreateDirectory from "../../../hooks/useCreateDirectory";
 import OperationAlerter from "../../../components/operationAlerter/operationAlerter";
+import Text from "../../../components/typography/typography";
+import { useRouter } from "next/router";
 
 const Mycloud = () => {
+  const router = useRouter();
   const isSideOpen = useMycloudSelector((s) => s.isSideOpen);
   const isFileSelected = useMycloudSelector((s) => s.isFileSelected);
   const isNavOpen = useMycloudSelector((s) => s.isNavOpen);
   const files = useMycloudSelector((s) => s.fileList);
+  const cwd = useMycloudSelector((s) => s.cwd);
+  let bread = cwd.split != null ? cwd.split("/") : [];
+  bread[0] = "My cloud";
   useControlSelectFileState();
   useChangeViewPortWidth();
+  const goTo = (b: any, i: any) => {
+    let url: any = bread;
+    url[0] = "mycloud";
+    url = url.slice(0, i + 1).join("/");
+    router.replace("/" + url);
+  };
   return (
     <div className={style.holder}>
       <FloatLayout />
       <OperationAlerter />
-      {/* {isGlobalMsgOpen && <Message />} */}
       <MainLayout
         leftNavbar={isNavOpen ? <StickyLeftNavbar /> : <span></span>}
         side={isSideOpen ? <SideInformation /> : <span></span>}
         topNavbar={<StickyTopNavbar />}
         main={
           <MainHolder
-            head="My Cloud"
+            head={
+              <>
+                {bread.map((b, i) => {
+                  return (
+                    <Text
+                      onClick={() => {
+                        goTo(b, i);
+                      }}
+                      as="span"
+                      key={b + i}
+                    >
+                      {b}
+                    </Text>
+                  );
+                })}
+              </>
+            }
             rightHead={
               <div className={style.iconBar}>
                 {isFileSelected && (

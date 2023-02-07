@@ -23,21 +23,27 @@ const moveFilesToCloud = (files: any, cwd: string) => {
     const ls = readdirSync(basePath);
 
     let listOfFileKeys = Object.keys(files);
+
     listOfFileKeys.forEach(async (key) => {
-      ls.forEach(async (name: string) => {
-        let file: UploadedFile = files[key];
-        let fileName = file.name;
-        if (name === files[key].name) {
-          let SplittedName = fileName.split(".");
-          // TODO what if file has not an extension!?
-          let format = SplittedName[SplittedName.length - 1];
-          let rest = SplittedName.slice(0, SplittedName.length - 1).join(".");
-          rest += "(2)";
-          fileName = rest + "." + format;
-        }
+      let file: UploadedFile = files[key];
+      let fileName = file.name;
+      if (ls.length == 0) {
         let path = basePath + `/${fileName}`;
         await file.mv(path);
-      });
+      } else {
+        ls.forEach(async (name: string) => {
+          if (name === files[key].name) {
+            let SplittedName = fileName.split(".");
+            // TODO what if file has not an extension!?
+            let format = SplittedName[SplittedName.length - 1];
+            let rest = SplittedName.slice(0, SplittedName.length - 1).join(".");
+            rest += "(2)";
+            fileName = rest + "." + format;
+          }
+          let path = basePath + `/${fileName}`;
+          await file.mv(path);
+        });
+      }
     });
     return {
       status: true,

@@ -1,22 +1,20 @@
-import checkSession from "../../db/util/checkSession";
 import { Request, Response } from "express";
 import listAllFilesInDirectory from "../../server/util/listAllFilesInDirectory";
 import getUsedVolume from "../../server/util/getUsedVolume";
 
 const updateFileListRoute = async (req: Request, res: Response) => {
   try {
-    const cwd = req.query.cwd;
-
+    const cwd = req.query.cwd as string;
+    let id: any = cwd.split("/")[0];
     const ls = listAllFilesInDirectory(cwd as string);
-    const size = getUsedVolume(cwd as string);
-
+    const size = getUsedVolume(id);
     res.send({
       status: true,
       msg: "updateSuccessful",
       data: {
         files: ls,
         storageUsage: {
-          max: 1000,
+          max: 10000,
           min: size,
         },
       },

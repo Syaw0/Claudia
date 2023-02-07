@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   insertAlert,
   replaceFileList,
@@ -17,7 +18,7 @@ const useUpdateFileList = () => {
     if (state != "pending") {
       dispatch(insertAlert({ type: state, msg }));
     }
-  }, [state, msg, dispatch]);
+  }, [state]);
 
   const startUpdatingList = async () => {
     let result = await trigger(0, cwd);

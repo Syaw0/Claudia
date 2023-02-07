@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import IconMenu from "../../assets/icons/iconMenu";
 import { insertAlert, toggleNavOpen } from "../../store/mycloud/mycloudStore";
 import { useDispatch } from "react-redux";
@@ -20,9 +21,10 @@ const StickyTopNavbar = () => {
 
   useEffect(() => {
     if (state != "pending") {
+      console.log("are you here?");
       dispatch(insertAlert({ type: state, msg }));
     }
-  }, [state, msg, dispatch]);
+  }, [state]);
   const cwd = useMycloudSelector((s) => s.cwd);
   const usageData = useMycloudSelector((s) => s.storageUsage);
   const profileData = useMycloudSelector((s) => s.user);

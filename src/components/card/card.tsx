@@ -26,6 +26,7 @@ var tappedTwice = false;
 const Card = ({ isDirectory, date, name, size }: FileData) => {
   const cwd = useMycloudSelector((s) => s.cwd);
   const updateList = useUpdateFileList();
+
   const [trigger, state, msg] = useFetch([move], [loaderMsg]);
   const dispatch = useDispatch();
 

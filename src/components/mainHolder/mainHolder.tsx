@@ -2,7 +2,7 @@ import Text from "../typography/typography";
 import style from "./mainHolder.module.css";
 
 interface MainHolderPropsType {
-  head: string;
+  head: any;
   subhead?: any;
   rightHead?: any;
   content: any;
@@ -18,7 +18,9 @@ const MainHolder = ({
     <div data-testid="mainHolder" className={style.holder}>
       <div className={style.head}>
         <div>
-          <Text variant="headline4-5">{head}</Text>
+          <Text className={style.headText} variant="headline4-5">
+            {head}
+          </Text>
           {subhead}
         </div>
 
