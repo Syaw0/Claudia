@@ -10,7 +10,6 @@ import Timer from "../timer/timer";
 import getAnotherAuthenticationToken, {
   getAnotherAuthTokenLoaderMsg,
 } from "../../utils/getAnotherAuthenticationToken";
-import { act } from "react-dom/test-utils";
 import { useDispatch } from "react-redux";
 import {
   setComponentAction,
@@ -83,7 +82,7 @@ const TwoFactorAuthentication = ({
     if (timer <= 0) {
       const res = await trigger(1, currentEmail);
       if (res.status) {
-        act(() => setTimer(resetTime));
+        setTimer(resetTime);
       }
     }
   };

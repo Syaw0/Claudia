@@ -8,9 +8,6 @@ const useOutsideClickHandler = (ref: any, setShow: any) => {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
         setShow(false);
-        // setTimeout(() => {
-        //   act(() => );
-        // }, 200);
       }
     }
     document.addEventListener("click", handleClickOutside);
