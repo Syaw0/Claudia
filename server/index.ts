@@ -26,6 +26,7 @@ import deleteProfileRoute from "./routes/deleteProfileRoute";
 import changePasswordRoute from "./routes/changePasswordRoute";
 import path from "path";
 import logoutRoute from "./routes/logoutRoute";
+import makeCopyRoute from "./routes/makeCopyRoute";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -59,6 +60,7 @@ nextApp
     //   console.log(await redisClient.get(req.cookies.session));
     //   next();
     // });
+    app.post("/makeCopy", makeCopyRoute);
     app.get("/download", downloadRoute);
     app.get("/logout", logoutRoute);
     app.get("/prof/:id", getProfileById);
