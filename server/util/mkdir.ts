@@ -3,10 +3,9 @@ import path from "path";
 const __cwd = process.cwd();
 
 const mkdir = ({ name, cwd }: any) => {
-  const basePath = path.join(__cwd, "/server/static/cloud/", `${cwd}`);
-  let ls = fs.readdirSync(basePath);
-  ls = ls.filter((fname: string) => fname === name);
-  if (ls.length != 0) {
+  const basePath = path.join(__cwd, "/server/static/cloud/", `${cwd}/`);
+
+  if (fs.existsSync(basePath + name)) {
     return { status: false, msg: "directory with same name exist" };
   }
 
