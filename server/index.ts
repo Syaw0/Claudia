@@ -27,6 +27,7 @@ import changePasswordRoute from "./routes/changePasswordRoute";
 import path from "path";
 import logoutRoute from "./routes/logoutRoute";
 import makeCopyRoute from "./routes/makeCopyRoute";
+import accessibilityMiddleware from "./middleware/accessibilityMiddleware";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -53,13 +54,7 @@ nextApp
     );
     app.use(cookieParser());
     app.use(fileUpload());
-    app.use(express.static(path.join(process.cwd(), "/server/static/cloud/")));
-    // app.use("*", async (req, res, next) => {
-    //   await redisClient.select(1);
-    //   console.log(req.cookies.session);
-    //   console.log(await redisClient.get(req.cookies.session));
-    //   next();
-    // });
+    app.use(accessibilityMiddleware);
     app.post("/makeCopy", makeCopyRoute);
     app.get("/download", downloadRoute);
     app.get("/logout", logoutRoute);

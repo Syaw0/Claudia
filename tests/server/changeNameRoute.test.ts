@@ -5,7 +5,7 @@ import cors from "cors";
 import { SHA256 } from "crypto-js";
 import { pool } from "../../db/dbController";
 import cookieParser from "cookie-parser";
-import changePasswordRoute from "../../server/routes/changePasswordRoute";
+import changeNameRoute from "../../server/routes/changeNameRoute";
 
 const app = express();
 app.use(express.static(__dirname + "/static"));
@@ -20,16 +20,16 @@ app.use(
     exposedHeaders: ["Content-Disposition"],
   })
 );
-app.post("/changePassword", changePasswordRoute);
-const prePass = SHA256("rootroot").toString();
-const nextPass = SHA256("123123123").toString();
+app.post("/changeName", changeNameRoute);
+const name = "Siavash";
+const newName = "HAJI";
 const userData = {
-  name: "siavash",
+  name: name,
   email: "siaw@gmail.com",
-  password: prePass,
+  password: SHA256("rootroot").toString(),
 };
 
-describe("TEST END POINT : Change Password Router", () => {
+describe("TEST END POINT : Change Name Route", () => {
   beforeAll(async () => {
     let con = await pool.getConnection();
     const res = await con.query(
@@ -43,40 +43,33 @@ describe("TEST END POINT : Change Password Router", () => {
       ]);
     } else {
       await con.query(
-        `UPDATE users SET password="${prePass}" WHERE email="${userData.email}"`
+        `UPDATE users SET name="${userData.name}" WHERE email="${userData.email}"`
       );
     }
     await con.end();
   });
 
-  it("take an pre pass and next and userId then change pass", async () => {
+  it("take userId and newName and just rename it", async () => {
     let con = await pool.getConnection();
     const res = await con.query(
       `SELECT * from users WHERE email="${userData.email}"`
     );
-    let result = await request(app).post("/changePassword").send({
+    let result = await request(app).post("/changeName").send({
       userId: res[0].userId,
-      previousPassword: prePass,
-      newPassword: nextPass,
+      newName: newName,
     });
     expect(result.body.status).toBeTruthy();
     const res2 = await con.query(
       `SELECT * from users WHERE email="${userData.email}"`
     );
-    expect(res2[0].password).toEqual(nextPass);
+    expect(res2[0].name).toEqual(newName);
     await con.end();
   });
-  it("if pre pass does not match return false", async () => {
-    let con = await pool.getConnection();
-    const res = await con.query(
-      `SELECT * from users WHERE email="${userData.email}"`
-    );
-    let result = await request(app).post("/changePassword").send({
-      userId: res[0].userId,
-      previousPassword: "some wrong pass",
-      newPassword: nextPass,
+  it("if any error happen return false", async () => {
+    let result = await request(app).post("/changeName").send({
+      userId: "some falsy id",
+      newName: newName,
     });
     expect(result.body.status).toBeFalsy();
-    await con.end();
   });
 });
