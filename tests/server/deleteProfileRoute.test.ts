@@ -30,7 +30,7 @@ const userData = {
   profileUrl: "/prof/1",
 };
 
-describe("TEST END POINT : Login Router", () => {
+describe("TEST END POINT : Delete Profile Router", () => {
   beforeAll(async () => {
     let con = await pool.getConnection();
     const res = await con.query(

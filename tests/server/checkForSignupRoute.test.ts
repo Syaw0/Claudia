@@ -36,7 +36,7 @@ const userData = {
 };
 
 const email = `ssss${userData.email}`;
-describe("TEST END POINT : Login Router", () => {
+describe("TEST END POINT : Check For Signup Router", () => {
   let FormedEmail = email.split(".").join("");
   beforeAll(async () => {
     let con = await pool.getConnection();

@@ -20,7 +20,7 @@ import renameRoute from "./routes/renameRoute";
 import rmRoute from "./routes/rmRoute";
 import moveRoute from "./routes/moveRoute";
 import getProfileById from "./routes/getProfileById";
-import changeProfileRoute from "./routes/changeProfile";
+import changeProfileRoute from "./routes/changeProfileRoute";
 import changeNameRoute from "./routes/changeNameRoute";
 import deleteProfileRoute from "./routes/deleteProfileRoute";
 import changePasswordRoute from "./routes/changePasswordRoute";

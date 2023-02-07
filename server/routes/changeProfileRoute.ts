@@ -7,6 +7,7 @@ const changeProfileRoute = async (req: Request, res: Response) => {
     const userId = req.body.userId;
     const userProf = req.body.userProf;
     const result = await changeProfile(file.file, userId, userProf);
+
     res.send(result);
   } catch (err) {
     res.send({ status: false, msg: "error during change profile route" });
