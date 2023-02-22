@@ -1,5 +1,5 @@
 const checkEmailForm = (addr: string) => {
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(addr)) {
+  if (/\b(^[^\W])([\w]+|([\.-]?\w+)*)@[\w]+\.[\w]{2,4}\b/.test(addr)) {
     return true;
   }
   return false;
